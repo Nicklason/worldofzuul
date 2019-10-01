@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
-
+// HEJ ændring
 public class Room 
 {
     private String description;
