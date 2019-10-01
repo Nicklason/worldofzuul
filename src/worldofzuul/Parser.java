@@ -1,7 +1,6 @@
 package worldofzuul;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Parser 
 {
@@ -31,6 +30,8 @@ public class Parser
                 word2 = tokenizer.next(); 
             }
         }
+
+        tokenizer.close();
 
         return new Command(commands.getCommandWord(word1), word2);
     }
