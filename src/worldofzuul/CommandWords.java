@@ -1,7 +1,6 @@
 package worldofzuul;
 import java.util.HashMap;
 
-
 public class CommandWords
 {
     private HashMap<String, CommandWord> validCommands;
