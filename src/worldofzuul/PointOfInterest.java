@@ -1,5 +1,7 @@
 package worldofzuul;
 
+import java.util.ArrayList;
+
 public class PointOfInterest {
     private String name;
     private String description;
@@ -30,5 +32,23 @@ public class PointOfInterest {
      */
     public String getDescription() {
         return description;
+    }
+    
+    public String getLongDescription () {
+        return "You are " + description + ".\n" + getInventoryString();
+    }
+
+    public String getInventoryString () {
+        String returnString = "Items:";
+
+        ArrayList<Item> items = this.inventory.getAll();
+
+        Integer itemCount = items.size();
+
+        for (int i = 0; i < itemCount; i++) {
+            returnString += " " + items.get(i).getName();
+        }
+
+        return returnString;
     }
 }

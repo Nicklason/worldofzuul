@@ -49,16 +49,19 @@ public class Room
      * Prints all points of interest
      */
     public void printAllPointsOfInterest () {
-        System.out.print("Points of interest: ");
+        System.out.print("Points of interest:");
 
         Integer pointCount = this.pointsOfInterest.size();
 
-        for (int i = 0; i < pointCount; i++) {
-            System.out.print(this.pointsOfInterest.get(i).getName());
-            if (i != pointCount - 1) {
-                System.out.print(", ");
+        if (pointCount == 0) {
+            System.out.print(" none");
+        } else {
+            for (int i = 0; i < pointCount; i++) {
+                System.out.print(" " + this.pointsOfInterest.get(i).getName());
             }
         }
+
+        System.out.println();
     }
 
     public String getShortDescription()
@@ -68,7 +71,7 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString();
     }
 
     private String getExitString()
@@ -78,6 +81,17 @@ public class Room
         for(String exit : keys) {
             returnString += " " + exit;
         }
+        return returnString;
+    }
+
+    private String getPointsOfInterestString() {
+        String returnString = "Points of interest:";
+
+        Integer pointCount = this.pointsOfInterest.size();
+        for (int i = 0; i < pointCount; i++) {
+            returnString += " " + this.pointsOfInterest.get(i).getName();
+        }
+
         return returnString;
     }
 

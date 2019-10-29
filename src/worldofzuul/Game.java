@@ -77,7 +77,6 @@ public class Game
     public void play() 
     {            
         printWelcome();
-
                 
         boolean finished = false;
         while (! finished) {
@@ -156,7 +155,7 @@ public class Game
     private void investigatePointOfInterest(Command command) 
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Investigate what?");
+            System.out.println("You are not looking at anything!");
             return;
         }
         
@@ -165,12 +164,11 @@ public class Game
         PointOfInterest pointOfInterest = currentRoom.getPointOfInterest(pointOfInterestName);
 
         if (pointOfInterest == null) {
-            System.out.println("There is nothing to inspect");
+            System.out.println("Could not find what you were looking for");
         }
         else {
             currentPointOfInterest = pointOfInterest;
-            System.out.println(currentPointOfInterest.getDescription());
-            currentPointOfInterest.inventory.printAll();
+            System.out.println(currentPointOfInterest.getLongDescription());
         }
     }
 
