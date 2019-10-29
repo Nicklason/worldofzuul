@@ -7,12 +7,12 @@ public class Boots extends Item {
 
     @Override
     public Boolean use() {
-        if (getGame().getCurrentRoom().getName() == "Lake" && getGame().getCurrentPointOfInterest().getName() == "Boat") {
-            return true;
+        if (getGame().getCurrentRoom().getName() != "Lake" || getGame().getCurrentPointOfInterest().getName() != "Boat") {
+            return false;
         }
 
         // TODO: Add logic for using the item
 
-        return false;      
+        return true;      
     }
 }

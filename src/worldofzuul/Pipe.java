@@ -7,12 +7,12 @@ public class Pipe extends Item {
 
     @Override
     public Boolean use() {
-        if (getGame().getCurrentRoom().getName() == "Field" && getGame().getCurrentPointOfInterest().getName() == "Irrigation") {
-            return true;
+        if (getGame().getCurrentRoom().getName() != "Field" || getGame().getCurrentPointOfInterest().getName() != "Irrigation") {
+            return false;
         }
 
         // TODO: Add logic for using the item
 
-        return false;
+        return true;
     }    
 }
