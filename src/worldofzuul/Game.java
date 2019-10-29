@@ -25,49 +25,47 @@ public class Game
         street = new Room("In the street");
         factory = new Room("At the factory");
         
-        
-        
         /**
          * Exits from lobby
          */
-        lobby.setExit("west", lake);
+        lobby.setExit("lake", lake);
         
         /**
          * Exits from lake
          */
-        lake.setExit("east", lobby);
-        lake.setExit("west", bigCity);
-        lake.setExit("south", field);
+        lake.setExit("lobby", lobby);
+        lake.setExit("bigcity", bigCity);
+        lake.setExit("field", field);
         
         /**
          * Exits from field
          */
-        field.setExit("north", lake);
-        field.setExit("west", suburbs);
+        field.setExit("lake", lake);
+        field.setExit("suburbs", suburbs);
         
         /**
          * Exits from suburbs
          */
-        suburbs.setExit("East", field);
-        suburbs.setExit("north", bigCity);
+        suburbs.setExit("field", field);
+        suburbs.setExit("bigcity", bigCity);
         
         /**
          * Exits from bigCity
          */
-        bigCity.setExit("east", lake);
-        bigCity.setExit("west", street);
-        bigCity.setExit("south", suburbs);
+        bigCity.setExit("lake", lake);
+        bigCity.setExit("street", street);
+        bigCity.setExit("suburbs", suburbs);
         
         /**
          * Exits from street
          */
-        street.setExit("east", bigCity);
-        street.setExit("west", factory);
+        street.setExit("bigcity", bigCity);
+        street.setExit("factory", factory);
        
         /**
          * Exits from factory
          */
-        factory.setExit("east", street);
+        factory.setExit("street", street);
         
         
 
