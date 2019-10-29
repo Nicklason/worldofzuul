@@ -114,6 +114,9 @@ public class Game
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
         }
+        else if (commandWord == CommandWord.INVESTIGATE) {
+            investigatePointOfInterest(command);
+        }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -147,6 +150,27 @@ public class Game
             currentRoom = nextRoom;
             currentPointOfInterest = null;
             System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+    private void investigatePointOfInterest(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Investigate what?");
+            return;
+        }
+        
+        String pointOfInterestName = command.getSecondWord();
+        
+        PointOfInterest pointOfInterest = currentRoom.getPointOfInterest(pointOfInterestName);
+
+        if (pointOfInterest == null) {
+            System.out.println("There is nothing to inspect");
+        }
+        else {
+            currentPointOfInterest = pointOfInterest;
+            System.out.println(currentPointOfInterest.getDescription());
+            currentPointOfInterest.inventory.printAll();
         }
     }
 
