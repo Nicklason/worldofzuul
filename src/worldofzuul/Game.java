@@ -18,13 +18,13 @@ public class Game
     {
         Room lobby, lake, bigCity, field, suburbs, street, factory;
       
-        lobby = new Room("In the Lobby Start/End");
-        lake = new Room("At the lake");
-        bigCity = new Room("In the Big City");
-        field = new Room("At the field");
-        suburbs = new Room("In the suburban neighbourhood");
-        street = new Room("In the street");
-        factory = new Room("At the factory");
+        lobby = new Room("In the Lobby Start/End","Lobby");
+        lake = new Room("At the lake","Lake");
+        bigCity = new Room("In the Big City", "Big City");
+        field = new Room("At the field","Field");
+        suburbs = new Room("In the suburban neighbourhood", "suburbs");
+        street = new Room("In the street","Street");
+        factory = new Room("At the factory","factory");
         
         
         
@@ -162,4 +162,14 @@ public class Game
             return true;
         }
     }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+    
+    public PointOfInterest getCurrentPointOfInterest() {
+        return currentPointOfInterest;
+    }
+    
+    
 }
