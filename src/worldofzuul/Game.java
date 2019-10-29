@@ -4,6 +4,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private PointOfInterest currentPointOfInterest;
     private Inventory inventory;
 
     public Game() 
@@ -72,6 +73,7 @@ public class Game
         
 
         currentRoom = lobby;
+        currentPointOfInterest = null;
     }
 
     public void play() 
@@ -145,6 +147,7 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
+            currentPointOfInterest = null;
             System.out.println(currentRoom.getLongDescription());
         }
     }
