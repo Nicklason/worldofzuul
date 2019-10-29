@@ -8,6 +8,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    public Inventory inventory;
     private ArrayList<PointOfInterest> pointsOfInterest;
 
     public Room(String description) 
