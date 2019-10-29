@@ -16,7 +16,7 @@ public class Game
     private void createRooms()
     {
         Room lobby, lake, bigCity, field, suburbs, street, factory;
-      
+
         lobby = new Room("Lobby", "In the Lobby Start/End");
         lake = new Room("Lake", "At the lake");
         bigCity = new Room("Big City", "In the Big City");
@@ -24,48 +24,48 @@ public class Game
         suburbs = new Room("Suburbs", "In the suburban neighbourhood");
         street = new Room("Street", "In the street");
         factory = new Room("Factory", "At the factory");
-        
+
         /**
          * Exits from lobby
          */
-        lobby.setExit("west", lake);
+        lobby.setExit("lake", lake);
         
         /**
          * Exits from lake
          */
-        lake.setExit("east", lobby);
-        lake.setExit("west", bigCity);
-        lake.setExit("south", field);
+        lake.setExit("lobby", lobby);
+        lake.setExit("bigcity", bigCity);
+        lake.setExit("field", field);
         
         /**
          * Exits from field
          */
-        field.setExit("north", lake);
-        field.setExit("west", suburbs);
+        field.setExit("lake", lake);
+        field.setExit("suburbs", suburbs);
         
         /**
          * Exits from suburbs
          */
-        suburbs.setExit("East", field);
-        suburbs.setExit("north", bigCity);
+        suburbs.setExit("field", field);
+        suburbs.setExit("bigcity", bigCity);
         
         /**
          * Exits from bigCity
          */
-        bigCity.setExit("east", lake);
-        bigCity.setExit("west", street);
-        bigCity.setExit("south", suburbs);
+        bigCity.setExit("lake", lake);
+        bigCity.setExit("street", street);
+        bigCity.setExit("suburbs", suburbs);
         
         /**
          * Exits from street
          */
-        street.setExit("east", bigCity);
-        street.setExit("west", factory);
+        street.setExit("bigcity", bigCity);
+        street.setExit("factory", factory);
        
         /**
          * Exits from factory
          */
-        factory.setExit("east", street);
+        factory.setExit("street", street);
 
         currentRoom = lobby;
         currentPointOfInterest = null;
@@ -110,6 +110,9 @@ public class Game
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
         }
+        else if (commandWord == CommandWord.INVESTIGATE) {
+            investigatePointOfInterest(command);
+        }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -143,6 +146,27 @@ public class Game
             currentRoom = nextRoom;
             currentPointOfInterest = null;
             System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+    private void investigatePointOfInterest(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Investigate what?");
+            return;
+        }
+        
+        String pointOfInterestName = command.getSecondWord();
+        
+        PointOfInterest pointOfInterest = currentRoom.getPointOfInterest(pointOfInterestName);
+
+        if (pointOfInterest == null) {
+            System.out.println("There is nothing to inspect");
+        }
+        else {
+            currentPointOfInterest = pointOfInterest;
+            System.out.println(currentPointOfInterest.getDescription());
+            currentPointOfInterest.inventory.printAll();
         }
     }
 
