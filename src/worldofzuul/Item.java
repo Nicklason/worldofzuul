@@ -18,6 +18,14 @@ public abstract class Item {
     }
 
     /**
+     * Gets game reference
+     * @return
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
      * Retunere name
      * @return name
      */
@@ -38,9 +46,4 @@ public abstract class Item {
      * @return Returns true if it was used, false if not
      */
     public abstract Boolean use ();
-
-    public Game getGame() {
-        return game;
-    }
-    
 }

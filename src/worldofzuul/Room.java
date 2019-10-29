@@ -11,12 +11,12 @@ public class Room
     private ArrayList<PointOfInterest> pointsOfInterest;
     private String name;
 
-    public Room(String description, String name) 
+    public Room(String name, String description) 
     {
-        this.description = description;
-        exits = new HashMap<String, Room>();
-        this.pointsOfInterest = new ArrayList<PointOfInterest>();
         this.name = name;
+        this.description = description;
+        this.exits = new HashMap<String, Room>();
+        this.pointsOfInterest = new ArrayList<PointOfInterest>();
     }
 
     public void setExit(String direction, Room neighbor) 
@@ -91,7 +91,4 @@ public class Room
     public String getName() {
         return name;
     }
-    
-    
 }
-

@@ -13,20 +13,17 @@ public class Game
         parser = new Parser();
     }
 
-
     private void createRooms()
     {
         Room lobby, lake, bigCity, field, suburbs, street, factory;
       
-        lobby = new Room("In the Lobby Start/End","Lobby");
-        lake = new Room("At the lake","Lake");
-        bigCity = new Room("In the Big City", "Big City");
-        field = new Room("At the field","Field");
-        suburbs = new Room("In the suburban neighbourhood", "suburbs");
-        street = new Room("In the street","Street");
-        factory = new Room("At the factory","factory");
-        
-        
+        lobby = new Room("Lobby", "In the Lobby Start/End");
+        lake = new Room("Lake", "At the lake");
+        bigCity = new Room("Big City", "In the Big City");
+        field = new Room("Field", "At the field");
+        suburbs = new Room("Suburbs", "In the suburban neighbourhood");
+        street = new Room("Street", "In the street");
+        factory = new Room("Factory", "At the factory");
         
         /**
          * Exits from lobby
@@ -69,8 +66,6 @@ public class Game
          * Exits from factory
          */
         factory.setExit("east", street);
-        
-        
 
         currentRoom = lobby;
         currentPointOfInterest = null;
@@ -79,10 +74,9 @@ public class Game
     public void play() 
     {            
         printWelcome();
-
                 
         boolean finished = false;
-        while (! finished) {
+        while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
@@ -170,6 +164,4 @@ public class Game
     public PointOfInterest getCurrentPointOfInterest() {
         return currentPointOfInterest;
     }
-    
-    
 }

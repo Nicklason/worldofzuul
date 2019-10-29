@@ -1,39 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package worldofzuul;
 
-/**
- *
- * @author niklas
- */
-public class Pipe extends Item{
-
-
-    public Pipe(String name, String description, Game game) {
-        super(name, description, game);
+public class Pipe extends Item {
+    public Pipe (Game game) {
+        super("Pipe", "A pipe", game);
     }
-
-
-
 
     @Override
     public Boolean use() {
-        if ("Irrigation".equals(getGame().getCurrentPointOfInterest().getName()) && 
-                "Field".equals(getGame().getCurrentRoom().getName())) 
-        {
-        return true;
+        if (getGame().getCurrentRoom().getName() == "Field" && getGame().getCurrentPointOfInterest().getName() == "Irrigation") {
+            return true;
         }
-        
+
+        // TODO: Add logic for using the item
+
         return false;
-                
-                
-    }
-    
-    
-    
-    
-    
+    }    
 }
