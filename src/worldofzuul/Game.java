@@ -15,28 +15,63 @@ public class Game
 
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
+        Room lobby, lake, bigCity, field, suburbs, street, factory;
       
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        lobby = new Room("In the Lobby Start/End");
+        lake = new Room("At the lake");
+        bigCity = new Room("In the Big City");
+        field = new Room("At the field");
+        suburbs = new Room("In the suburban neighbourhood");
+        street = new Room("In the street");
+        factory = new Room("At the factory");
         
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        
+        
+        /**
+         * Exits from lobby
+         */
+        lobby.setExit("west", lake);
+        
+        /**
+         * Exits from lake
+         */
+        lake.setExit("east", lobby);
+        lake.setExit("west", bigCity);
+        lake.setExit("south", field);
+        
+        /**
+         * Exits from field
+         */
+        field.setExit("north", lake);
+        field.setExit("west", suburbs);
+        
+        /**
+         * Exits from suburbs
+         */
+        suburbs.setExit("East", field);
+        suburbs.setExit("north", bigCity);
+        
+        /**
+         * Exits from bigCity
+         */
+        bigCity.setExit("east", lake);
+        bigCity.setExit("west", street);
+        bigCity.setExit("south", suburbs);
+        
+        /**
+         * Exits from street
+         */
+        street.setExit("east", bigCity);
+        street.setExit("west", factory);
+       
+        /**
+         * Exits from factory
+         */
+        factory.setExit("east", street);
+        
+        
 
-        theatre.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;
+        currentRoom = lobby;
     }
 
     public void play() 
