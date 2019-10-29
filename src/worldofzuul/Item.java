@@ -31,4 +31,10 @@ public abstract class Item {
     public String getDescription() {
         return description;
     }
+
+    /**
+     * Uses an item
+     * @return Returns true if it was used, false if not
+     */
+    abstract Boolean use ();
 }
