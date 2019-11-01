@@ -45,8 +45,12 @@ public class PointOfInterest {
 
         Integer itemCount = items.size();
 
-        for (int i = 0; i < itemCount; i++) {
-            returnString += " " + items.get(i).getName();
+        if (itemCount == 0) {
+            returnString += " none";
+        } else {
+            for (int i = 0; i < itemCount; i++) {
+                returnString += " " + items.get(i).getName();
+            }
         }
 
         return returnString;
