@@ -4,6 +4,7 @@ public abstract class Item {
     private String name;
     private String description;
     private Game game;
+    private boolean used;
 
     /**
      * constructs an item object using 2 strings as parameters
@@ -14,6 +15,14 @@ public abstract class Item {
         this.name = name;
         this.description = description;
         this.game = game;
+    }
+
+    /**
+     * Gets game reference
+     * @return
+     */
+    public Game getGame() {
+        return game;
     }
 
     /**
@@ -36,5 +45,5 @@ public abstract class Item {
      * Uses an item
      * @return Returns true if it was used, false if not
      */
-    abstract Boolean use ();
+    public abstract Boolean use ();
 }

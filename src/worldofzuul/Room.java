@@ -8,10 +8,13 @@ public class Room {
     private String description;
     private HashMap<String, Room> exits;
     private ArrayList<PointOfInterest> pointsOfInterest;
+    private String name;
 
-    public Room (String description)  {
+    public Room(String name, String description) 
+    {
+        this.name = name;
         this.description = description;
-        exits = new HashMap<String, Room>();
+        this.exits = new HashMap<String, Room>();
         this.pointsOfInterest = new ArrayList<PointOfInterest>();
     }
 
@@ -91,5 +94,9 @@ public class Room {
 
     public Room getExit (String direction)  {
         return exits.get(direction);
+    }
+
+    public String getName() {
+        return name;
     }
 }
