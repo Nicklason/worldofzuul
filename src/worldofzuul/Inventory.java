@@ -55,20 +55,4 @@ public class Inventory {
     public ArrayList<Item> getAll () {
         return items;
     }
-
-    /**
-     * Prints all items in the inventory
-     */
-    public void printAll () {
-        System.out.print("Items: ");
-
-        Integer itemCount = items.size();
-
-        for (int i = 0; i < itemCount; i++) {
-            System.out.print(items.get(i).getName());
-            if (i != itemCount - 1) {
-                System.out.print(", ");
-            }
-        }
-    }
 }

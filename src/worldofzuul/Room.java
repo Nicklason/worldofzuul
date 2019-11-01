@@ -4,8 +4,7 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Room 
-{
+public class Room {
     private String description;
     private HashMap<String, Room> exits;
     private ArrayList<PointOfInterest> pointsOfInterest;
@@ -19,8 +18,7 @@ public class Room
         this.pointsOfInterest = new ArrayList<PointOfInterest>();
     }
 
-    public void setExit(String direction, Room neighbor) 
-    {
+    public void setExit (String direction, Room neighbor)  {
         exits.put(direction, neighbor);
     }
 
@@ -51,30 +49,30 @@ public class Room
      * Prints all points of interest
      */
     public void printAllPointsOfInterest () {
-        System.out.print("Points of interest: ");
+        System.out.print("Points of interest:");
 
         Integer pointCount = this.pointsOfInterest.size();
 
-        for (int i = 0; i < pointCount; i++) {
-            System.out.print(this.pointsOfInterest.get(i).getName());
-            if (i != pointCount - 1) {
-                System.out.print(", ");
+        if (pointCount == 0) {
+            System.out.print(" none");
+        } else {
+            for (int i = 0; i < pointCount; i++) {
+                System.out.print(" " + this.pointsOfInterest.get(i).getName());
             }
         }
+
+        System.out.println();
     }
 
-    public String getShortDescription()
-    {
+    public String getShortDescription () {
         return description;
     }
 
-    public String getLongDescription()
-    {
-        return "You are " + description + ".\n" + getExitString();
+    public String getLongDescription () {
+        return "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString();
     }
 
-    private String getExitString()
-    {
+    private String getExitString () {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
@@ -83,8 +81,18 @@ public class Room
         return returnString;
     }
 
-    public Room getExit(String direction) 
-    {
+    private String getPointsOfInterestString () {
+        String returnString = "Points of interest:";
+
+        Integer pointCount = this.pointsOfInterest.size();
+        for (int i = 0; i < pointCount; i++) {
+            returnString += " " + this.pointsOfInterest.get(i).getName();
+        }
+
+        return returnString;
+    }
+
+    public Room getExit (String direction)  {
         return exits.get(direction);
     }
 
