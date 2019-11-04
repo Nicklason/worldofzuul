@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Inventory class
  */
 public class Inventory {
-    private ArrayList<Item> items;
+    private ArrayList<Item> items = new ArrayList<Item>();
 
     /**
      * Adds an item to the inventory
