@@ -40,7 +40,7 @@ public class Inventory {
      */
     public Item get (String name) {
         for (Item item : items) {
-            if (item.getName() == name) {
+            if (item.getName().equals(name)) {
                 return item;
             }
         }
