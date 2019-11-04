@@ -4,7 +4,6 @@ public abstract class Item {
     private String name;
     private String description;
     private Game game;
-    private boolean used;
 
     /**
      * constructs an item object using 2 strings as parameters
