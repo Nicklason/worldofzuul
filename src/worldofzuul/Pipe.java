@@ -2,7 +2,7 @@ package worldofzuul;
 
 public class Pipe extends Item {
     public Pipe (Game game) {
-        super("Pipe", "A pipe", game);
+        super("pipe", "A pipe", game);
     }
 
     @Override

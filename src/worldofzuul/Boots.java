@@ -2,7 +2,7 @@ package worldofzuul;
 
 public class Boots extends Item {
     public Boots(Game game) {
-        super("Boots", "A pair of boots used to traverse wet terrain", game);
+        super("boots", "A pair of boots used to traverse wet terrain", game);
     }
 
     @Override
