@@ -25,7 +25,7 @@ public class Game {
         lobby.setExit("lake", lake);
 
         // Lake
-        PointOfInterest boat = new PointOfInterest("boat", "You see a boat in the lake. The boat's engine is broken and has contaminated the surrounding water.");
+        PointOfInterest boat = new PointOfInterest("boat", "You see a boat in the lake. The boat's engine is broken and has contaminated the surrounding water.", "You used the boots to get out and fixed the leaking boat engine.");
         boat.inventory.add(new Pipe(this));
         lake.setPointOfInterest(boat);
 
@@ -34,7 +34,7 @@ public class Game {
         lake.setExit("field", field);
 
         // Field
-        PointOfInterest leakingpipe = new PointOfInterest("leakingpipe", "A pipeline is broken and leaking chemicals on the ground and into the water.");
+        PointOfInterest leakingpipe = new PointOfInterest("leakingpipe", "A pipeline is broken and leaking chemicals on the ground and into the water.", "You have fixed the leaking pipe.");
         field.setPointOfInterest(leakingpipe);
 
         PointOfInterest farmhouse = new PointOfInterest("farmhouse", "An abandoned farmhouse, maybe it contains something useful?");
