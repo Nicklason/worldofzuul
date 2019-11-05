@@ -1,21 +1,35 @@
 package worldofzuul;
 
-import java.util.ArrayList;
-
 public class PointOfInterest {
     private String name;
     private String description;
-    public Inventory inventory;
+    private Boolean isFixable;
+    private String successDescription;
+    public Inventory inventory = new Inventory();
+    private Boolean fixed = false;
 
     /**
-     * PointOfInterest Constructor
+     * Non-fixable constructor
      * @param name
-     * @param description 
+     * @param description
      */
     public PointOfInterest(String name, String description) {
         this.name = name;
         this.description = description;
-        this.inventory = new Inventory();
+        this.isFixable = false;
+    }
+
+    /**
+     * PointOfInterest Constructor
+     * @param name
+     * @param description
+     * @param successDescription
+     */
+    public PointOfInterest(String name, String description, String successDescription) {
+        this.name = name;
+        this.description = description;
+        this.successDescription = successDescription;
+        this.isFixable = true;
     }
 
     /**
@@ -27,6 +41,31 @@ public class PointOfInterest {
     }
 
     /**
+     * Returns true if the point of interest is fixed
+     * @return
+     */
+    public Boolean isFixed () {
+        return this.fixed;
+    }
+
+    /**
+     * Mutator for fixed
+     */
+    public void setFixed () {
+        if (this.isFixable()) {
+            this.fixed = true;
+        }
+    }
+
+    /**
+     * Accessor for isFixable
+     * @return
+     */
+    private Boolean isFixable () {
+        return this.isFixable;
+    }
+
+    /**
      * Get description
      * @return 
      */
@@ -35,24 +74,10 @@ public class PointOfInterest {
     }
 
     public String getLongDescription () {
-        return "You are " + description + ".\n" + getInventoryString();
+        return (this.isFixed() ? successDescription : description) + "\n" + getInventoryString();
     }
 
     public String getInventoryString () {
-        String returnString = "Items:";
-
-        ArrayList<Item> items = this.inventory.getAll();
-
-        Integer itemCount = items.size();
-
-        if (itemCount == 0) {
-            returnString += " none";
-        } else {
-            for (int i = 0; i < itemCount; i++) {
-                returnString += " " + items.get(i).getName();
-            }
-        }
-
-        return returnString;
+        return "Items: " + this.inventory.getItemsString();
     }
 }

@@ -1,28 +1,20 @@
 package worldofzuul;
 
-public abstract class Item {
+public class Item {
     private String name;
     private String description;
-    private Game game;
-    private boolean used;
+    private PointOfInterest pointOfInterest;
 
     /**
      * constructs an item object using 2 strings as parameters
      * @param name
-     * @param description 
+     * @param description
+     * @param pointOfInterest Location that the item can be used at
      */
-    public Item (String name, String description, Game game) {
+    public Item (String name, String description, PointOfInterest pointOfInterest) {
         this.name = name;
         this.description = description;
-        this.game = game;
-    }
-
-    /**
-     * Gets game reference
-     * @return
-     */
-    public Game getGame() {
-        return game;
+        this.pointOfInterest = pointOfInterest;
     }
 
     /**
@@ -42,8 +34,11 @@ public abstract class Item {
     }
 
     /**
-     * Uses an item
-     * @return Returns true if it was used, false if not
+     * Checks if item can be used at a point of interest
+     * @param pointOfInterest
+     * @return
      */
-    public abstract Boolean use ();
+    public Boolean usableAtPointOfInterest (PointOfInterest pointOfInterest) {
+        return this.pointOfInterest == pointOfInterest;
+    }
 }
