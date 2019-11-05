@@ -114,6 +114,8 @@ public class Game {
             useItem(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
+        }else if (commandWord == CommandWord.INFORMATION) {
+            printRoomInformation();
         }
         return wantToQuit;
     }
@@ -124,6 +126,11 @@ public class Game {
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+    }
+    
+    private void printRoomInformation(){
+        System.out.println(currentRoom.getLongDescription());
+    
     }
 
     private void goRoom (Command command) {
