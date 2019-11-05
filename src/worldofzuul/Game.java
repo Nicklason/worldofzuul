@@ -101,6 +101,8 @@ public class Game {
             goRoom(command);
         } else if (commandWord == CommandWord.INVESTIGATE) {
             investigatePointOfInterest(command);
+        } else if (commandWord == CommandWord.INVENTORY) {
+            viewInventory();
         } else if (commandWord == CommandWord.PICKUP) {
             pickupItem(command);
         } else if (commandWord == CommandWord.QUIT) {
@@ -177,6 +179,10 @@ public class Game {
         } else {
             System.out.println("You can't carry more items!");
         }
+    }
+
+    private void viewInventory () {
+        System.out.println("Your items: " + this.inventory.getItemsString());
     }
 
     private boolean quit (Command command) {
