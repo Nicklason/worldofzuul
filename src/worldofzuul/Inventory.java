@@ -7,6 +7,19 @@ import java.util.ArrayList;
  */
 public class Inventory {
     private ArrayList<Item> items = new ArrayList<Item>();
+    private Integer limit;
+
+    public Inventory () {
+        this.limit = -1;
+    }
+
+    public Inventory (Integer limit) {
+        if (limit < 1) {
+            throw new IllegalArgumentException("Inventory limit can't be less than 1");
+        }
+
+        this.limit = limit;
+    }
 
     /**
      * Adds an item to the inventory
@@ -14,8 +27,12 @@ public class Inventory {
      * @return Returns true if it was added, false if not
      */
     public Boolean add (Item item) {
-        items.add(item);
-        return true;
+        if (this.limit == -1 || this.limit > this.items.size()) {
+            items.add(item);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -4,7 +4,7 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
-    private Inventory inventory = new Inventory();
+    private Inventory inventory = new Inventory(1);
 
     public Game () {
         createRooms();
