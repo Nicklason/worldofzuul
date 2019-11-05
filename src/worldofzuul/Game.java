@@ -105,6 +105,8 @@ public class Game {
             viewInventory();
         } else if (commandWord == CommandWord.PICKUP) {
             pickupItem(command);
+        } else if (commandWord == CommandWord.DROP) {
+            dropItem(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -176,6 +178,29 @@ public class Game {
         if (this.inventory.add(item)) {
             this.currentPointOfInterest.inventory.remove(item);
             System.out.println("The item has been added to your inventory");
+        } else {
+            System.out.println("You can't carry more items!");
+        }
+    }
+
+    private void dropItem (Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Drop what?");
+            return;
+        }
+
+        String itemName = command.getSecondWord();
+
+        Item item = this.inventory.get(itemName);
+
+        if (item == null) {
+            System.out.println("Could not find the item");
+            return;
+        }
+
+        if (this.currentPointOfInterest.inventory.add(item)) {
+            this.inventory.remove(item);
+            System.out.println("The item has been removed from your inventory");
         } else {
             System.out.println("You can't carry more items!");
         }
