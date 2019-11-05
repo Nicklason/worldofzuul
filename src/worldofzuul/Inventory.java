@@ -55,4 +55,27 @@ public class Inventory {
     public ArrayList<Item> getAll () {
         return items;
     }
+
+    /**
+     * Returns a string of item names / none if inventory is empty
+     * @return
+     */
+    public String getItemsString () {
+        Integer itemCount = items.size();
+
+        String returnString = "";
+
+        if (itemCount == 0) {
+            returnString += "none";
+        } else {
+            for (int i = 0; i < itemCount; i++) {
+                if (i != 0) {
+                    returnString += " ";
+                }
+                returnString += items.get(i).getName();
+            }
+        }
+
+        return returnString;
+    }
 }

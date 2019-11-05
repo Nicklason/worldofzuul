@@ -4,7 +4,7 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
-    private Inventory inventory;
+    private Inventory inventory = new Inventory();
 
     public Game () {
         createRooms();
@@ -13,56 +13,51 @@ public class Game {
 
     private void createRooms()
     {
-        Room lobby, lake, bigCity, field, suburbs, street, factory;
+        Room lobby = new Room("Lobby", "In the Lobby Start/End");
+        Room lake = new Room("Lake", "At the lake");
+        Room bigCity = new Room("Big City", "In the Big City");
+        Room field = new Room("Field", "At the field");
+        Room suburbs = new Room("Suburbs", "In the suburban neighbourhood");
+        Room street = new Room("Street", "In the street");
+        Room factory = new Room("Factory", "At the factory");
 
-        lobby = new Room("Lobby", "In the Lobby Start/End");
-        lake = new Room("Lake", "At the lake");
-        bigCity = new Room("Big City", "In the Big City");
-        field = new Room("Field", "At the field");
-        suburbs = new Room("Suburbs", "In the suburban neighbourhood");
-        street = new Room("Street", "In the street");
-        factory = new Room("Factory", "At the factory");
-
-        /**
-         * Exits from lobby
-         */
+        // Lobby
         lobby.setExit("lake", lake);
 
-        /**
-         * Exits from lake
-         */
+        // Lake
+        PointOfInterest boat = new PointOfInterest("boat", "You see a boat in the lake. The boat's engine is broken and has contaminated the surrounding water.");
+        boat.inventory.add(new Pipe(this));
+        lake.setPointOfInterest(boat);
+
         lake.setExit("lobby", lobby);
         lake.setExit("bigcity", bigCity);
         lake.setExit("field", field);
 
-        /**
-         * Exits from field
-         */
+        // Field
+        PointOfInterest leakingpipe = new PointOfInterest("leakingpipe", "A pipeline is broken and leaking chemicals on the ground and into the water.");
+        field.setPointOfInterest(leakingpipe);
+
+        PointOfInterest farmhouse = new PointOfInterest("farmhouse", "An abandoned farmhouse, maybe it contains something useful?");
+        farmhouse.inventory.add(new Boots(this));
+        field.setPointOfInterest(farmhouse);
+
         field.setExit("lake", lake);
         field.setExit("suburbs", suburbs);
 
-        /**
-         * Exits from suburbs
-         */
+        // Suburbs
         suburbs.setExit("field", field);
         suburbs.setExit("bigcity", bigCity);
 
-        /**
-         * Exits from bigCity
-         */
+        // Big city
         bigCity.setExit("lake", lake);
         bigCity.setExit("street", street);
         bigCity.setExit("suburbs", suburbs);
 
-        /**
-         * Exits from street
-         */
+        // Street
         street.setExit("bigcity", bigCity);
         street.setExit("factory", factory);
 
-        /**
-         * Exits from factory
-         */
+        // Factory
         factory.setExit("street", street);
 
         currentRoom = lobby;
@@ -106,6 +101,8 @@ public class Game {
             goRoom(command);
         } else if (commandWord == CommandWord.INVESTIGATE) {
             investigatePointOfInterest(command);
+        } else if (commandWord == CommandWord.PICKUP) {
+            pickupItem(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -149,11 +146,36 @@ public class Game {
         
         PointOfInterest pointOfInterest = currentRoom.getPointOfInterest(pointOfInterestName);
 
+        System.out.println(pointOfInterestName);
+
         if (pointOfInterest == null) {
             System.out.println("Could not find what you were looking for");
         } else {
             currentPointOfInterest = pointOfInterest;
             System.out.println(currentPointOfInterest.getLongDescription());
+        }
+    }
+
+    private void pickupItem (Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("Pickup what?");
+            return;
+        }
+
+        String itemName = command.getSecondWord();
+
+        Item item = this.currentPointOfInterest.inventory.get(itemName);
+
+        if (item == null) {
+            System.out.println("Could not find the item");
+            return;
+        }
+
+        if (this.inventory.add(item)) {
+            this.currentPointOfInterest.inventory.remove(item);
+            System.out.println("The item has been added to your inventory");
+        } else {
+            System.out.println("You can't carry more items!");
         }
     }
 

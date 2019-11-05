@@ -37,7 +37,7 @@ public class Room {
      */
     public PointOfInterest getPointOfInterest (String name) {
         for (PointOfInterest pointOfInterest : this.pointsOfInterest) {
-            if (pointOfInterest.getName() == name) {
+            if (pointOfInterest.getName().equals(name)) {
                 return pointOfInterest;
             }
         }

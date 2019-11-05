@@ -39,20 +39,6 @@ public class PointOfInterest {
     }
 
     public String getInventoryString () {
-        String returnString = "Items:";
-
-        ArrayList<Item> items = this.inventory.getAll();
-
-        Integer itemCount = items.size();
-
-        if (itemCount == 0) {
-            returnString += " none";
-        } else {
-            for (int i = 0; i < itemCount; i++) {
-                returnString += " " + items.get(i).getName();
-            }
-        }
-
-        return returnString;
+        return "Items: " + this.inventory.getItemsString();
     }
 }
