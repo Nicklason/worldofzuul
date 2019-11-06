@@ -1,5 +1,7 @@
 package worldofzuul;
 
+import items.*;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -7,7 +9,7 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
-    private Inventory inventory = new Inventory(1);
+    public Inventory inventory = new Inventory(1);
     public ArrayList<Room> rooms = new ArrayList<>();
 
     public Game() {
@@ -17,13 +19,13 @@ public class Game {
 
     private void createRooms() {
         // Rooms
-        Room lobby = new Room("Lobby", "In the Lobby Start/End");
-        Room lake = new Room("Lake", "At the lake");
-        Room bigCity = new Room("Big City", "In the Big City");
-        Room field = new Room("Field", "At the field");
-        Room suburbs = new Room("Suburbs", "In the suburban neighbourhood");
-        Room street = new Room("Street", "In the street");
-        Room factory = new Room("Factory", "At the factory");
+        Room lobby = new Room("lobby", "In the Lobby Start/End");
+        Room lake = new Room("lake", "At the lake");
+        Room bigCity = new Room("bigcity", "In the Big City");
+        Room field = new Room("field", "At the field");
+        Room suburbs = new Room("suburbs", "In the suburban neighbourhood");
+        Room street = new Room("street", "In the street");
+        Room factory = new Room("factory", "At the factory");
 
         rooms.add(lake);
         rooms.add(bigCity);
@@ -42,7 +44,7 @@ public class Game {
         PointOfInterest waterpump = new PointOfInterest("waterpump", "a handle is missing on the water pump", "You have replaced the missing handle, the water pump is now fully functional");
         PointOfInterest streetPoi = new PointOfInterest("street", "you are standing at the street leading through the suburbs");
         PointOfInterest boy = new PointOfInterest("boy", "Hello my name is _____ I am really thirsty if only someone could replace it missing handle on our water pump!", "Thank you so much for fixing the water pump");
-        PointOfInterest vendingMachine = new PointOfInterest("vendingMachine", "A cola vending machine, it requires a coin", "you used the coin and got a cola");
+        PointOfInterest vendingMachine = new PointOfInterest("vendingmachine", "A cola vending machine, it requires a coin", "you used the coin and got a cola");
         PointOfInterest store = new PointOfInterest("store", "A grocery store, there is a line of shoppingcarts at the front they require a coin", "You used the coin to unlock a shopping cart");
         PointOfInterest oldMan = new PointOfInterest("oldman", "An old man", "you helped the old man get water");
         PointOfInterest closedDoor = new PointOfInterest("lockeddoor", "locked backdoor into factory", "you used the keycart to unlock the door");
@@ -53,7 +55,7 @@ public class Game {
         lobby.setExit("lake", lake);
 
         // Lake
-        boat.inventory.add(new Item("pipe", "A pipe", irrigation));
+        // boat.inventory.add(new Item("pipe", "A pipe", irrigation));
         lake.setPointOfInterest(boat);
         lake.setPointOfInterest(leakingpipe);
         lake.setPointOfInterest(bridge);
@@ -63,9 +65,10 @@ public class Game {
         lake.setExit("field", field);
 
         // Field
-        farmhouse.inventory.add(new Item("boots", "A pair of boots", boat));
-        farmhouse.inventory.add(new Item("meatalpatch", "A metal patch", leakingpipe));
-        irrigation.inventory.add(new Item("pumpHandle", "A pump handle", waterpump));
+        farmhouse.inventory.add(new Boots(this));
+
+        // farmhouse.inventory.add(new Item("meatalpatch", "A metal patch", leakingpipe));
+        // irrigation.inventory.add(new Item("pumpHandle", "A pump handle", waterpump));
         field.setPointOfInterest(farmhouse);
         field.setPointOfInterest(irrigation);
         field.setPointOfInterest(pesticides);
@@ -74,7 +77,7 @@ public class Game {
         field.setExit("suburbs", suburbs);
 
         // Suburbs
-        streetPoi.inventory.add(new Item("coin", "A golden coin", vendingMachine));
+        // streetPoi.inventory.add(new Item("coin", "A golden coin", vendingMachine));
         suburbs.setPointOfInterest(waterpump);
         suburbs.setPointOfInterest(streetPoi);
         suburbs.setPointOfInterest(boy);
@@ -83,9 +86,9 @@ public class Game {
         
 
         // Big city
-        vendingMachine.inventory.add(new Item("cola", "A can of cola", boy));
-        store.inventory.add(new Item("cart", "A shopping chart", pesticides));
-        oldMan.inventory.add(new Item("keycart", "A keycart", closedDoor));
+        // vendingMachine.inventory.add(new Item("cola", "A can of cola", boy));
+        // store.inventory.add(new Item("cart", "A shopping chart", pesticides));
+        // oldMan.inventory.add(new Item("keycart", "A keycart", closedDoor));
         bigCity.setPointOfInterest(vendingMachine);
         bigCity.setPointOfInterest(store);
         bigCity.setPointOfInterest(oldMan);
@@ -94,7 +97,7 @@ public class Game {
         bigCity.setExit("suburbs", suburbs);
 
         // Street
-        container.inventory.add(new Item("camera", "A digital camera", map));
+        // container.inventory.add(new Item("camera", "A digital camera", map));
         street.setPointOfInterest(closedDoor);
         street.setPointOfInterest(container);
         street.setExit("bigcity", bigCity);
@@ -272,14 +275,7 @@ public class Game {
             return;
         }
 
-        if (item.usableAtPointOfInterest(currentPointOfInterest)) {
-            System.out.println("Using " + item.getName() + " at " + currentPointOfInterest.getName());
-            currentPointOfInterest.setFixed();
-            System.out.println(currentPointOfInterest.getLongDescription());
-            this.inventory.remove(item);
-        } else {
-            System.out.println("You cant use that item here");
-        }
+        item.use();
     }
 
     private void viewInventory() {
