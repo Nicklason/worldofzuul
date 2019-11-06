@@ -2,7 +2,7 @@ package pointsofinterest;
 
 import worldofzuul.Inventory;
 
-public class PointOfInterest {
+public abstract class PointOfInterest {
     private String name;
     private String description;
     private Boolean isFixable;

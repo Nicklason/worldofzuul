@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Room {
+public abstract class Room {
     private String description;
     private HashMap<String, Room> exits;
     private ArrayList<PointOfInterest> pointsOfInterest;
