@@ -17,11 +17,11 @@ public class Camera extends Item {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
-
+        
+        pointOfInterest.setFixed();
+        
         System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
         System.out.println(pointOfInterest.getLongDescription());
-
-        pointOfInterest.setFixed();
 
         // The item now contains a photo
         this.name += " (with photo)";

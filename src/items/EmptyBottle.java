@@ -10,34 +10,27 @@ package items;
  * @author Nica
  */
 import worldofzuul.Game;
-import pointsofinterest.PointOfInterest;
-import rooms.Factory;
-;
+import pointsofinterest.PointOfInterest;;
 
-public class Keycard extends Item {
-    public Keycard (Game game) {
-        super("keycard", "A keycard", game);
+public class EmptyBottle extends Item {
+    public EmptyBottle (Game game) {
+        super("emptybottle", "A empty bottle", game);
     }
 
     @Override
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("street") || !pointOfInterest.getName().equals("lockeddoor")) {
+        if (!game.getCurrentRoom().getName().equals("suburbs") || !pointOfInterest.getName().equals("waterpump") || !pointOfInterest.isFixed()) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
 
-        pointOfInterest.setFixed();
 
         System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
         System.out.println(pointOfInterest.getLongDescription());
         this.game.inventory.remove(this);
-        Factory factory = new Factory(game);
-        game.rooms.get(4).setExit(factory);
-        factory.setExit(game.rooms.get(4));
-        System.out.println("New exit factory added");
-        
-        
+        System.out.println("Filled waterbottle added to inventory");
+        this.game.inventory.add(new FilledBottle(game));
     }
 }

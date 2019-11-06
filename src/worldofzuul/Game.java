@@ -60,13 +60,13 @@ public class Game {
 
     public void play() {
         printWelcome();
-
+        this.inventory.add(new Keycard(this));
         boolean finished = false;
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-
+        
         System.out.println("Thank you for playing. Good bye.");
     }
 

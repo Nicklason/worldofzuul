@@ -71,7 +71,7 @@ public abstract class Room {
     }
 
     public String getLongDescription () {
-        return "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString();
+        return (pointsOfInterest.size() > 0 ? "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString() : "You are " + description + ".\n" + getExitString());
     }
 
     private String getExitString () {
