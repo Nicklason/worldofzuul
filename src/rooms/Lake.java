@@ -11,6 +11,6 @@ public class Lake extends Room {
 
         this.setPointOfInterest(new Boat(game));
         this.setPointOfInterest(new LeakingPipe());
-        this.setPointOfInterest(new Bridge());
+        this.setPointOfInterest(new Bridge(game));
     }
 }

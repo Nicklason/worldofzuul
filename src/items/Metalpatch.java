@@ -21,7 +21,7 @@ public class Metalpatch extends Item {
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("lake") || !pointOfInterest.getName().equals("leakpingpipe")) {
+        if (!game.getCurrentRoom().getName().equals("lake") || !pointOfInterest.getName().equals("leakingpipe")) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
