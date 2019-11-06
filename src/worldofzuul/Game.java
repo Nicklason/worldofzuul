@@ -316,6 +316,21 @@ public class Game {
         return currentRoom;
     }
 
+    /**
+     * Get a room by name
+     * @param name
+     * @return
+     */
+    public Room getRoom (String name) {
+        for (Room room: rooms){
+            if (room.getName().equals(name)) {
+                return room;
+            }
+        }
+
+        return null;
+    }
+
     public PointOfInterest getCurrentPointOfInterest() {
         return currentPointOfInterest;
     }
