@@ -1,6 +1,8 @@
 package worldofzuul;
 
 import items.*;
+import pointsofinterest.*;
+import rooms.*;
 
 import java.util.ArrayList;
 

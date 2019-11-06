@@ -1,7 +1,7 @@
 package items;
 
 import worldofzuul.Game;
-import worldofzuul.PointOfInterest;
+import pointsofinterest.PointOfInterest;;
 
 public class Boots extends Item {
     public Boots (Game game) {
