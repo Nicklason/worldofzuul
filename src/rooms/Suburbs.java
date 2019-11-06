@@ -2,7 +2,7 @@ package rooms;
 
 import worldofzuul.Game;
 import pointsofinterest.Waterpump;
-import pointsofinterest.Street;
+import pointsofinterest.StreetPoi;
 import pointsofinterest.Boy;
 
 public class Suburbs extends Room {
@@ -10,7 +10,7 @@ public class Suburbs extends Room {
         super("suburbs", "In the suburban neighbourhood");
 
         this.setPointOfInterest(new Waterpump());
-        this.setPointOfInterest(new Street(game));
+        this.setPointOfInterest(new StreetPoi(game));
         this.setPointOfInterest(new Boy());
     }
 }

@@ -25,10 +25,30 @@ public class Game {
         Lobby lobby = new Lobby();
         Lake lake = new Lake(this);
         Field field = new Field(this);
+        Bigcity bigcity = new Bigcity(this);
+        Suburbs suburbs = new Suburbs(this);
+        Street streetpoi = new Street(this);
+        
+        
 
         lobby.setExit(lake);
+        
         lake.setExit(field);
+        lake.setExit(bigcity);
+        lake.setExit(lobby);
+        
         field.setExit(lake);
+        field.setExit(suburbs);
+        
+        bigcity.setExit(lake);
+        bigcity.setExit(suburbs);
+        bigcity.setExit(streetpoi);
+        
+        suburbs.setExit(field);
+        suburbs.setExit(bigcity);
+        
+        streetpoi.setExit(bigcity);
+        
 
         /* Room lobby = new Room("lobby", "In the Lobby Start/End");
         Room lake = new Room("lake", "At the lake");
