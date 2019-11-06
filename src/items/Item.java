@@ -3,7 +3,7 @@ package items;
 import worldofzuul.Game;
 
 public abstract class Item {
-    private String name;
+    protected String name;
     private String description;
     protected Game game;
 
