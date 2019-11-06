@@ -91,7 +91,11 @@ public class Room {
 
         return returnString;
     }
-
+    
+    public ArrayList<PointOfInterest> getPointsOfInterests(){
+        return pointsOfInterest;
+    }
+    
     public Room getExit (String direction)  {
         return exits.get(direction);
     }
