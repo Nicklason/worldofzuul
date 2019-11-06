@@ -230,16 +230,20 @@ public class Game {
     }
     
     private void highscore(){
-        int fixedCount = 0;
+        int totalFixedCount = 0;
         for (Room room: rooms){
+            int fixedCount = 0;
             for (PointOfInterest poi: room.getPointsOfInterests ()){
                 if (poi.isFixed()) {
                     fixedCount++;
+                    totalFixedCount++;
                 }
             }
+            System.out.println(room.getName());
+            System.out.println(fixedCount+"/"+room.getPointsOfInterests().size()+" completed");
+        
         }
-        System.out.println(fixedCount);
-        System.out.println("Highscore: "+(fixedCount*100)+" you fixed "+fixedCount+" objectives");
+        System.out.println("Highscore: "+(totalFixedCount*100)+" you fixed "+totalFixedCount+" objectives");
     }
 
     private boolean quit(Command command) {
