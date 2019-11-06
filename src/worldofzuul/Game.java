@@ -22,8 +22,9 @@ public class Game {
     private void createRooms() {
         // Rooms
 
-        Room lobby = new Lobby();
-        Room lake = new Lake(this);
+        Lobby lobby = new Lobby();
+        Lake lake = new Lake(this);
+        Field field = new Field(this);
 
         lobby.setExit(lake);
 
