@@ -27,6 +27,8 @@ public class Game {
         Field field = new Field(this);
 
         lobby.setExit(lake);
+        lake.setExit(field);
+        field.setExit(lake);
 
         /* Room lobby = new Room("lobby", "In the Lobby Start/End");
         Room lake = new Room("lake", "At the lake");
