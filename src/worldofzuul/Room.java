@@ -92,7 +92,7 @@ public class Room {
         return returnString;
     }
     
-    public ArrayList<PointOfInterest> getpointsOfInterestsArrayList(){
+    public ArrayList<PointOfInterest> getPointsOfInterests(){
         return pointsOfInterest;
     }
     
