@@ -34,8 +34,8 @@ public class Keycard extends Item {
         System.out.println(pointOfInterest.getLongDescription());
         this.game.inventory.remove(this);
         Factory factory = new Factory(game);
-        game.rooms.get(4).setExit(factory);
-        factory.setExit(game.rooms.get(4));
+        game.getRoom("street").setExit(factory);
+        factory.setExit(game.getRoom("street"));
         System.out.println("New exit factory added");
         
         
