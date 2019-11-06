@@ -20,8 +20,8 @@ public abstract class Room {
         this.pointsOfInterest = new ArrayList<PointOfInterest>();
     }
 
-    public void setExit (String direction, Room neighbor)  {
-        exits.put(direction, neighbor);
+    public void setExit (Room neighbor)  {
+        exits.put(neighbor.getName(), neighbor);
     }
 
     /**

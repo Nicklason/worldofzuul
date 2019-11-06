@@ -21,7 +21,13 @@ public class Game {
 
     private void createRooms() {
         // Rooms
-        Room lobby = new Room("lobby", "In the Lobby Start/End");
+
+        Room lobby = new Lobby();
+        Room lake = new Lake(this);
+
+        lobby.setExit(lake);
+
+        /* Room lobby = new Room("lobby", "In the Lobby Start/End");
         Room lake = new Room("lake", "At the lake");
         Room bigCity = new Room("bigcity", "In the Big City");
         Room field = new Room("field", "At the field");
@@ -107,7 +113,7 @@ public class Game {
 
         // Factory
         factory.setPointOfInterest(map);
-        factory.setExit("street", street);
+        factory.setExit("street", street); */
 
         currentRoom = lobby;
         currentPointOfInterest = null;
