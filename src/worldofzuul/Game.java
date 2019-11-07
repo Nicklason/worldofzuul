@@ -3,6 +3,7 @@ package worldofzuul;
 import items.*;
 import pointsofinterest.*;
 import rooms.*;
+import rooms.Street;
 
 import java.util.ArrayList;
 
@@ -11,31 +12,32 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
-    public Inventory inventory = new Inventory();
-    public ArrayList<Room> rooms = new ArrayList<>();
+    public Inventory inventory;
+    public ArrayList<Room> rooms;
 
     public Game() {
         createRooms();
         parser = new Parser();
+        this.inventory = new Inventory();
+        this.rooms = new ArrayList<>();
     }
 
     private void createRooms() {
         // Rooms
-
         Lobby lobby = new Lobby();
         Lake lake = new Lake(this);
-        rooms.add(lake);
         Field field = new Field(this);
-        rooms.add(field);
-        Bigcity bigcity = new Bigcity(this);
-        rooms.add(bigcity);
+        BigCity bigcity = new BigCity(this);
         Suburbs suburbs = new Suburbs(this);
+        Street street = new Street(this);
+
+        rooms.add(lake);
+        rooms.add(field);
+        rooms.add(bigcity);
         rooms.add(suburbs);
-        Street streetpoi = new Street(this);
-        rooms.add(streetpoi);
+        rooms.add(street);
         
         // Exits
-
         lobby.setExit(lake);
         
         lake.setExit(field);
@@ -47,12 +49,12 @@ public class Game {
         
         bigcity.setExit(lake);
         bigcity.setExit(suburbs);
-        bigcity.setExit(streetpoi);
+        bigcity.setExit(street);
         
         suburbs.setExit(field);
         suburbs.setExit(bigcity);
         
-        streetpoi.setExit(bigcity);
+        street.setExit(bigcity);
         
         currentRoom = lobby;
         currentPointOfInterest = null;
@@ -60,7 +62,9 @@ public class Game {
 
     public void play() {
         printWelcome();
+
         this.inventory.add(new Keycard(this));
+
         boolean finished = false;
         while (!finished) {
             Command command = parser.getCommand();

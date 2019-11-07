@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package items;
 
 import worldofzuul.Game;
 
-/**
- *
- * @author Nica
- */
-import worldofzuul.Game;
 import pointsofinterest.PointOfInterest;;
 
 public class FilledBottle extends Item {
