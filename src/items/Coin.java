@@ -32,7 +32,7 @@ public class Coin extends Item {
             // We used the coin to unluck a shopping cart
             this.game.inventory.add(new ShoppingCart(game));
             System.out.println(pointOfInterest.getLongDescription());
-            System.out.println("the cart has been added to your inventory");
+            System.out.println("A shopping cart has been added to your inventory");
         } else {
             // The coin was used in a vending machine to get a cola, add the cola to the inventory of the vending machine
             pointOfInterest.inventory.add(new Cola(game));
