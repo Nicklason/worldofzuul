@@ -3,6 +3,7 @@ package items;
 import worldofzuul.Game;
 import pointsofinterest.PointOfInterest;
 import rooms.Factory;
+import rooms.Room;
 
 public class Keycard extends Item {
     public Keycard (Game game) {
@@ -23,11 +24,13 @@ public class Keycard extends Item {
         System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
         System.out.println(pointOfInterest.getLongDescription());
         this.game.inventory.remove(this);
+
         Factory factory = new Factory(game);
-        game.getRoom("street").setExit(factory);
-        factory.setExit(game.getRoom("street"));
+        Room street = game.getRoom("street");
+
+        street.setExit(factory);
+        factory.setExit(street);
+
         System.out.println("New exit factory added");
-        
-        
     }
 }
