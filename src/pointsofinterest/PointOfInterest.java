@@ -63,9 +63,11 @@ public abstract class PointOfInterest {
      * Accessor for isFixable
      * @return
      */
-    private Boolean isFixable () {
+    public Boolean isFixable () {
         return this.isFixable;
     }
+    
+    
 
     /**
      * Get description

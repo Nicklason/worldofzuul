@@ -16,10 +16,11 @@ public class Game {
     public ArrayList<Room> rooms;
 
     public Game() {
+        this.rooms = new ArrayList<>();
+        this.inventory = new Inventory();
         createRooms();
         parser = new Parser();
-        this.inventory = new Inventory();
-        this.rooms = new ArrayList<>();
+
     }
 
     private void createRooms() {
@@ -36,26 +37,26 @@ public class Game {
         rooms.add(bigcity);
         rooms.add(suburbs);
         rooms.add(street);
-        
+
         // Exits
         lobby.setExit(lake);
-        
+
         lake.setExit(field);
         lake.setExit(bigcity);
         lake.setExit(lobby);
-        
+
         field.setExit(lake);
         field.setExit(suburbs);
-        
+
         bigcity.setExit(lake);
         bigcity.setExit(suburbs);
         bigcity.setExit(street);
-        
+
         suburbs.setExit(field);
         suburbs.setExit(bigcity);
-        
+
         street.setExit(bigcity);
-        
+
         currentRoom = lobby;
         currentPointOfInterest = null;
     }
@@ -70,7 +71,7 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        
+
         System.out.println("Thank you for playing. Good bye.");
     }
 
@@ -178,7 +179,7 @@ public class Game {
 
         if (this.inventory.add(item)) {
             this.currentPointOfInterest.inventory.remove(item);
-            System.out.println("The "+item.getName()+" has been added to your inventory");
+            System.out.println("The " + item.getName() + " has been added to your inventory");
         } else {
             System.out.println("You can't carry more items!");
         }
@@ -232,22 +233,24 @@ public class Game {
     private void viewInventory() {
         System.out.println("Your items: " + this.inventory.getItemsString());
     }
-    
-    private void highscore(){
+
+    private void highscore() {
         int totalFixedCount = 0;
-        for (Room room: rooms){
+        for (Room room : rooms) {
             int fixedCount = 0;
-            for (PointOfInterest poi: room.getPointsOfInterests ()){
-                if (poi.isFixed()) {
+            int fixableCount = 0;
+            for (PointOfInterest poi : room.getPointsOfInterests()) {
+                if (poi.isFixed() && poi.isFixable()) {
                     fixedCount++;
                     totalFixedCount++;
+                } else if (poi.isFixable()) {
+                    fixableCount++;
                 }
             }
             System.out.println(room.getName());
-            System.out.println(fixedCount+"/"+room.getPointsOfInterests().size()+" completed");
-        
+            System.out.println(fixedCount + "/" + fixableCount + " completed");
         }
-        System.out.println("Highscore: "+(totalFixedCount*100)+" you fixed "+totalFixedCount+" objectives");
+        System.out.println("Highscore: " + (totalFixedCount * 100) + " you fixed " + totalFixedCount + " objectives");
     }
 
     private boolean quit(Command command) {
@@ -265,11 +268,12 @@ public class Game {
 
     /**
      * Get a room by name
+     *
      * @param name
      * @return
      */
-    public Room getRoom (String name) {
-        for (Room room: rooms){
+    public Room getRoom(String name) {
+        for (Room room : rooms) {
             if (room.getName().equals(name)) {
                 return room;
             }
