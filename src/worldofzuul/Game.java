@@ -64,8 +64,6 @@ public class Game {
     public void play() {
         printWelcome();
 
-        this.inventory.add(new Keycard(this));
-
         boolean finished = false;
         while (!finished) {
             Command command = parser.getCommand();
@@ -243,7 +241,8 @@ public class Game {
                 if (poi.isFixed() && poi.isFixable()) {
                     fixedCount++;
                     totalFixedCount++;
-                } else if (poi.isFixable()) {
+                }
+                if (poi.isFixable()) {
                     fixableCount++;
                 }
             }
