@@ -9,7 +9,7 @@ public class Game {
     private PointOfInterest currentPointOfInterest;
     private Inventory inventory = new Inventory(1);
     public ArrayList<Room> rooms = new ArrayList<>();
-
+    
     public Game() {
         createRooms();
         parser = new Parser();
@@ -33,27 +33,95 @@ public class Game {
         rooms.add(factory);
         
         // Points of interest
-        PointOfInterest boat = new PointOfInterest("boat", "You see a boat in the sea. The boats engine is leaking into the water and the water surrounding the boat is contaminated", "you used the boots to get out and fix the leaking boat engine.");
-        PointOfInterest leakingpipe = new PointOfInterest("leakingpipe", "A pipeline is broken and leaking chemicals on the ground and into the water.", "You have fixed the leaking pipe");
-        PointOfInterest bridge = new PointOfInterest("bridge", "A small bridge is falling aparat maybe there is something usefull");
-        PointOfInterest irrigation = new PointOfInterest("irrigation", "The irrigation system is missing a pipe, water is running out on the ground", "You hav fixed the irrigation system, water is not getting wasted anymore");
-        PointOfInterest farmhouse = new PointOfInterest("farmhouse", "An abandoned farmhouse, maybe something usefull");
-        PointOfInterest pesticides = new PointOfInterest("pesticides", "an open box of pesticides is laying on the ground, if on you could move it", "You have moved the pesticides from the ground they are no longer contaminating the ground");
-        PointOfInterest waterpump = new PointOfInterest("waterpump", "a handle is missing on the water pump", "You have replaced the missing handle, the water pump is now fully functional");
-        PointOfInterest streetPoi = new PointOfInterest("street", "you are standing at the street leading through the suburbs");
-        PointOfInterest boy = new PointOfInterest("boy", "Hello my name is _____ I am really thirsty if only someone could replace it missing handle on our water pump!", "Thank you so much for fixing the water pump");
-        PointOfInterest vendingMachine = new PointOfInterest("vendingMachine", "A cola vending machine, it requires a coin", "you used the coin and got a cola");
-        PointOfInterest store = new PointOfInterest("store", "A grocery store, there is a line of shoppingcarts at the front they require a coin", "You used the coin to unlock a shopping cart");
-        PointOfInterest oldMan = new PointOfInterest("oldman", "An old man", "you helped the old man get water");
-        PointOfInterest closedDoor = new PointOfInterest("lockeddoor", "locked backdoor into factory", "you used the keycart to unlock the door");
-        PointOfInterest container = new PointOfInterest("container", "garbage container, maybe there is something still usefull");
-        PointOfInterest map = new PointOfInterest("map", "map showing water requirements for producing 1 liter of cola ");
+         // Points of interest
+        PointOfInterest boat = new PointOfInterest("boat",
+                                                   "You see an old motorboat abandoned in the sea.\n"
+                                                 + "The boats rusty gastank is leaking into the water"
+                                                 + "There are black oily stains all around the boat\n"
+                                                 + "I am not going into that water without some rubberboots!",
+                                                   "Looks much beter\n"
+                                                 + "nothing is running out into the water from the boat\n"
+                                                 + "The gasoline is not polluting the lake anymore");
+        PointOfInterest leakingpipe = new PointOfInterest("leakingpipe",
+                                                   "The old pipeline is comming from the city. \n"
+                                                 + "What is that smell?\n"
+                                                 + "There is a hole in the pipeline \n"
+                                                 + "Stinky sewage water is running into the lake.",
+                                                   "The leaking pipe is now fixed \n"
+                                                 + "Sewage doesn't belong in this beautiful lake");
+        PointOfInterest bridge = new PointOfInterest("bridge",
+                                                   "A small bridge is falling aparat \n"
+                                                 + "maybe there is something usefull there...");
+        PointOfInterest irrigation = new PointOfInterest("irrigation",
+                                                    "There is a large system of watering pipes in the field \n"
+                                                  + "Splat!\n"
+                                                  + "Splat!\n"
+                                                  + "Splat\n"
+                                                  + "Why is there water on the ground?\n"
+                                                  + "The irrigation system is missing a pipe",
+                                                    "You have fixed the irrigation system, water is not getting wasted anymore");
+        PointOfInterest farmhouse = new PointOfInterest("farmhouse",
+                                                    "An abandoned farmhouse,\n"
+                                                  + "Maybe there is something usefull inside");
+        PointOfInterest pesticides = new PointOfInterest("pesticides",
+                                                    "An open bag of pesticides on the ground,\n"
+                                                  + "Oh, no!\n"
+                                                  + "The poison is running out into the ground\n"
+                                                  + "The bag looks heavy\n"
+                                                  + "I need something move it", 
+                                                    "You have removed the pesticides from the ground\n"
+                                                  + "The ground water is free from that poison now");
+        PointOfInterest waterpump = new PointOfInterest("waterpump",
+                                                    "You see a big water tank with a pump by the house\n"
+                                                  + "There are pipes from the roof connected to it\n"
+                                                  + "Collecting rain water \n"
+                                                  + "That is really smart!\n "
+                                                  + "The pump looks strange though, the handle is mising",
+                                                    "The pump is functional again\n"
+                                                  + "There is free rain water again");
+        PointOfInterest well = new PointOfInterest("well",
+                                                    "Looks like an old well \n"
+                                                  + "Fesh local water from the underground\n"
+                                                  + "I wish people used them some more...");           
+        PointOfInterest boy = new PointOfInterest("boy",
+                                                    "Hello my name is Will.\n"
+                                                  + "I was playing with the water pipe\n"
+                                                  + "and broke the handle!\n"
+                                                  + "I am not alloud to play with water!\n"
+                                                  + "My mom is going to kill me!",
+                                                    "Thank you so much for fixing the water pump!\n"
+                                                  + "I am never playing with water pumps again!");
+        PointOfInterest colaMachine = new PointOfInterest("colamachine", 
+                                                    "A cola vending machine\n"
+                                                  + "One cola for a coin",
+                                                    "You used the coin and got a cola");
+        PointOfInterest store = new PointOfInterest("store",
+                                                    "A grocery store. \n"
+                                                  + "There is a line of shoppingcarts\n"
+                                                  + "But they are all chained todether\n"
+                                                  + "It says: insert a coin",
+                                                    "The shopping carts are now unlocked\n");
+        PointOfInterest oldMan = new PointOfInterest("oldman",
+                                                    "Hello there, I have been living in the city all my life\n"
+                                                  + "This city used be clean then I was young \n"
+                                                  + "Now we produce and produce and produce....\n"
+                                                  + "We polute and polute and polute...\n"
+                                                  + "Especially that cola factory...",
+                                                    "Thank you for helping me to get water");
+        PointOfInterest door = new PointOfInterest("door",
+                                                    "The backdoor into factory is locked",
+                                                    "You used the keycart to unlock the door");
+        PointOfInterest container = new PointOfInterest("container", 
+                                                    "Garbage container,\n"
+                                                  + " maybe there is something still usefull");
+        PointOfInterest map = new PointOfInterest("map",
+                                                    "map showing water requirements for producing 1 liter of cola ");
 
         // Lobby
         lobby.setExit("lake", lake);
 
         // Lake
-        boat.inventory.add(new Item("pipe", "A pipe", irrigation));
+        bridge.inventory.add(new Item("pipe", "A pipe", irrigation));
         lake.setPointOfInterest(boat);
         lake.setPointOfInterest(leakingpipe);
         lake.setPointOfInterest(bridge);
@@ -63,7 +131,7 @@ public class Game {
         lake.setExit("field", field);
 
         // Field
-        farmhouse.inventory.add(new Item("boots", "A pair of boots", boat));
+        farmhouse.inventory.add(new Item("rubberboots", "A pair of boots", boat));
         farmhouse.inventory.add(new Item("meatalpatch", "A metal patch", leakingpipe));
         irrigation.inventory.add(new Item("pumpHandle", "A pump handle", waterpump));
         field.setPointOfInterest(farmhouse);
@@ -74,19 +142,18 @@ public class Game {
         field.setExit("suburbs", suburbs);
 
         // Suburbs
-        streetPoi.inventory.add(new Item("coin", "A golden coin", vendingMachine));
+        Item cola=new Item("cola","A bottle of cola",null);
+        well.inventory.add(new Item("coin", "A golden coin", colaMachine,cola));
         suburbs.setPointOfInterest(waterpump);
-        suburbs.setPointOfInterest(streetPoi);
+        suburbs.setPointOfInterest(well);
         suburbs.setPointOfInterest(boy);
         suburbs.setExit("field", field);
         suburbs.setExit("bigcity", bigCity);
         
 
         // Big city
-        vendingMachine.inventory.add(new Item("cola", "A can of cola", boy));
-        store.inventory.add(new Item("cart", "A shopping chart", pesticides));
-        oldMan.inventory.add(new Item("keycart", "A keycart", closedDoor));
-        bigCity.setPointOfInterest(vendingMachine);
+        store.inventory.add(new Item("cart", "A shopping cart", pesticides));
+        bigCity.setPointOfInterest(colaMachine);
         bigCity.setPointOfInterest(store);
         bigCity.setPointOfInterest(oldMan);
         bigCity.setExit("lake", lake);
@@ -95,7 +162,10 @@ public class Game {
 
         // Street
         container.inventory.add(new Item("camera", "A digital camera", map));
-        street.setPointOfInterest(closedDoor);
+        Item keycard=new Item("keycard", "A keycard opens a door", door);
+        Item water=new Item("water","A bottle of water",oldMan,keycard);
+        door.inventory.add(new Item("bottle","A bottle of water",well,water));
+        street.setPointOfInterest(door);
         street.setPointOfInterest(container);
         street.setExit("bigcity", bigCity);
         street.setExit("factory", factory);
@@ -103,7 +173,7 @@ public class Game {
         // Factory
         factory.setPointOfInterest(map);
         factory.setExit("street", street);
-
+        
         currentRoom = lobby;
         currentPointOfInterest = null;
     }
@@ -121,6 +191,7 @@ public class Game {
     }
 
     private void printWelcome() {
+       
        System.out.println();
        System.out.println("\n" +"\n" +
 "                  /\\\n" +
@@ -294,15 +365,22 @@ public class Game {
             return;
         }
 
-        if (item.usableAtPointOfInterest(currentPointOfInterest)) {
+       if (item.usableAtPointOfInterest(currentPointOfInterest)) {
+            if(item.getIsSwitchable()==true&&item.usableAtPointOfInterest(currentPointOfInterest)==true){
+                System.out.println("aha, a switchable!");
+                currentPointOfInterest.inventory.add(item.getSwitcher());                   
+            }
             System.out.println("Using " + item.getName() + " at " + currentPointOfInterest.getName());
             currentPointOfInterest.setFixed();
             System.out.println(currentPointOfInterest.getLongDescription());
             this.inventory.remove(item);
+            
         } else {
             System.out.println("You cant use that item here");
         }
-    }
+          
+     }
+
 
     private void viewInventory() {
         System.out.println("Your items: " + this.inventory.getItemsString());
