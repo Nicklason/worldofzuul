@@ -1,6 +1,8 @@
-package worldofzuul;
+package pointsofinterest;
 
-public class PointOfInterest {
+import worldofzuul.Inventory;
+
+public abstract class PointOfInterest {
     private String name;
     private String description;
     private Boolean isFixable;
@@ -61,9 +63,11 @@ public class PointOfInterest {
      * Accessor for isFixable
      * @return
      */
-    private Boolean isFixable () {
+    public Boolean isFixable () {
         return this.isFixable;
     }
+    
+    
 
     /**
      * Get description

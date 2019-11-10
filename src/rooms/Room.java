@@ -1,10 +1,12 @@
-package worldofzuul;
+package rooms;
+
+import pointsofinterest.PointOfInterest;
 
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Room {
+public abstract class Room {
     private String description;
     private HashMap<String, Room> exits;
     private ArrayList<PointOfInterest> pointsOfInterest;
@@ -18,8 +20,8 @@ public class Room {
         this.pointsOfInterest = new ArrayList<PointOfInterest>();
     }
 
-    public void setExit (String direction, Room neighbor)  {
-        exits.put(direction, neighbor);
+    public void setExit (Room neighbor)  {
+        exits.put(neighbor.getName(), neighbor);
     }
 
     /**
@@ -69,7 +71,7 @@ public class Room {
     }
 
     public String getLongDescription () {
-        return "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString();
+        return (pointsOfInterest.size() > 0 ? "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString() : "You are " + description + ".\n" + getExitString());
     }
 
     private String getExitString () {
