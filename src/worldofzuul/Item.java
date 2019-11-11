@@ -4,8 +4,6 @@ public class Item {
     private String name;
     private String description;
     private PointOfInterest pointOfInterest;
-    private boolean isSwitchable;
-    private Item switcher;
 
     /**
      * constructs an item object using 2 strings as parameters
@@ -17,14 +15,6 @@ public class Item {
         this.name = name;
         this.description = description;
         this.pointOfInterest = pointOfInterest;
-        isSwitchable = false;
-    }
-      public Item (String name, String description, PointOfInterest pointOfInterest,Item switcher) {
-        this.name = name;
-        this.description = description;
-        this.pointOfInterest = pointOfInterest;
-        isSwitchable = true;
-        this.switcher=switcher;
     }
 
     /**
@@ -50,11 +40,5 @@ public class Item {
      */
     public Boolean usableAtPointOfInterest (PointOfInterest pointOfInterest) {
         return this.pointOfInterest == pointOfInterest;
-    }
-    public boolean getIsSwitchable(){
-        return this.isSwitchable;
-    }
-    public Item getSwitcher(){
-        return this.switcher;
     }
 }
