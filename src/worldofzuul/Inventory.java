@@ -1,5 +1,7 @@
 package worldofzuul;
 
+import items.Item;
+
 import java.util.ArrayList;
 
 /**
