@@ -18,11 +18,12 @@ public class FilledBottle extends Item {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
-        Oldman oldman = new Oldman(game);
+
+        Oldman oldman = (Oldman)this.game.getRoom("bigcity").getPointOfInterest("oldman");
         if (oldman.getKeycard()) {
             pointOfInterest.inventory.add(new Keycard(game));
         }
-        
+
         pointOfInterest.setFixed();
         System.out.println("Giving " + this.getName() + " to " + pointOfInterest.getName());
         
