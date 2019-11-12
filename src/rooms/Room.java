@@ -84,7 +84,7 @@ public abstract class Room {
     }
 
     private String getPointsOfInterestString () {
-        String returnString = "Points of interest:";
+        String returnString = "Interests:";
 
         Integer pointCount = this.pointsOfInterest.size();
         for (int i = 0; i < pointCount; i++) {

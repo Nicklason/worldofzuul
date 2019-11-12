@@ -148,6 +148,7 @@ public class Game {
             printRoomInformation();
         } else if (commandWord == CommandWord.FINISH) {
             highscore();
+            wantToQuit = true;
         }
         return wantToQuit;
     }
