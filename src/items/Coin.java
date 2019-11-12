@@ -21,11 +21,8 @@ public class Coin extends Item {
             return;
         }
 
-        pointOfInterest.setFixed();
-
         System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
         
-
         this.game.inventory.remove(this);
 
         if (pointOfInterest.getName().equals("store")) {
