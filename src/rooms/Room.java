@@ -94,7 +94,7 @@ public abstract class Room {
         return returnString;
     }
     
-    public ArrayList<PointOfInterest> getPointsOfInterests(){
+    public ArrayList<PointOfInterest> getPointsOfInterest(){
         return pointsOfInterest;
     }
     

@@ -16,7 +16,7 @@ public class Game {
     public ArrayList<Room> rooms;
 
     public Game() {
-        this.rooms = new ArrayList<>();
+        this.rooms = new ArrayList<Room>();
         this.inventory = new Inventory();
         createRooms();
         parser = new Parser();
@@ -238,7 +238,7 @@ public class Game {
         for (Room room : rooms) {
             int fixedCount = 0;
             int fixableCount = 0;
-            for (PointOfInterest poi : room.getPointsOfInterests()) {
+            for (PointOfInterest poi : room.getPointsOfInterest()) {
                 if (poi.isFixed() && poi.isFixable()) {
                     fixedCount++;
                     totalFixedCount++;
