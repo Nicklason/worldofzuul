@@ -9,7 +9,7 @@ public class Lake extends Room {
     public Lake (Game game) {
         super("lake", "At the lake");
 
-        this.setPointOfInterest(new Boat(game));
+        this.setPointOfInterest(new Boat());
         this.setPointOfInterest(new LeakingPipe());
         this.setPointOfInterest(new Bridge(game));
     }
