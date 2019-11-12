@@ -11,6 +11,6 @@ public class Suburbs extends Room {
 
         this.setPointOfInterest(new Waterpump());
         this.setPointOfInterest(new Street(game));
-        this.setPointOfInterest(new Boy());
+        this.setPointOfInterest(new Boy(game));
     }
 }
