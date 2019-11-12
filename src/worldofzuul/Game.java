@@ -74,9 +74,39 @@ public class Game {
     }
 
     private void printWelcome() {
+       System.out.println();
+       System.out.println("\n" +"\n" +
+"                  /\\\n" +
+"                /    \\\n" +
+"              /        \\\n" +
+"            /            \\\n" +
+"          /                \\\n" +
+"        /                    \\\n" +
+"      /    __|_                \\\n" +
+"    /     |[][]|____      ____   \\\n" +
+"  /       |[][]|[][]|_[] |[][]|    \\ \n" +
+" /    __[]|[][]|[][]|___\\|[][]|     \\ \n" +
+" |   /__ _|[][]|[][]|[][]|[][]|      |\n" +
+" |   |[][]|[][]|[][]|[][]|[][]|_[]   |\n" +
+" |   |  /\\|/\\  |  /\\|  /\\|/\\  |___\\  |\n" +
+" |   |[]|||||[]|[]|||[]|||||[]|[_]|  |\n" +
+" |  ================================ |\n" +
+" |        WELCOME TO LAST DROP       |\n" +
+" \\  ================================ /\n" +
+"  \\   ^       ^  ^   ^   ^    ^  ^  /\n" +
+"   \\  ^   ^  ^   ^   ^^    ^   ^   /\n" +
+"    \\  ^   ^  ^   ^    ^    ^  ^  /\n" +
+"     \\___________________________/");
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("An awesome adventure game that can help us to save water.");
+        System.out.println();
+        System.out.println("You are at standing on the edge of a huge water dam.");
+        System.out.println("You see a young girl next to you looking down into the water.");
+        System.out.println("She looks at you and says Hello");
+        System.out.println("Hello, my name is Clair.");
+        System.out.println("I used to come to the dam since I was a little girl"); 
+        System.out.println("Back then, there was blue water all up to the edge"); 
+        System.out.println("Now it is all dark and poluted..."); 
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -111,8 +141,8 @@ public class Game {
         } else if (commandWord == CommandWord.INFORMATION) {
             printRoomInformation();
         } else if (commandWord == CommandWord.FINISH) {
-            highscore();
-            wantToQuit = true;
+            
+            wantToQuit = finish();
         }
         return wantToQuit;
     }
@@ -139,7 +169,7 @@ public class Game {
         Room nextRoom = currentRoom.getExit(command.getSecondWord());
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("Thats not an exit");
         } else {
             currentRoom = nextRoom;
             currentPointOfInterest = null;
@@ -233,7 +263,13 @@ public class Game {
         System.out.println("Your items: " + this.inventory.getItemsString());
     }
 
-    private void highscore() {
+    private boolean finish() {
+        
+        if (!currentRoom.getName().equals("lobby")) {
+            System.out.println("If you're done you should go speak to Clair");
+            return false;
+        }
+        
         int totalFixedCount = 0;
         for (Room room : rooms) {
             int fixedCount = 0;
@@ -251,6 +287,7 @@ public class Game {
             System.out.println(fixedCount + "/" + fixableCount + " completed");
         }
         System.out.println("Highscore: " + (totalFixedCount * 100) + " you fixed " + totalFixedCount + " objectives");
+        return true;
     }
 
     private boolean quit(Command command) {
