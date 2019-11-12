@@ -67,7 +67,13 @@ public abstract class PointOfInterest {
         return this.isFixable;
     }
     
-    
+    /**
+     * 
+     * @param newDescription 
+     */
+    public void setDescription(String newDescription){
+        this.description = newDescription;
+    }
 
     /**
      * Get description

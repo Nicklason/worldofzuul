@@ -2,7 +2,8 @@ package items;
 
 import worldofzuul.Game;
 
-import pointsofinterest.PointOfInterest;;
+import pointsofinterest.PointOfInterest;
+import pointsofinterest.Oldman;
 
 public class FilledBottle extends Item {
     public FilledBottle (Game game) {
@@ -17,11 +18,15 @@ public class FilledBottle extends Item {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
+        Oldman oldman = new Oldman(game);
+        if (oldman.getKeycard()) {
+            pointOfInterest.inventory.add(new Keycard(game));
+        }
         
         pointOfInterest.setFixed();
-
         System.out.println("Giving " + this.getName() + " to " + pointOfInterest.getName());
-        pointOfInterest.inventory.add(new Keycard(game));
+        
+        
         System.out.println(pointOfInterest.getLongDescription());
         this.game.inventory.remove(this);
         

@@ -9,6 +9,6 @@ public class Container extends PointOfInterest {
         super("container", "Garbage container, maybe there is something useful");
 
         this.inventory.add(new Camera(game));
-        this.inventory.add(new EmptyBottle(game));
+        
     }
 }

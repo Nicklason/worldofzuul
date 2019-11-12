@@ -1,5 +1,6 @@
 package items;
 
+import pointsofinterest.Oldman;
 import worldofzuul.Game;
 import pointsofinterest.PointOfInterest;
 
@@ -12,16 +13,16 @@ public class Cola extends Item {
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("street") || !pointOfInterest.getName().equals("boy")) {
+        if (!game.getCurrentRoom().getName().equals("bigcity") || !pointOfInterest.getName().equals("oldman")) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
 
-        pointOfInterest.setFixed();
+        Oldman oldman = new Oldman(game);
+        oldman.setKeycardFalse();
 
         System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
-
+        System.out.println("Buying cola is exactly what is ruining our water supply!");
         this.game.inventory.remove(this);
     }
 }
