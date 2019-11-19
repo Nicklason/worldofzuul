@@ -220,6 +220,11 @@ public class Game {
             return;
         }
 
+        if (this.currentPointOfInterest == null) {
+            System.out.println("You are not investigating a point of interest");
+            return;
+        }
+
         String itemName = command.getSecondWord();
 
         Item item = this.inventory.get(itemName);
@@ -228,13 +233,9 @@ public class Game {
             System.out.println("Could not find the item");
             return;
         }
-
-        if (this.currentPointOfInterest.inventory.add(item)) {
-            this.inventory.remove(item);
-            System.out.println("The item has been removed from your inventory");
-        } else {
-            System.out.println("You can't carry more items!");
-        }
+ 
+        this.inventory.remove(item);
+        System.out.println("The item has been removed from your inventory");
     }
 
     private void useItem(Command command) {
