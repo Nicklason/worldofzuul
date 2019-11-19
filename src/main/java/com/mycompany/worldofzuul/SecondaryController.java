@@ -1,4 +1,4 @@
-package com.mycompany.worldofzuul;
+package com.mycompany.testingmuptiplestages;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
