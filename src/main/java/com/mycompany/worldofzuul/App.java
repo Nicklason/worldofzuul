@@ -1,4 +1,4 @@
-package com.mycompany.testingmuptiplestages;
+package com.mycompany.worldofzuul;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
