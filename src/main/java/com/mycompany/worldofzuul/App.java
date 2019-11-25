@@ -18,6 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("rooms/lobby"));
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.show();
     }

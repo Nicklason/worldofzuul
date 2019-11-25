@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,8 +14,14 @@
             <Image url="@../../../../PNG/1%20lake%203.png" />
          </image>
       </ImageView>
-      <Button fx:id="toField" layoutX="1139.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
-      <Button fx:id="toField1" layoutX="14.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToBigCity" prefHeight="62.0" prefWidth="100.0" text="Big City" />
-      <Button fx:id="toField2" layoutX="568.0" layoutY="628.0" mnemonicParsing="false" onAction="#switchToField" prefHeight="62.0" prefWidth="100.0" text="Field" />
+      <Button fx:id="toField" layoutX="1165.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
+      <Button fx:id="toField1" layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToBigCity" prefHeight="62.0" prefWidth="100.0" text="Big City" />
+      <Button fx:id="toField2" layoutX="581.0" layoutY="651.0" mnemonicParsing="false" onAction="#switchToField" prefHeight="62.0" prefWidth="100.0" text="Field" />
+      <ToggleButton layoutX="447.0" layoutY="340.0" mnemonicParsing="false">
+         <toggleGroup>
+            <ToggleGroup fx:id="lakeToggle" />
+         </toggleGroup></ToggleButton>
+      <ToggleButton layoutX="936.0" layoutY="521.0" mnemonicParsing="false" toggleGroup="$lakeToggle" />
+      <ToggleButton layoutX="1078.0" layoutY="353.0" mnemonicParsing="false" toggleGroup="$lakeToggle" />
    </children>
 </AnchorPane>
