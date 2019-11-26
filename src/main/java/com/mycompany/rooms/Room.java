@@ -1,21 +1,19 @@
 package com.mycompany.rooms;
 
 import com.mycompany.pointsofinterest.PointOfInterest;
+import com.mycompany.rooms.Rooms;
 
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Room {
-    private String description;
+    private Rooms room;
     private HashMap<String, Room> exits;
     private ArrayList<PointOfInterest> pointsOfInterest;
-    private String name;
 
-    public Room(String name, String description) 
-    {
-        this.name = name;
-        this.description = description;
+    public Room(Rooms room) {
+        this.room = room;
         this.exits = new HashMap<String, Room>();
         this.pointsOfInterest = new ArrayList<PointOfInterest>();
     }
@@ -66,12 +64,16 @@ public abstract class Room {
         System.out.println();
     }
 
+    public String getName() {
+        return this.room.getName();
+    }
+
     public String getShortDescription () {
-        return description;
+        return this.room.getDescription();
     }
 
     public String getLongDescription () {
-        return (pointsOfInterest.size() > 0 ? "You are " + description + ".\n" + getExitString() + "\n" + getPointsOfInterestString() : "You are " + description + ".\n" + getExitString());
+        return (pointsOfInterest.size() > 0 ? "You are " + this.getShortDescription() + ".\n" + getExitString() + "\n" + getPointsOfInterestString() : "You are " + this.getShortDescription() + ".\n" + getExitString());
     }
 
     private String getExitString () {
@@ -100,9 +102,5 @@ public abstract class Room {
     
     public Room getExit (String direction)  {
         return exits.get(direction);
-    }
-
-    public String getName() {
-        return name;
     }
 }
