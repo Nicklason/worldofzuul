@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private Parser parser;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
@@ -19,8 +18,6 @@ public class Game {
         this.rooms = new ArrayList<Room>();
         this.inventory = new Inventory();
         createRooms();
-        parser = new Parser();
-
     }
 
     private void createRooms() {
@@ -61,58 +58,7 @@ public class Game {
         currentPointOfInterest = null;
     }
 
-    public void play() {
-        printWelcome();
-
-        boolean finished = false;
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-
-        System.out.println("Thank you for playing. Good bye.");
-    }
-
-    private void printWelcome() {
-       System.out.println();
-       System.out.println("\n" +"\n" +
-"                  /\\\n" +
-"                /    \\\n" +
-"              /        \\\n" +
-"            /            \\\n" +
-"          /                \\\n" +
-"        /                    \\\n" +
-"      /    __|_                \\\n" +
-"    /     |[][]|____      ____   \\\n" +
-"  /       |[][]|[][]|_[] |[][]|    \\ \n" +
-" /    __[]|[][]|[][]|___\\|[][]|     \\ \n" +
-" |   /__ _|[][]|[][]|[][]|[][]|      |\n" +
-" |   |[][]|[][]|[][]|[][]|[][]|_[]   |\n" +
-" |   |  /\\|/\\  |  /\\|  /\\|/\\  |___\\  |\n" +
-" |   |[]|||||[]|[]|||[]|||||[]|[_]|  |\n" +
-" |  ================================ |\n" +
-" |        WELCOME TO LAST DROP       |\n" +
-" \\  ================================ /\n" +
-"  \\   ^       ^  ^   ^   ^    ^  ^  /\n" +
-"   \\  ^   ^  ^   ^   ^^    ^   ^   /\n" +
-"    \\  ^   ^  ^   ^    ^    ^  ^  /\n" +
-"     \\___________________________/");
-        System.out.println();
-        System.out.println("An awesome adventure game that can help us to save water.");
-        System.out.println();
-        System.out.println("You are at standing on the edge of a huge water dam.");
-        System.out.println("You see a young girl next to you looking down into the water.");
-        System.out.println("She looks at you and says Hello");
-        System.out.println("Hello, my name is Clair.");
-        System.out.println("I used to come to the dam since I was a little girl"); 
-        System.out.println("Back then, there was blue water all up to the edge"); 
-        System.out.println("Now it is all dark and poluted..."); 
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println();
-        System.out.println(currentRoom.getLongDescription());
-    }
-
-    private boolean processCommand(Command command) {
+    public boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
@@ -141,7 +87,6 @@ public class Game {
         } else if (commandWord == CommandWord.INFORMATION) {
             printRoomInformation();
         } else if (commandWord == CommandWord.FINISH) {
-            
             wantToQuit = finish();
         }
         return wantToQuit;
@@ -152,7 +97,6 @@ public class Game {
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        parser.showCommands();
     }
 
     private void printRoomInformation() {
