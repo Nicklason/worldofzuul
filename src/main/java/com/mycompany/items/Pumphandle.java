@@ -23,7 +23,7 @@ public class Pumphandle extends Item {
 
         pointOfInterest.setFixed();
 
-        game.getCurrentRoom().getPointOfInterest("boy").setDescription("Thank you for fixing the pump, I will never play with water again!");
+        game.getCurrentRoom().getPointOfInterest(PointsOfInterest.BOY.getName()).setDescription("Thank you for fixing the pump, I will never play with water again!");
                 
         System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
         System.out.println(pointOfInterest.getLongDescription());
