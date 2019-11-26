@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.worldofzuul.RoomController">
+   <children>
+      <ImageView fitHeight="709.0" fitWidth="1262.0" layoutX="-13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../PNG/3%20suburbs%202%204.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1167.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToField" prefHeight="62.0" prefWidth="100.0" text="Field" />
+      <Button layoutX="581.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToBigCity" prefHeight="62.0" prefWidth="100.0" text="Big City" />
+      <ToggleButton layoutX="46.0" layoutY="387.0" mnemonicParsing="false">
+         <toggleGroup>
+            <ToggleGroup fx:id="suburbsToggle" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton layoutX="544.0" layoutY="599.0" mnemonicParsing="false" toggleGroup="$suburbsToggle" />
+      <ToggleButton layoutX="1045.0" layoutY="387.0" mnemonicParsing="false" toggleGroup="$suburbsToggle" />
+   </children>
+</AnchorPane>
