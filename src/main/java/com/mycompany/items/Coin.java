@@ -1,5 +1,7 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
 import com.mycompany.items.ShoppingCart;
@@ -7,7 +9,7 @@ import com.mycompany.items.Cola;
 
 public class Coin extends Item {
     public Coin (Game game) {
-        super("coin", "A coin", game);
+        super(Items.COIN, game);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;;
 
 public class Pipe extends Item {
     public Pipe (Game game) {
-        super("pipe", "A pipe", game);
+        super(Items.PIPE, game);
     }
 
     @Override

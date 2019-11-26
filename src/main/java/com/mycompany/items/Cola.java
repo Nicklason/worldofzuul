@@ -1,12 +1,14 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.pointsofinterest.Oldman;
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class Cola extends Item {
     public Cola (Game game) {
-        super("cola", "A can of cola", game);
+        super(Items.COLA, game);
     }
 
     @Override

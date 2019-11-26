@@ -1,11 +1,13 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;;
 
 public class EmptyBottle extends Item {
     public EmptyBottle (Game game) {
-        super("emptybottle", "A empty bottle", game);
+        super(Items.EMPTYBOTTLE, game);
     }
 
     @Override

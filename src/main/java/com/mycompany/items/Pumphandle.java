@@ -1,12 +1,14 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class Pumphandle extends Item {
 
     public Pumphandle(Game game) {
-        super("pumphandle", "A pumphandle", game);
+        super(Items.PUMPHANDLE, game);
     }
 
     @Override

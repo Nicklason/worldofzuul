@@ -1,10 +1,10 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
 import com.mycompany.worldofzuul.Game;
 
 public abstract class Item {
-    protected String name;
-    private String description;
+    private Items item;
     protected Game game;
 
     /**
@@ -13,9 +13,8 @@ public abstract class Item {
      * @param description
      * @param game Reference to the game
      */
-    public Item (String name, String description, Game game) {
-        this.name = name;
-        this.description = description;
+    public Item (Items item, Game game) {
+        this.item = item;
         this.game = game;
     }
 
@@ -24,7 +23,7 @@ public abstract class Item {
      * @return name
      */
     public String getName() {
-        return name;
+        return item.getName();
     }
 
     /**
@@ -32,7 +31,7 @@ public abstract class Item {
      * @return description 
      */
     public String getDescription() {
-        return description;
+        return item.getDescription();
     }
 
     public abstract void use();

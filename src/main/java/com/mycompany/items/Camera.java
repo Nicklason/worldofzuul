@@ -1,12 +1,14 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
 import com.mycompany.items.Photo;
 
 public class Camera extends Item {
     public Camera (Game game) {
-        super("camera", "A digital camera", game);
+        super(Items.CAMERA, game);
     }
 
     @Override

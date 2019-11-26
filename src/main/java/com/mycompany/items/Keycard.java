@@ -1,5 +1,7 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
 import com.mycompany.rooms.Factory;
@@ -7,7 +9,7 @@ import com.mycompany.rooms.Room;
 
 public class Keycard extends Item {
     public Keycard (Game game) {
-        super("keycard", "A keycard", game);
+        super(Items.KEYCARD, game);
     }
 
     @Override

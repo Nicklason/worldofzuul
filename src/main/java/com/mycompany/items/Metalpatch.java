@@ -1,11 +1,13 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;;
 
 public class Metalpatch extends Item {
     public Metalpatch (Game game) {
-        super("metalpatch", "A metalpatch", game);
+        super(Items.METALPATCH, game);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.mycompany.items;
 
+import com.mycompany.items.Items;
+
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class Photo extends Item {
     public Photo (Game game) {
-        super("photo", "A photo of the secret behind the production of cola", game);
+        super(Items.PHOTO, game);
     }
 
     @Override
