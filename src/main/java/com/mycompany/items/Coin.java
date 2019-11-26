@@ -1,6 +1,8 @@
 package com.mycompany.items;
 
 import com.mycompany.items.Items;
+import com.mycompany.rooms.Rooms;
+import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
@@ -16,10 +18,9 @@ public class Coin extends Item {
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("bigcity") && (!pointOfInterest.getName().equals("store") || !pointOfInterest.getName().equals("vendingmachine"))) {
+        if (!game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) && (!pointOfInterest.getName().equals(PointsOfInterest.STORE.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.VENDINGMACHINE.getName()))) {
             System.out.println("Can't use " + this.getName() + " here");
             System.out.println(pointOfInterest.getName());
-            System.out.println(!pointOfInterest.getName().equals("vendingmachine"));
             return;
         }
 
@@ -27,7 +28,7 @@ public class Coin extends Item {
         
         this.game.inventory.remove(this);
 
-        if (pointOfInterest.getName().equals("store")) {
+        if (pointOfInterest.getName().equals(PointsOfInterest.STORE.getName())) {
             // We used the coin to unluck a shopping cart
             this.game.inventory.add(new ShoppingCart(game));
             System.out.println(pointOfInterest.getLongDescription());

@@ -1,6 +1,8 @@
 package com.mycompany.items;
 
 import com.mycompany.items.Items;
+import com.mycompany.rooms.Rooms;
+import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
@@ -15,12 +17,12 @@ public class FilledBottle extends Item {
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("bigcity") || !pointOfInterest.getName().equals("oldman") && !pointOfInterest.isFixed()) {
+        if (!game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.OLDMAN.getName()) && !pointOfInterest.isFixed()) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
 
-        Oldman oldman = (Oldman)this.game.getRoom("bigcity").getPointOfInterest("oldman");
+        Oldman oldman = (Oldman)this.game.getCurrentPointOfInterest();
         if (oldman.getKeycard()) {
             pointOfInterest.inventory.add(new Keycard(game));
         }

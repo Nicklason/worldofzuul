@@ -1,6 +1,8 @@
 package com.mycompany.items;
 
 import com.mycompany.items.Items;
+import com.mycompany.rooms.Rooms;
+import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
@@ -14,7 +16,7 @@ public class ShoppingCart extends Item {
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("field") || !pointOfInterest.getName().equals("pesticides")) {
+        if (!game.getCurrentRoom().getName().equals(Rooms.FIELD.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.PESTICIDES.getName())) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }

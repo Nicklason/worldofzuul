@@ -195,7 +195,6 @@ public class Game {
 
         Item item = inventory.get(command.getSecondWord());
 
-        // PointOfInterest pointOfInterest = currentRoom.getPointOfInterest(pointOfInterestName);
         if (item == null) {
             System.out.println("Could not find the item");
             return;

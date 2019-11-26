@@ -1,6 +1,8 @@
 package com.mycompany.items;
 
 import com.mycompany.items.Items;
+import com.mycompany.rooms.Rooms;
+import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
@@ -16,7 +18,7 @@ public class Camera extends Item {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
         // If the poi is already fixed, then don't allow the item to be used (it would keep adding " (with photo)" to the name)
-        if (!game.getCurrentRoom().getName().equals("factory") || !pointOfInterest.getName().equals("map") || pointOfInterest.isFixed()) {
+        if (!game.getCurrentRoom().getName().equals(Rooms.FACTORY.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.MAP.getName()) || pointOfInterest.isFixed()) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }

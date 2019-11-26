@@ -1,6 +1,8 @@
 package com.mycompany.items;
 
 import com.mycompany.items.Items;
+import com.mycompany.rooms.Rooms;
+import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
 import com.mycompany.pointsofinterest.PointOfInterest;
@@ -14,7 +16,7 @@ public class Photo extends Item {
     public void use () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals("street") || !pointOfInterest.getName().equals("billboard")) {
+        if (!game.getCurrentRoom().getName().equals(Rooms.STREET.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.BILLBOARD.getName())) {
             System.out.println("Can't use " + this.getName() + " here");
             return;
         }
