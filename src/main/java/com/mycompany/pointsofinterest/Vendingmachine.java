@@ -1,7 +1,9 @@
 package com.mycompany.pointsofinterest;
 
+import com.mycompany.pointsofinterest.PointsOfInterest;
+
 public class Vendingmachine extends PointOfInterest {
     public Vendingmachine () {
-        super("vendingmachine", "A cola vending machine, it requires a coin");
+        super(PointsOfInterest.VENDINGMACHINE);
     }
 }

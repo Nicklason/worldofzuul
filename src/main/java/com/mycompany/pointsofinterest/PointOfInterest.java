@@ -1,12 +1,11 @@
 package com.mycompany.pointsofinterest;
 
+import com.mycompany.pointsofinterest.PointsOfInterest;
 import com.mycompany.worldofzuul.Inventory;
 
 public abstract class PointOfInterest {
-    private String name;
-    private String description;
-    private Boolean isFixable;
-    private String successDescription;
+    private PointsOfInterest pointOfInterest;
+    private String newDescription = null;
     public Inventory inventory = new Inventory();
     private Boolean fixed = false;
 
@@ -15,23 +14,8 @@ public abstract class PointOfInterest {
      * @param name
      * @param description
      */
-    public PointOfInterest(String name, String description) {
-        this.name = name;
-        this.description = description;
-        this.isFixable = false;
-    }
-
-    /**
-     * PointOfInterest Constructor
-     * @param name
-     * @param description
-     * @param successDescription
-     */
-    public PointOfInterest(String name, String description, String successDescription) {
-        this.name = name;
-        this.description = description;
-        this.successDescription = successDescription;
-        this.isFixable = true;
+    public PointOfInterest(PointsOfInterest pointOfInterest) {
+        this.pointOfInterest = pointOfInterest;
     }
 
     /**
@@ -39,7 +23,7 @@ public abstract class PointOfInterest {
      * @return 
      */
     public String getName() {
-        return name;
+        return pointOfInterest.getName();
     }
 
     /**
@@ -54,7 +38,7 @@ public abstract class PointOfInterest {
      * Mutator for fixed
      */
     public void setFixed () {
-        if (this.isFixable()) {
+        if (this.pointOfInterest.isFixable()) {
             this.fixed = true;
         }
     }
@@ -64,7 +48,7 @@ public abstract class PointOfInterest {
      * @return
      */
     public Boolean isFixable () {
-        return this.isFixable;
+        return this.pointOfInterest.isFixable();
     }
     
     /**
@@ -72,7 +56,7 @@ public abstract class PointOfInterest {
      * @param newDescription 
      */
     public void setDescription(String newDescription){
-        this.description = newDescription;
+        this.newDescription = newDescription;
     }
 
     /**
@@ -80,11 +64,11 @@ public abstract class PointOfInterest {
      * @return 
      */
     public String getDescription() {
-        return description;
+        return this.newDescription != null ? this.newDescription : this.pointOfInterest.getDescription();
     }
 
     public String getLongDescription () {
-        return (this.isFixed() ? successDescription : description) + "\n" + getInventoryString();
+        return (this.isFixed() ? this.pointOfInterest.getSuccessDescription() : this.getDescription()) + "\n" + getInventoryString();
     }
 
     public String getInventoryString () {

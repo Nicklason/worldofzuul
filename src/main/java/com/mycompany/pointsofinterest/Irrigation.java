@@ -1,7 +1,9 @@
 package com.mycompany.pointsofinterest;
 
+import com.mycompany.pointsofinterest.PointsOfInterest;
+
 public class Irrigation extends PointOfInterest {
     public Irrigation () {
-        super("irrigation", "The irrigation system is missing a pipe, water is running out on the ground", "You hav fixed the irrigation system, water is not getting wasted anymore.");
+        super(PointsOfInterest.IRRIGATION);
     }
 }
