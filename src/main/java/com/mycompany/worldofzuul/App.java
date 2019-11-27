@@ -17,7 +17,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("rooms/lobby"));
+        scene = new Scene(loadFXML("rooms/field"));
         scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.show();
@@ -33,7 +33,10 @@ public class App extends Application {
     }
 
     public static void load(String[] args) {
+        Game game = new Game();
         launch();
+       
+       
     }
 
 }

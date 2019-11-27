@@ -18,6 +18,7 @@ public class Game {
         this.rooms = new ArrayList<Room>();
         this.inventory = new Inventory();
         createRooms();
+        System.err.println("THE GAME IS RUNNING MUHAHAH");
     }
 
     private void createRooms() {
