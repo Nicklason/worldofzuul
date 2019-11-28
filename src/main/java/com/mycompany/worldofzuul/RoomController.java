@@ -8,6 +8,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
@@ -21,6 +22,9 @@ public class RoomController {
     private ListView poiListView;
     
     @FXML
+    private Label currentPointOfInterestLabel;
+    
+    @FXML
     private ToggleGroup fieldToggle;
     
     @FXML
@@ -29,6 +33,8 @@ public class RoomController {
     private ToggleButton pesticidesToggleButton;
     @FXML
     private ToggleButton irrigationToggleButton;
+    
+    private Game game = new Game();
     
     
     @FXML
@@ -39,15 +45,19 @@ public class RoomController {
         
         if (selectedToggleButton == null) {
             System.out.println("Nothing toggeled");
+            currentPointOfInterestLabel.setText("None");
         } else {
             if (selectedToggleButton.equals(farmhouseToggleButton)) {
+                currentPointOfInterestLabel.setText("Farmhouse");
                 System.out.println("This is the farmhouse");
                
             }
             if (selectedToggleButton.equals(pesticidesToggleButton)) {
+                currentPointOfInterestLabel.setText("Pesticides");
                 System.out.println("This is the pesticides");
             }
             if (selectedToggleButton.equals(irrigationToggleButton)) {
+                currentPointOfInterestLabel.setText("Irrigationsystem");
                 System.out.println("This is the irrigation");
             }  
         }
