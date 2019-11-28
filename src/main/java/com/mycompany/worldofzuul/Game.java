@@ -247,6 +247,7 @@ public class Game {
     public Room getCurrentRoom() {
         return currentRoom;
     }
+    
 
     /**
      * Get a room by name
@@ -263,7 +264,11 @@ public class Game {
 
         return null;
     }
-
+    
+    public void setCurrentPointOfInterest(PointOfInterest poi){
+        this.currentPointOfInterest = poi;
+    }
+    
     public PointOfInterest getCurrentPointOfInterest() {
         return currentPointOfInterest;
     }
