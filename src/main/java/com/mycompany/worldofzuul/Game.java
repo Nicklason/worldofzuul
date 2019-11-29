@@ -268,6 +268,9 @@ public class Game {
     public void setCurrentPointOfInterest(PointOfInterest poi){
         this.currentPointOfInterest = poi;
     }
+    public void setCurrentRoom(Room room){
+        this.currentRoom = room;
+    }
     
     public PointOfInterest getCurrentPointOfInterest() {
         return currentPointOfInterest;

@@ -14,33 +14,33 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.worldofzuul.RoomController">
    <children>
-      <ImageView fitHeight="703.0" fitWidth="1247.0" layoutX="-13.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="710.0" fitWidth="1254.0" layoutX="-21.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../PNG/1%20lake%203.png" />
+            <Image url="@../../../../PNG/2%20lake.png" />
          </image>
       </ImageView>
       <Button fx:id="toField" layoutX="1154.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
       <Button fx:id="toField1" layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToBigCity" prefHeight="62.0" prefWidth="100.0" text="Big City" />
       <Button fx:id="toField2" layoutX="581.0" layoutY="651.0" mnemonicParsing="false" onAction="#switchToField" prefHeight="62.0" prefWidth="100.0" text="Field" />
-      <ToggleButton layoutX="447.0" layoutY="340.0" mnemonicParsing="false">
+      <ToggleButton fx:id="boatToggleButton" layoutX="447.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent">
          <toggleGroup>
-            <ToggleGroup fx:id="lakeToggle" />
+            <ToggleGroup fx:id="poiToggle" />
          </toggleGroup></ToggleButton>
-      <ToggleButton layoutX="936.0" layoutY="521.0" mnemonicParsing="false" toggleGroup="$lakeToggle" />
-      <ToggleButton layoutX="1078.0" layoutY="353.0" mnemonicParsing="false" toggleGroup="$lakeToggle" />
-      <ListView fx:id="playerInventoryListView" layoutX="1234.0" layoutY="43.0" prefHeight="242.0" prefWidth="135.0" />
+      <ToggleButton fx:id="bridgeToggleButton" layoutX="936.0" layoutY="521.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
+      <ToggleButton fx:id="leakingPipeToggleButton" layoutX="1078.0" layoutY="353.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
+      <ListView fx:id="playerInventoryListView" layoutX="1235.0" layoutY="43.0" prefHeight="254.0" prefWidth="135.0" />
       <Label fx:id="playerInvText" layoutX="1243.0" layoutY="14.0" text="Player Inventory">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label fx:id="poiText" layoutX="1244.0" layoutY="355.0" text="Point Of interest">
+      <Label fx:id="poiText" layoutX="1243.0" layoutY="348.0" text="Point Of interest">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <ListView fx:id="poiListView" layoutX="1234.0" layoutY="405.0" prefHeight="254.0" prefWidth="135.0" />
-      <Label fx:id="currentPointOfInterestLabel" layoutX="1267.0" layoutY="377.0" />
-      <Button layoutX="1265.0" layoutY="662.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
-      <HBox layoutX="1241.0" layoutY="284.0" prefHeight="54.0" prefWidth="124.0">
+      <ListView fx:id="poiListView" layoutX="1235.0" layoutY="393.0" prefHeight="254.0" prefWidth="135.0" />
+      <Label fx:id="currentPointOfInterestLabel" layoutX="1267.0" layoutY="372.0" prefHeight="18.0" prefWidth="74.0" text="None" />
+      <Button layoutX="1265.0" layoutY="656.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
+      <HBox layoutX="1239.0" layoutY="297.0" prefHeight="54.0" prefWidth="124.0">
          <children>
             <Button mnemonicParsing="false" text="Use">
                <HBox.margin>
