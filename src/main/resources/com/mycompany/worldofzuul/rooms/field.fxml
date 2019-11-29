@@ -35,7 +35,8 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <ListView fx:id="poiListView" layoutX="1245.0" layoutY="405.0" prefHeight="295.0" prefWidth="124.0" />
+      <ListView fx:id="poiListView" layoutX="1245.0" layoutY="405.0" prefHeight="250.0" prefWidth="124.0" />
       <Label fx:id="currentPointOfInterestLabel" layoutX="1267.0" layoutY="377.0" />
+      <Button layoutX="1269.0" layoutY="663.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
    </children>
 </AnchorPane>

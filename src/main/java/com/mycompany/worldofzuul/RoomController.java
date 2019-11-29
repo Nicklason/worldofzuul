@@ -58,7 +58,7 @@ public class RoomController {
     public void initialize(){
         
         playerItems = FXCollections.observableArrayList();
-        //playerItems.addAll(game.getRoom(Rooms.FIELD.getName()).getPointOfInterest(PointsOfInterest.FARMHOUSE.getName()).inventory.getAll());
+        playerItems.addAll(game.inventory.getAll());
         playerInventoryListView.setItems(playerItems);
         playerInventoryListView.setCellFactory(Item -> new Cellplayerinventory());
         
@@ -149,6 +149,23 @@ public class RoomController {
     public static void handlePickup(String item){
         System.err.println("Picking up "+ item);
        
+    }
+    
+    @FXML
+    public void handlePickupPoi(ActionEvent event){
+        System.out.println("Clicking pickup btn");
+        Item selectedItem = (Item) poiListView.getSelectionModel().getSelectedItem();
+        
+        if (selectedItem == null) {
+            System.out.println("No selected Item!");
+        } else {
+            game.getRoom(Rooms.FIELD.getName()).getPointOfInterest(PointsOfInterest.FARMHOUSE.getName()).inventory.remove(selectedItem);
+            poiItems.remove(selectedItem);
+            playerItems.add(selectedItem);
+            game.inventory.add(selectedItem);
+              
+        }
+        
     }
     
     @FXML
