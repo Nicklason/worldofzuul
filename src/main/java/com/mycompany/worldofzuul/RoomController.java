@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -50,7 +51,7 @@ public class RoomController {
     @FXML
     private ToggleButton irrigationToggleButton;
     
-    private Game game = new Game();
+    private static Game game = new Game();
     
     
     
@@ -69,19 +70,19 @@ public class RoomController {
     
     static class Cellplayerinventory extends ListCell<Item> {
         VBox vbox = new VBox();
-        HBox hbox = new HBox();
+        //HBox hbox = new HBox();
         
         Label itemLabel = new Label();
-        Button useBtn = new Button("Use");
-        Button dropBtn = new Button("Drop");
+       // Button useBtn = new Button("Use");
+        //Button dropBtn = new Button("Drop");
         
-        Image itemImage = new Image("PNG/markerRsmall.png");
-        ImageView img = new ImageView(itemImage);
+        //Image itemImage = new Image("PNG/markerRsmall.png");
+        ImageView img = new ImageView();
         
         public Cellplayerinventory(){
             super();
-            hbox.getChildren().addAll(useBtn,dropBtn);
-            vbox.getChildren().addAll(itemLabel,img,hbox);
+            //hbox.getChildren().addAll(useBtn,dropBtn);
+            vbox.getChildren().addAll(itemLabel,img);
         }
         
         @Override
@@ -91,13 +92,16 @@ public class RoomController {
             setGraphic(null);
             
             if (item != null && !empty) {
-                useBtn.setId("Usebtn");
-                dropBtn.setId("Dropbtn");
-                hbox.setId("Btncontainer");
-                hbox.setAlignment(Pos.CENTER);
+                //useBtn.setId("Usebtn");
+                //dropBtn.setId("Dropbtn");
+               // hbox.setId("Btncontainer");
+                //hbox.setAlignment(Pos.CENTER);
+                img.setImage(new Image("PNG/"+item.getImagePath()));
+                vbox.setPrefHeight(110);
                 vbox.setId("InvItemcontainer");
                 vbox.setAlignment(Pos.CENTER);
                 img.setId("Imagecontainer");
+                itemLabel.setPadding(new Insets(0, 0, 0, 0));
                 itemLabel.setId("ItemLabel");
                 itemLabel.setAlignment(Pos.CENTER);
                 itemLabel.setText(item.getName());
@@ -109,17 +113,17 @@ public class RoomController {
     
     static class Cellpoiinventory extends ListCell<Item> {
         VBox vbox = new VBox();
-        HBox hbox = new HBox();
+        //HBox hbox = new HBox();
         Label itemLabel = new Label();
-        Button pickupBtn = new Button("Pickup");
-        Image itemImage = new Image("PNG/markerRsmall.png");
-        ImageView img = new ImageView(itemImage);
+        //Button pickupBtn = new Button("Pickup");
+        //Image itemImage = new Image("PNG/markerRsmall.png");
+        ImageView img = new ImageView();
         
         
         public Cellpoiinventory(){
             super();
-            hbox.getChildren().addAll(pickupBtn);
-            vbox.getChildren().addAll(itemLabel,img,hbox);
+          //  hbox.getChildren().addAll(pickupBtn);
+            vbox.getChildren().addAll(itemLabel,img);
         }
         
         @Override
@@ -130,13 +134,16 @@ public class RoomController {
             setGraphic(null);
             
             if (item != null && !empty) {
-                pickupBtn.setId("Pickup");
-                pickupBtn.setOnAction(e -> handlePickup(item.getName()));
-                hbox.setId("Btncontainer");
-                hbox.setAlignment(Pos.CENTER);
+               // pickupBtn.setId("Pickup");
+                //pickupBtn.setOnAction(e -> handlePickup(item.getName()));
+                //hbox.setId("Btncontainer");
+                //hbox.setAlignment(Pos.CENTER);
+                img.setImage(new Image("PNG/"+item.getImagePath()));
+                vbox.setPrefHeight(110);
                 vbox.setId("InvItemcontainer");
                 vbox.setAlignment(Pos.CENTER);
                 img.setId("Imagecontainer");
+                itemLabel.setPadding(new Insets(0, 0, 0, 0));
                 itemLabel.setId("ItemLabel");
                 itemLabel.setAlignment(Pos.CENTER);
                 itemLabel.setText(item.getName());
@@ -163,9 +170,24 @@ public class RoomController {
             poiItems.remove(selectedItem);
             playerItems.add(selectedItem);
             game.inventory.add(selectedItem);
-              
+            
         }
         
+    }
+    @FXML
+    public void handleDropItem(ActionEvent event){
+        System.out.println("Clicking drop btn");
+        Item selectedItem = (Item) playerInventoryListView.getSelectionModel().getSelectedItem();
+        
+        if (selectedItem == null) {
+            System.out.println("No selected Item!");
+        } else {
+            game.getCurrentPointOfInterest().inventory.add(selectedItem);
+            poiItems.add(selectedItem);
+            game.inventory.remove(selectedItem);
+            playerItems.remove(selectedItem);
+            
+        }
     }
     
     @FXML

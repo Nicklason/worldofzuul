@@ -33,6 +33,10 @@ public abstract class Item {
     public String getDescription() {
         return item.getDescription();
     }
+    
+    public String getImagePath() {
+        return item.getImagePath();
+    }
 
     public abstract void use();
 }

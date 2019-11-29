@@ -38,14 +38,19 @@ and open the template in the editor.
 #Pickup{
    -fx-pref-width: 60px; 
 }
+#playerInvText,#poiText{
+    -fx-font-weight:bold;
+    -fx-alignment: center ;
+}
 #ItemLabel{
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-margin-bottom: 5px;
 }
 #InvItemcontainer{
-    
+    border: 1px solid #000;
 }
+
 #Btncontainer{
     padding: 5px;
 }
