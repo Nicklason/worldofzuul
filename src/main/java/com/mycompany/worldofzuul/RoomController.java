@@ -1,6 +1,5 @@
 package com.mycompany.worldofzuul;
 
-import com.mycompany.worldofzuul.*;
 import com.mycompany.items.*;
 import com.mycompany.pointsofinterest.*;
 import com.mycompany.rooms.*;
@@ -8,22 +7,17 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 
 public class RoomController {
     @FXML
