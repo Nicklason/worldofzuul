@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="709.0" fitWidth="1262.0" layoutX="-13.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../PNG/0%20lobby.png" />
+            <Image url="@../../../../images/rooms/0%20lobby.png" />
          </image>
       </ImageView>
       <Button layoutX="14.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToLake" prefHeight="62.0" prefWidth="100.0" text="Lake" />

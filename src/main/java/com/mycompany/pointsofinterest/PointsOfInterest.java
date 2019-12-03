@@ -9,11 +9,11 @@ public enum PointsOfInterest {
     FARMHOUSE("farmhouse", "An abandoned farmhouse, maybe something usefull"),
     GIRL("clair", "When you are done with your adventure come back to me and say finish"),
     IRRIGATION("irrigation", "The irrigation system is missing a pipe, water is running out on the ground", "You hav fixed the irrigation system, water is not getting wasted anymore."),
-    LEAKINGPIPE("leakingpipe", "A pipeline is broken and leaking chemicals on the ground and into the water.", "You have fixed the leaking pipe"),
+    LEAKINGPIPE("leakingpipe", "A pipeline is broken and leaking chemicals on the ground and into the water.", "You have fixed the leaking pipe", "Sewage dumped into nature causes water bloom and bacteria growth. Raw sewage was dumped into popular beaches in Great Britain 1830 times in summer 2019."),
     LOCKEDDOOR("door", "A locked door leading into the factory", "You have used the keycard to unlock the door"),
-    MAP("map", "map showing enormus water requirements for producing 1 liter of cola","you took a picture and exposed the water spendage"),
+    MAP("map", "map showing enormus water requirements for producing 1 liter of cola", "you took a picture and exposed the water spendage"),
     OLDMAN("oldman", "Oldman: Hey can you please get me some water im really thirsty", "you helped the old man get water in return he gave you a keycard"),
-    PESTICIDES("pesticides","an open box of pesticides is laying on the ground, if on you could move it", "You have moved the pesticides from the ground they are no longer contaminating the ground"),
+    PESTICIDES("pesticides", "an open box of pesticides is laying on the ground, if on you could move it", "You have moved the pesticides from the ground they are no longer contaminating the ground"),
     STORE("store", "A grocery store, there is a line of shoppingcarts at the front they require a coin"),
     STREET("street", "You are standing at the street leading through the suburbs"),
     VENDINGMACHINE("vendingmachine", "A cola vending machine, it requires a coin"),
@@ -23,33 +23,55 @@ public enum PointsOfInterest {
     private String description;
     private String successDescription;
     private Boolean fixable;
+    private Boolean hasFunfact;
+    private String funfact;
 
-    private PointsOfInterest (String name, String description) {
+    private PointsOfInterest(String name, String description) {
         this.name = name;
         this.description = description;
         this.fixable = false;
+
     }
 
-    private PointsOfInterest (String name, String description, String successDescription) {
+    private PointsOfInterest(String name, String description, String successDescription) {
         this.name = name;
         this.description = description;
         this.successDescription = successDescription;
         this.fixable = true;
     }
 
-    public String getName () {
+    private PointsOfInterest(String name, String description, String successDescription, String funfact) {
+        this.name = name;
+        this.description = description;
+        this.successDescription = successDescription;
+        if (successDescription == null) {
+            this.fixable = false;
+        }
+        if (funfact == null) {
+            this.hasFunfact = false;
+        }
+        this.fixable = true;
+        this.hasFunfact = true;
+        this.funfact = funfact;
+    }
+
+    public String getName() {
         return this.name;
     }
 
-    public String getDescription () {
+    public String getDescription() {
         return this.description;
     }
 
-    public String getSuccessDescription () {
+    public String getSuccessDescription() {
         return this.successDescription;
     }
 
-    public Boolean isFixable () {
+    public Boolean isFixable() {
         return this.fixable;
+    }
+
+    public Boolean hasFunfact() {
+        return this.hasFunfact;
     }
 }

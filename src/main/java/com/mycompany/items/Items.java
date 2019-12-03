@@ -29,4 +29,8 @@ public enum Items {
     public String getDescription () {
         return this.description;
     }
+
+    public String getImagePath () {
+        return "images/items/" + this.getName() + ".png";
+    }
 }

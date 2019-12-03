@@ -26,17 +26,41 @@ and open the template in the editor.
     -fx-cursor: hand;
     -fx-pref-height: 40px;
     -fx-pref-width: 75px;
-    -fx-padding:5px;
+    -fx-padding: 5px;
 }
+
+#Usebtn, #Dropbtn, #Pickup {
+    -fx-pref-height: 30px;
+    -fx-pref-width: 40px; 
+    -fx-padding-top: 5px;
+}
+
+#Pickup{
+   -fx-pref-width: 60px; 
+}
+
+#playerInvText,#poiText{
+    -fx-font-weight:bold;
+    -fx-alignment: center ;
+}
+
+#ItemLabel{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-margin-bottom: 5px;
+}
+
+#Btncontainer{
+    padding: 5px;
+}
+
 .toggle-button {
-    -fx-graphic: url('PNG/markerRsmall.png');
+    -fx-graphic: url('images/misc/markerRsmall.png');
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-cursor: hand;
-   
-    
 }
 
 .toggle-button:selected{
-    -fx-graphic: url('PNG/markerGreenSmall.png');
+    -fx-graphic: url('images/misc/markerGreenSmall.png');
 }
