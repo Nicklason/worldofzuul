@@ -1,6 +1,5 @@
 package com.mycompany.worldofzuul;
 
-import com.mycompany.worldofzuul.*;
 import com.mycompany.items.*;
 import com.mycompany.pointsofinterest.*;
 import com.mycompany.rooms.*;
@@ -8,22 +7,17 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 
 public class RoomController {
     @FXML
@@ -36,14 +30,14 @@ public class RoomController {
     ObservableList<Item> poiItems;
     
     @FXML
-    private ListView poiListView;
+    private ListView<Item> poiListView;
     
     @FXML
     private Label currentPointOfInterestLabel;
     
     @FXML
     private ToggleGroup poiToggle;
-    
+
     @FXML
     private ToggleButton farmhouseToggleButton;
     @FXML
@@ -86,51 +80,19 @@ public class RoomController {
         playerItems = FXCollections.observableArrayList();
         playerItems.addAll(game.inventory.getAll());
         playerInventoryListView.setItems(playerItems);
-        playerInventoryListView.setCellFactory(Item -> new Cellplayerinventory());
+        playerInventoryListView.setCellFactory(Item -> new Cell());
         
         poiItems = FXCollections.observableArrayList();
-        poiListView.setCellFactory(Item -> new Cellpoiinventory());
+        poiListView.setCellFactory(Item -> new Cell());
                 
     }
-    
-    static class Cellplayerinventory extends ListCell<Item> {
+   
+    static class Cell extends ListCell<Item> {
         VBox vbox = new VBox();
         Label itemLabel = new Label();
         ImageView img = new ImageView();
         
-        public Cellplayerinventory(){
-            super();
-            vbox.getChildren().addAll(itemLabel,img);
-        }
-        
-        @Override
-        public void updateItem(Item item,boolean empty){
-            super.updateItem(item, empty);
-            setText(null);
-            setGraphic(null);
-            
-            if (item != null && !empty) {
-                img.setImage(new Image("PNG/"+item.getImagePath()));
-                vbox.setPrefHeight(120);
-                vbox.setId("InvItemcontainer");
-                vbox.setAlignment(Pos.CENTER);
-                img.setId("Imagecontainer");
-                itemLabel.setPadding(new Insets(0, 0, 0, 0));
-                itemLabel.setId("ItemLabel");
-                itemLabel.setAlignment(Pos.CENTER);
-                itemLabel.setText(item.getName());
-                setGraphic(vbox);
-            }
-        }
-                
-    }
-    
-    static class Cellpoiinventory extends ListCell<Item> {
-        VBox vbox = new VBox();
-        Label itemLabel = new Label();
-        ImageView img = new ImageView();
-        
-        public Cellpoiinventory(){
+        public Cell(){
             super();
             vbox.getChildren().addAll(itemLabel,img);
         }
@@ -143,7 +105,7 @@ public class RoomController {
             setGraphic(null);
             
             if (item != null && !empty) {
-                img.setImage(new Image("PNG/"+item.getImagePath()));
+                img.setImage(new Image(item.getImagePath()));
                 vbox.setPrefHeight(120);
                 vbox.setId("InvItemcontainer");
                 vbox.setAlignment(Pos.CENTER);
@@ -175,19 +137,28 @@ public class RoomController {
         }
         
     }
+
     @FXML
     public void handleDropItem(ActionEvent event){
         System.out.println("Clicking drop btn");
+        
+        PointOfInterest poi = game.getCurrentPointOfInterest();
+        
+        if (poi == null) {
+            System.out.println("No poi selected");
+            return;
+        }
+        
         Item selectedItem = (Item) playerInventoryListView.getSelectionModel().getSelectedItem();
         
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
             System.out.println("No selected Item!");
         } else {
-            game.getCurrentPointOfInterest().inventory.add(selectedItem);
+            poi.inventory.add(selectedItem);
             poiItems.add(selectedItem);
+
             game.inventory.remove(selectedItem);
             playerItems.remove(selectedItem);
-            
         }
     }
     
@@ -202,135 +173,63 @@ public class RoomController {
             currentPointOfInterestLabel.setText("None");
             game.setCurrentPointOfInterest(null);
             poiListView.getItems().clear();
-        } else {
-            if (selectedToggleButton.equals(farmhouseToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.FIELD.getName()).getPointOfInterest(PointsOfInterest.FARMHOUSE.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(pesticidesToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.FIELD.getName()).getPointOfInterest(PointsOfInterest.PESTICIDES.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(irrigationToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.FIELD.getName()).getPointOfInterest(PointsOfInterest.IRRIGATION.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(bridgeToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.LAKE.getName()).getPointOfInterest(PointsOfInterest.BRIDGE.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(boatToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.LAKE.getName()).getPointOfInterest(PointsOfInterest.BOAT.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(leakingPipeToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.LAKE.getName()).getPointOfInterest(PointsOfInterest.LEAKINGPIPE.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(boyToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.SUBURBS.getName()).getPointOfInterest(PointsOfInterest.BOY.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(streetToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.SUBURBS.getName()).getPointOfInterest(PointsOfInterest.STREET.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(pumpToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.SUBURBS.getName()).getPointOfInterest(PointsOfInterest.WATERPUMP.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(oldmanToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.BIGCITY.getName()).getPointOfInterest(PointsOfInterest.OLDMAN.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(storeToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.BIGCITY.getName()).getPointOfInterest(PointsOfInterest.STORE.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(vendingMachineToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.BIGCITY.getName()).getPointOfInterest(PointsOfInterest.VENDINGMACHINE.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(lockedDoorToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.STREET.getName()).getPointOfInterest(PointsOfInterest.LOCKEDDOOR.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(containerToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.STREET.getName()).getPointOfInterest(PointsOfInterest.CONTAINER.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
-            if (selectedToggleButton.equals(billboardToggleButton)) {
-                game.setCurrentPointOfInterest(game.getRoom(Rooms.STREET.getName()).getPointOfInterest(PointsOfInterest.BILLBOARD.getName()));
-                currentPointOfInterestLabel.setText(game.getCurrentPointOfInterest().getName());
-                
-                poiListView.getItems().clear();
-                poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
-                poiListView.setItems(poiItems);
-            }
+            return;
         }
-            
         
+        PointsOfInterest poi = null;
+        
+        if (selectedToggleButton.equals(farmhouseToggleButton)) {
+            poi = PointsOfInterest.FARMHOUSE;
+        } else if (selectedToggleButton.equals(pesticidesToggleButton)) {
+            poi = PointsOfInterest.PESTICIDES;
+        } else if (selectedToggleButton.equals(irrigationToggleButton)) {
+            poi = PointsOfInterest.IRRIGATION;
+        } else if (selectedToggleButton.equals(bridgeToggleButton)) {
+            poi = PointsOfInterest.BRIDGE;
+        } else if (selectedToggleButton.equals(boatToggleButton)) {
+            poi = PointsOfInterest.BOAT;
+        } else if (selectedToggleButton.equals(leakingPipeToggleButton)) {
+            poi = PointsOfInterest.LEAKINGPIPE;
+        } else if (selectedToggleButton.equals(boyToggleButton)) {
+            poi = PointsOfInterest.BOY;
+        } else if (selectedToggleButton.equals(streetToggleButton)) {
+            poi = PointsOfInterest.STREET;
+        } else if (selectedToggleButton.equals(pumpToggleButton)) {
+            poi = PointsOfInterest.WATERPUMP;
+        } else if (selectedToggleButton.equals(oldmanToggleButton)) {
+            poi = PointsOfInterest.OLDMAN;
+        } else if (selectedToggleButton.equals(storeToggleButton)) {
+            poi = PointsOfInterest.STORE;
+        } else if (selectedToggleButton.equals(vendingMachineToggleButton)) {
+            poi = PointsOfInterest.VENDINGMACHINE;
+        } else if (selectedToggleButton.equals(lockedDoorToggleButton)) {
+            poi = PointsOfInterest.LOCKEDDOOR;
+        } else if (selectedToggleButton.equals(containerToggleButton)) {
+            poi = PointsOfInterest.CONTAINER;
+        } else if (selectedToggleButton.equals(billboardToggleButton)) {
+            poi = PointsOfInterest.BILLBOARD;
+        } else {
+            throw new Error("Unknown poi button");
+        }
+        
+        String poiName = poi.getName();
+        PointOfInterest newPoi = game.getCurrentRoom().getPointOfInterest(poiName);
+        
+        // Set poi
+        game.setCurrentPointOfInterest(newPoi);
 
+        // Update label
+        currentPointOfInterestLabel.setText(poiName);
+        
+        // Update list view
+        poiListView.getItems().clear();
+        poiItems.addAll(newPoi.inventory.getAll());
+        poiListView.setItems(poiItems);
     }
     
     @FXML
     private void switchToField() throws IOException {
+        System.out.println(this);
         App.setRoot("rooms/field");
         game.setCurrentRoom(game.getRoom(Rooms.FIELD.getName()));
         game.setCurrentPointOfInterest(null);

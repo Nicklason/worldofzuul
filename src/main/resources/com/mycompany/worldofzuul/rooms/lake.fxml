@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="710.0" fitWidth="1254.0" layoutX="-21.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../PNG/2%20lake.png" />
+            <Image url="@../../../../images/rooms/2%20lake.png" />
          </image>
       </ImageView>
       <Button fx:id="toField" layoutX="1154.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
