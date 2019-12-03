@@ -126,19 +126,16 @@ public class RoomController {
     
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
             System.out.println("No selected Item");
-        } 
+        }
         else
         {
-        selecetedItem.use();
-        //playerItems.remove(selecetedItem);
-        playerItems.clear();
-        playerInventoryListView.getItems().clear();
-        playerItems.addAll(game.inventory.getAll()); 
-        playerInventoryListView.setItems(playerItems);
+            selecetedItem.use();
+
+            playerItems.clear();
+            playerInventoryListView.getItems().clear();
+            playerItems.addAll(game.inventory.getAll()); 
+            playerInventoryListView.setItems(playerItems);
         }
-    
-    
-    
     }
     
     @FXML
