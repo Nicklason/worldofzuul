@@ -86,51 +86,19 @@ public class RoomController {
         playerItems = FXCollections.observableArrayList();
         playerItems.addAll(game.inventory.getAll());
         playerInventoryListView.setItems(playerItems);
-        playerInventoryListView.setCellFactory(Item -> new Cellplayerinventory());
+        playerInventoryListView.setCellFactory(Item -> new Cell());
         
         poiItems = FXCollections.observableArrayList();
-        poiListView.setCellFactory(Item -> new Cellpoiinventory());
+        poiListView.setCellFactory(Item -> new Cell());
                 
     }
-    
-    static class Cellplayerinventory extends ListCell<Item> {
+   
+    static class Cell extends ListCell<Item> {
         VBox vbox = new VBox();
         Label itemLabel = new Label();
         ImageView img = new ImageView();
         
-        public Cellplayerinventory(){
-            super();
-            vbox.getChildren().addAll(itemLabel,img);
-        }
-        
-        @Override
-        public void updateItem(Item item,boolean empty){
-            super.updateItem(item, empty);
-            setText(null);
-            setGraphic(null);
-            
-            if (item != null && !empty) {
-                img.setImage(new Image("PNG/"+item.getImagePath()));
-                vbox.setPrefHeight(120);
-                vbox.setId("InvItemcontainer");
-                vbox.setAlignment(Pos.CENTER);
-                img.setId("Imagecontainer");
-                itemLabel.setPadding(new Insets(0, 0, 0, 0));
-                itemLabel.setId("ItemLabel");
-                itemLabel.setAlignment(Pos.CENTER);
-                itemLabel.setText(item.getName());
-                setGraphic(vbox);
-            }
-        }
-                
-    }
-    
-    static class Cellpoiinventory extends ListCell<Item> {
-        VBox vbox = new VBox();
-        Label itemLabel = new Label();
-        ImageView img = new ImageView();
-        
-        public Cellpoiinventory(){
+        public Cell(){
             super();
             vbox.getChildren().addAll(itemLabel,img);
         }
