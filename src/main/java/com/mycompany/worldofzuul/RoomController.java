@@ -30,7 +30,7 @@ public class RoomController {
     ObservableList<Item> poiItems;
     
     @FXML
-    private ListView poiListView;
+    private ListView<Item> poiListView;
     
     @FXML
     private Label currentPointOfInterestLabel;
