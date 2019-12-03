@@ -1,27 +1,25 @@
 package com.mycompany.items;
 
 public enum Items {
-    BOOTS("boots", "A pair of boots","Boots.png"),
-    CAMERA("camera", "A digital camera","Camera.png"),
-    COIN("coin", "A coin","Coin.png"),
-    COLA("cola", "A can of cola","Cola.png"),
-    EMPTYBOTTLE("emptybottle", "An empty bottle","EmptyBottle.png"),
-    FILLEDBOTTLE("filledbottle", "A full bottle","FilledBottle.png"),
-    KEYCARD("keycard", "A keycard","Keycard.png"),
-    METALPATCH("metalpatch", "A metalpatch","MetalPatch.png"),
-    PHOTO("photo", "A photo of the secret behind the production of cola","Photo.png"),
-    PIPE("pipe", "A pipe","Pipe.png"),
-    PUMPHANDLE("pumphandle", "A pumphandle","PumpHandle.png"),
-    SHOPPINGCART("shoppingcart", "A shopping cart","ShoppingCart.png");
+    BOOTS("boots", "A pair of boots"),
+    CAMERA("camera", "A digital camera"),
+    COIN("coin", "A coin"),
+    COLA("cola", "A can of cola"),
+    EMPTYBOTTLE("emptybottle", "An empty bottle"),
+    FILLEDBOTTLE("filledbottle", "A full bottle"),
+    KEYCARD("keycard", "A keycard"),
+    METALPATCH("metalpatch", "A metalpatch"),
+    PHOTO("photo", "A photo of the secret behind the production of cola"),
+    PIPE("pipe", "A pipe"),
+    PUMPHANDLE("pumphandle", "A pumphandle"),
+    SHOPPINGCART("shoppingcart", "A shopping cart");
 
     private String name;
     private String description;
-    private String imgPath;
 
-    private Items (String name, String description, String imgPath) {
+    private Items (String name, String description) {
         this.name = name;
         this.description = description;
-        this.imgPath = imgPath;
     }
 
     public String getName () {
@@ -31,7 +29,8 @@ public enum Items {
     public String getDescription () {
         return this.description;
     }
+
     public String getImagePath () {
-        return this.imgPath;
+        return "images/items/" + this.getName() + ".png";
     }
 }

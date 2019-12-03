@@ -105,7 +105,7 @@ public class RoomController {
             setGraphic(null);
             
             if (item != null && !empty) {
-                img.setImage(new Image("PNG/"+item.getImagePath()));
+                img.setImage(new Image(item.getImagePath()));
                 vbox.setPrefHeight(120);
                 vbox.setId("InvItemcontainer");
                 vbox.setAlignment(Pos.CENTER);

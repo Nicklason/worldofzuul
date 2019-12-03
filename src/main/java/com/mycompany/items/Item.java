@@ -34,6 +34,10 @@ public abstract class Item {
         return item.getDescription();
     }
     
+    /**
+     * Returns image path
+     * @return
+     */
     public String getImagePath() {
         return item.getImagePath();
     }
