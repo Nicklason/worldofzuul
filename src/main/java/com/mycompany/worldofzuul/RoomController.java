@@ -4,15 +4,19 @@ import com.mycompany.items.*;
 import com.mycompany.pointsofinterest.*;
 import com.mycompany.rooms.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -68,6 +72,14 @@ public class RoomController {
     private ToggleButton containerToggleButton;
     @FXML
     private ToggleButton lockedDoorToggleButton;
+    @FXML
+    private TextArea leakingpipeTextarea;
+    @FXML
+    private TextArea boatTextarea;
+    
+    private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
+    
+    
     
     
     private static Game game = new Game();
@@ -77,6 +89,7 @@ public class RoomController {
     @FXML
     public void initialize(){
         
+    
         playerItems = FXCollections.observableArrayList();
         playerItems.addAll(game.inventory.getAll());
         playerInventoryListView.setItems(playerItems);
@@ -84,6 +97,9 @@ public class RoomController {
         
         poiItems = FXCollections.observableArrayList();
         poiListView.setCellFactory(Item -> new Cell());
+        
+        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea,boatTextarea));
+        
                 
     }
    
@@ -168,6 +184,10 @@ public class RoomController {
         ToggleButton selectedToggleButton = (ToggleButton) poiToggle.getSelectedToggle();
         System.out.println(selectedToggleButton);
         
+        for (TextArea thisArea : allFunfactAreas){
+                   thisArea.setVisible(false);
+               }
+        
         if (selectedToggleButton == null) {
             System.out.println("Nothing toggeled");
             currentPointOfInterestLabel.setText("None");
@@ -175,6 +195,7 @@ public class RoomController {
             poiListView.getItems().clear();
             return;
         }
+        
         
         PointsOfInterest poi = null;
         
@@ -220,6 +241,23 @@ public class RoomController {
 
         // Update label
         currentPointOfInterestLabel.setText(poiName);
+        
+        if (newPoi.hasFunfact()) {
+            //TextArea currentPoiFunfactTextArea = new TextArea();
+            String currentPoiFunfactTextArea = (newPoi.getName()+"Textarea");
+            //System.out.println(allFunfactAreas);
+            //System.out.println(leakingpipeTextarea.getId());
+            
+            //System.out.println(allFunfactAreas.get(1).getId());
+           for (TextArea thisArea : allFunfactAreas){
+               if ((thisArea.getId()).equals(currentPoiFunfactTextArea)){
+                   thisArea.setText(newPoi.getFunfact());
+                   thisArea.setVisible(true);
+               }
+           }
+           
+            
+        }
         
         // Update list view
         poiListView.getItems().clear();

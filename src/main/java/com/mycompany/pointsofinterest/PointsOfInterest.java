@@ -2,7 +2,7 @@ package com.mycompany.pointsofinterest;
 
 public enum PointsOfInterest {
     BILLBOARD("billboard", "A billboard, can be used to show a photo", "Your photo is now being viewed by many people, hopefully they change their minds now"),
-    BOAT("boat", "You see a boat in the sea. The boats engine is leaking into the water and the water surrounding the boat is contaminated", "you used the boots to get out and fix the leaking boat engine."),
+    BOAT("boat", "You see a boat in the sea. The boats engine is leaking into the water and the water surrounding the boat is contaminated", "you used the boots to get out and fix the leaking boat engine.", "One liter of oil can contaminate ca. 947000 litters of water, making both undrinkable and unusable."),
     BOY("boy", "Oh no, I have been playing with the waterpump and the handle came off! My mom's going to kill me!"),
     BRIDGE("bridge", "A small bridge is falling apart, maybe there is something useful?"),
     CONTAINER("container", "Garbage container, maybe there is something useful"),
@@ -22,36 +22,26 @@ public enum PointsOfInterest {
     private String name;
     private String description;
     private String successDescription;
-    private Boolean fixable;
-    private Boolean hasFunfact;
     private String funfact;
 
     private PointsOfInterest(String name, String description) {
         this.name = name;
         this.description = description;
-        this.fixable = false;
-
+        this.successDescription = null;
+        this.funfact = null;
     }
 
     private PointsOfInterest(String name, String description, String successDescription) {
         this.name = name;
         this.description = description;
         this.successDescription = successDescription;
-        this.fixable = true;
+        this.funfact = null;
     }
 
     private PointsOfInterest(String name, String description, String successDescription, String funfact) {
         this.name = name;
         this.description = description;
         this.successDescription = successDescription;
-        if (successDescription == null) {
-            this.fixable = false;
-        }
-        if (funfact == null) {
-            this.hasFunfact = false;
-        }
-        this.fixable = true;
-        this.hasFunfact = true;
         this.funfact = funfact;
     }
 
@@ -68,10 +58,14 @@ public enum PointsOfInterest {
     }
 
     public Boolean isFixable() {
-        return this.fixable;
+        return this.successDescription != null;
     }
 
     public Boolean hasFunfact() {
-        return this.hasFunfact;
+        return this.funfact != null;
+    }
+    
+    public String funFact(){
+        return this.funfact;
     }
 }

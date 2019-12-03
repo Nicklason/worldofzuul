@@ -74,4 +74,12 @@ public abstract class PointOfInterest {
     public String getInventoryString () {
         return "Items: " + this.inventory.getItemsString();
     }
+    
+    public Boolean hasFunfact(){
+        return this.pointOfInterest.hasFunfact();
+    }
+    
+    public String getFunfact(){
+        return this.pointOfInterest.funFact();
+    }
 }
