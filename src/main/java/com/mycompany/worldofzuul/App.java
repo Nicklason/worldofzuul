@@ -34,8 +34,5 @@ public class App extends Application {
 
     public static void load(String[] args) {
         launch();
-       
-       
     }
-
 }
