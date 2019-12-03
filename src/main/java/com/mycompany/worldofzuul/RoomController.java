@@ -43,7 +43,7 @@ public class RoomController {
     
     @FXML
     private ToggleGroup poiToggle;
-    
+
     @FXML
     private ToggleButton farmhouseToggleButton;
     @FXML
@@ -175,19 +175,28 @@ public class RoomController {
         }
         
     }
+
     @FXML
     public void handleDropItem(ActionEvent event){
         System.out.println("Clicking drop btn");
+        
+        PointOfInterest poi = game.getCurrentPointOfInterest();
+        
+        if (poi == null) {
+            System.out.println("No poi selected");
+            return;
+        }
+        
         Item selectedItem = (Item) playerInventoryListView.getSelectionModel().getSelectedItem();
         
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
             System.out.println("No selected Item!");
         } else {
-            game.getCurrentPointOfInterest().inventory.add(selectedItem);
+            poi.inventory.add(selectedItem);
             poiItems.add(selectedItem);
+
             game.inventory.remove(selectedItem);
             playerItems.remove(selectedItem);
-            
         }
     }
     
