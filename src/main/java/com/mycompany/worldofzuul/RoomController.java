@@ -24,21 +24,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class RoomController {
+
     @FXML
     private ListView<Item> playerInventoryListView;
-    
+
     @FXML
     ObservableList<Item> playerItems;
-    
+
     @FXML
     ObservableList<Item> poiItems;
-    
+
     @FXML
     private ListView<Item> poiListView;
-    
+
     @FXML
     private Label currentPointOfInterestLabel;
-    
+
     @FXML
     private ToggleGroup poiToggle;
 
@@ -76,50 +77,44 @@ public class RoomController {
     private TextArea leakingpipeTextarea;
     @FXML
     private TextArea boatTextarea;
-    
+
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
-    
-    
-    
-    
+
     private static Game game = new Game();
-    
-    
-    
+
     @FXML
-    public void initialize(){
-        
-    
+    public void initialize() {
+
         playerItems = FXCollections.observableArrayList();
         playerItems.addAll(game.inventory.getAll());
         playerInventoryListView.setItems(playerItems);
         playerInventoryListView.setCellFactory(Item -> new Cell());
-        
+
         poiItems = FXCollections.observableArrayList();
         poiListView.setCellFactory(Item -> new Cell());
-        
-        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea,boatTextarea));
-        
-                
+
+        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea));
+
     }
-   
+
     static class Cell extends ListCell<Item> {
+
         VBox vbox = new VBox();
         Label itemLabel = new Label();
         ImageView img = new ImageView();
-        
-        public Cell(){
+
+        public Cell() {
             super();
-            vbox.getChildren().addAll(itemLabel,img);
+            vbox.getChildren().addAll(itemLabel, img);
         }
-        
+
         @Override
-        public void updateItem(Item item,boolean empty){
-            
+        public void updateItem(Item item, boolean empty) {
+
             super.updateItem(item, empty);
             setText(null);
             setGraphic(null);
-            
+
             if (item != null && !empty) {
                 img.setImage(new Image(item.getImagePath()));
                 vbox.setPrefHeight(120);
@@ -133,14 +128,14 @@ public class RoomController {
                 setGraphic(vbox);
             }
         }
-                
+
     }
-    
+
     @FXML
-    public void handlePickupPoi(ActionEvent event){
+    public void handlePickupPoi(ActionEvent event) {
         System.out.println("Clicking pickup btn");
         Item selectedItem = (Item) poiListView.getSelectionModel().getSelectedItem();
-        
+
         if (poiListView.getSelectionModel().getSelectedItem() == null) {
             System.out.println("No selected Item!");
         } else {
@@ -149,24 +144,24 @@ public class RoomController {
             poiItems.remove(selectedItem);
             playerItems.add(selectedItem);
             game.inventory.add(selectedItem);
-            
+
         }
-        
+
     }
 
     @FXML
-    public void handleDropItem(ActionEvent event){
+    public void handleDropItem(ActionEvent event) {
         System.out.println("Clicking drop btn");
-        
+
         PointOfInterest poi = game.getCurrentPointOfInterest();
-        
+
         if (poi == null) {
             System.out.println("No poi selected");
             return;
         }
-        
+
         Item selectedItem = (Item) playerInventoryListView.getSelectionModel().getSelectedItem();
-        
+
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
             System.out.println("No selected Item!");
         } else {
@@ -177,16 +172,30 @@ public class RoomController {
             playerItems.remove(selectedItem);
         }
     }
-    
+
     @FXML
-    public void handlePoiToggleEvent(ActionEvent event){
-      
-        ToggleButton selectedToggleButton = (ToggleButton) poiToggle.getSelectedToggle();
-        System.out.println(selectedToggleButton);
+    public void handlePoiToggleEvent(ActionEvent event) {
         
-        for (TextArea thisArea : allFunfactAreas){
-                   thisArea.setVisible(false);
-               }
+        // Check toggle group for active toggle
+        
+        ToggleButton selectedToggleButton = (ToggleButton) poiToggle.getSelectedToggle();
+
+        // Make arraylist of all poi's in the current room
+        ArrayList<PointOfInterest> funFactAreasInCurrentRoom = game.getCurrentRoom().getPointsOfInterest();
+
+        // Check if any of the poi's from the list above has funfactTextArea, if so hide it
+        for (PointOfInterest pointofinterest : funFactAreasInCurrentRoom) {
+            String textAreaPoiName = pointofinterest.getName() + "Textarea";
+            for (TextArea funFactTextArea : allFunfactAreas) {
+                if (funFactTextArea != null) {
+                    if (textAreaPoiName.equals(funFactTextArea.getId())) {
+                        funFactTextArea.setVisible(false);
+                    }
+                }
+            }
+        }
+        
+        // If no poi is toggeled
         
         if (selectedToggleButton == null) {
             System.out.println("Nothing toggeled");
@@ -196,9 +205,9 @@ public class RoomController {
             return;
         }
         
-        
+        // Identify the active poi toggle
         PointsOfInterest poi = null;
-        
+
         if (selectedToggleButton.equals(farmhouseToggleButton)) {
             poi = PointsOfInterest.FARMHOUSE;
         } else if (selectedToggleButton.equals(pesticidesToggleButton)) {
@@ -232,39 +241,36 @@ public class RoomController {
         } else {
             throw new Error("Unknown poi button");
         }
-        
+
         String poiName = poi.getName();
         PointOfInterest newPoi = game.getCurrentRoom().getPointOfInterest(poiName);
-        
+
         // Set poi
         game.setCurrentPointOfInterest(newPoi);
 
         // Update label
         currentPointOfInterestLabel.setText(poiName);
         
-        if (newPoi.hasFunfact()) {
-            //TextArea currentPoiFunfactTextArea = new TextArea();
-            String currentPoiFunfactTextArea = (newPoi.getName()+"Textarea");
-            //System.out.println(allFunfactAreas);
-            //System.out.println(leakingpipeTextarea.getId());
-            
-            //System.out.println(allFunfactAreas.get(1).getId());
-           for (TextArea thisArea : allFunfactAreas){
-               if ((thisArea.getId()).equals(currentPoiFunfactTextArea)){
-                   thisArea.setText(newPoi.getFunfact());
-                   thisArea.setVisible(true);
-               }
-           }
-           
-            
-        }
+        // Set poi description corresponding to wether it is fixed or not
+        // Code goes here
         
+        // If poi has funfact set and display
+        if (newPoi.hasFunfact()) {
+            String currentPoiFunfactTextArea = (newPoi.getName() + "Textarea");
+            for (TextArea thisArea : allFunfactAreas) {
+                if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
+                    thisArea.setText(newPoi.getFunfact());
+                    thisArea.setVisible(true);
+                }
+            }
+        }
+
         // Update list view
         poiListView.getItems().clear();
         poiItems.addAll(newPoi.inventory.getAll());
         poiListView.setItems(poiItems);
     }
-    
+
     @FXML
     private void switchToField() throws IOException {
         System.out.println(this);
@@ -272,35 +278,35 @@ public class RoomController {
         game.setCurrentRoom(game.getRoom(Rooms.FIELD.getName()));
         game.setCurrentPointOfInterest(null);
     }
-    
+
     @FXML
     private void switchToLake() throws IOException {
         App.setRoot("rooms/lake");
         game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
         game.setCurrentPointOfInterest(null);
     }
-    
+
     @FXML
     private void switchToSuburb() throws IOException {
         App.setRoot("rooms/suburbs");
         game.setCurrentRoom(game.getRoom(Rooms.SUBURBS.getName()));
         game.setCurrentPointOfInterest(null);
     }
-    
+
     @FXML
     private void switchToBigCity() throws IOException {
         App.setRoot("rooms/bigcity");
         game.setCurrentRoom(game.getRoom(Rooms.BIGCITY.getName()));
         game.setCurrentPointOfInterest(null);
     }
-    
+
     @FXML
     private void switchToStreet() throws IOException {
         App.setRoot("rooms/street");
         game.setCurrentRoom(game.getRoom(Rooms.STREET.getName()));
         game.setCurrentPointOfInterest(null);
     }
-    
+
     @FXML
     private void switchToLobby() throws IOException {
         App.setRoot("rooms/lobby");
