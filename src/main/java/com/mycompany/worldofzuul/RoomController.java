@@ -77,8 +77,8 @@ public class RoomController {
     private TextArea leakingpipeTextarea;
     @FXML
     private TextArea boatTextarea;
-    @FXML 
-    private TextArea irrigationTextarea; 
+    @FXML
+    private TextArea irrigationTextarea;
     @FXML
     private TextArea pesticidesTextarea;
     @FXML
@@ -183,9 +183,8 @@ public class RoomController {
 
     @FXML
     public void handlePoiToggleEvent(ActionEvent event) {
-        
+
         // Check toggle group for active toggle
-        
         ToggleButton selectedToggleButton = (ToggleButton) poiToggle.getSelectedToggle();
 
         // Make arraylist of all poi's in the current room
@@ -202,17 +201,15 @@ public class RoomController {
                 }
             }
         }
-        
+
         // If no poi is toggeled
-        
         if (selectedToggleButton == null) {
-            System.out.println("Nothing toggeled");
             currentPointOfInterestLabel.setText("None");
             game.setCurrentPointOfInterest(null);
             poiListView.getItems().clear();
             return;
         }
-        
+
         // Identify the active poi toggle
         PointsOfInterest poi = null;
 
@@ -258,17 +255,18 @@ public class RoomController {
 
         // Update label
         currentPointOfInterestLabel.setText(poiName);
-        
+
         // Set poi description corresponding to wether it is fixed or not
         // Code goes here
-        
         // If poi has funfact set and display
         if (newPoi.hasFunfact()) {
             String currentPoiFunfactTextArea = (newPoi.getName() + "Textarea");
             for (TextArea thisArea : allFunfactAreas) {
-                if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
-                    thisArea.setText(newPoi.getFunfact());
-                    thisArea.setVisible(true);
+                if (thisArea != null) {
+                    if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
+                        thisArea.setText(newPoi.getFunfact());
+                        thisArea.setVisible(true);
+                    }
                 }
             }
         }
