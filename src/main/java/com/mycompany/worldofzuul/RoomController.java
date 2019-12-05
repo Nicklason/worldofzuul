@@ -39,10 +39,11 @@ public class RoomController {
 
     @FXML
     private Label currentPointOfInterestLabel;
-
+    
+    // Toggle group
     @FXML
     private ToggleGroup poiToggle;
-
+    // Toggle buttons for poi's
     @FXML
     private ToggleButton farmhouseToggleButton;
     @FXML
@@ -74,6 +75,7 @@ public class RoomController {
     @FXML
     private ToggleButton lockedDoorToggleButton;
     @FXML
+    // Textareas for funfacts
     private TextArea leakingpipeTextarea;
     @FXML
     private TextArea boatTextarea;
@@ -85,8 +87,47 @@ public class RoomController {
     private TextArea waterpumpTextarea;
     @FXML
     private TextArea oldmanTextarea;
+    @FXML
+    private TextArea containerTextarea;
+    
+    
+    // Textareas for descriptions
+    @FXML
+    private TextArea leakingpipeDescription;
+    @FXML
+    private TextArea bridgeDescription;
+    @FXML
+    private TextArea boatDescription;
+    @FXML
+    private TextArea irrigationDescription;
+    @FXML
+    private TextArea pesticidesDescription;
+    @FXML
+    private TextArea farmhouseDescription;
+    @FXML
+    private TextArea waterpumpDescription;
+    @FXML
+    private TextArea streetDescription;
+    @FXML
+    private TextArea boyDescription;
+    @FXML
+    private TextArea billboardDescription;
+    @FXML
+    private TextArea containerDescription;
+    @FXML
+    private TextArea doorDescription;
+    @FXML
+    private TextArea oldmanDescription;
+    @FXML
+    private TextArea vendingmachineDescription;
+    @FXML
+    private TextArea storeDescription;
+    
 
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
+    
+    private ArrayList<TextArea> allDescriptionAreas = new ArrayList<>();
+    
 
     private static Game game = new Game();
 
@@ -101,7 +142,10 @@ public class RoomController {
         poiItems = FXCollections.observableArrayList();
         poiListView.setCellFactory(Item -> new Cell());
 
-        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea));
+        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea,containerTextarea));
+        allDescriptionAreas.addAll(Arrays.asList(leakingpipeDescription, boatDescription, bridgeDescription, irrigationDescription, pesticidesDescription,
+                farmhouseDescription, waterpumpDescription, streetDescription, boyDescription, billboardDescription, containerDescription, doorDescription,
+                oldmanDescription, vendingmachineDescription, storeDescription));
 
     }
 
@@ -189,7 +233,19 @@ public class RoomController {
 
         // Make arraylist of all poi's in the current room
         ArrayList<PointOfInterest> funFactAreasInCurrentRoom = game.getCurrentRoom().getPointsOfInterest();
-
+        
+        // Check if any of the poi's from the list above has DescriptionTextArea, if so hide it
+        for (PointOfInterest pointofinterest : funFactAreasInCurrentRoom) {
+            String textAreaPoiName = pointofinterest.getName() + "Description";
+            for (TextArea DescriptionTextArea : allDescriptionAreas) {
+                if (DescriptionTextArea != null) {
+                    if (textAreaPoiName.equals(DescriptionTextArea.getId())) {
+                        DescriptionTextArea.setVisible(false);
+                    }
+                }
+            }
+        }
+        
         // Check if any of the poi's from the list above has funfactTextArea, if so hide it
         for (PointOfInterest pointofinterest : funFactAreasInCurrentRoom) {
             String textAreaPoiName = pointofinterest.getName() + "Textarea";
@@ -257,7 +313,16 @@ public class RoomController {
         currentPointOfInterestLabel.setText(poiName);
 
         // Set poi description corresponding to wether it is fixed or not
-        // Code goes here
+        String currentPoiDescriptionTextArea = (newPoi.getName() + "Description");
+        for (TextArea descriptionArea : allDescriptionAreas) {
+            if (descriptionArea != null) {
+                if ((descriptionArea.getId()).equals(currentPoiDescriptionTextArea)) {
+                    descriptionArea.setText(newPoi.getDescription());
+                    descriptionArea.setVisible(true);
+                }
+            }
+        }
+            
         // If poi has funfact set and display
         if (newPoi.hasFunfact()) {
             String currentPoiFunfactTextArea = (newPoi.getName() + "Textarea");

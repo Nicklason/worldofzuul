@@ -20,7 +20,7 @@
             <Image url="@../../../../images/rooms/2%20lake.png" />
          </image>
       </ImageView>
-      <Button fx:id="toField" layoutX="1154.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
+      <Button fx:id="toField" layoutX="1152.0" layoutY="366.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
       <Button fx:id="toField1" layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToBigCity" prefHeight="62.0" prefWidth="100.0" text="Big City" />
       <Button fx:id="toField2" layoutX="581.0" layoutY="651.0" mnemonicParsing="false" onAction="#switchToField" prefHeight="62.0" prefWidth="100.0" text="Field" />
       <ToggleButton fx:id="boatToggleButton" layoutX="447.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent">
@@ -55,13 +55,28 @@
             </Button>
          </children>
       </HBox>
-      <TextArea fx:id="leakingpipeTextarea" layoutX="818.0" layoutY="223.0" maxHeight="125.0" maxWidth="311.0" prefHeight="125.0" prefWidth="311.0" visible="false" wrapText="true">
+      <TextArea fx:id="boatTextarea" disable="true" layoutX="334.0" layoutY="187.0" maxHeight="130.0" maxWidth="300.0" prefHeight="72.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="boatDescription" disable="true" layoutX="334.0" layoutY="268.0" maxHeight="130.0" maxWidth="300.0" prefHeight="72.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="leakingpipeTextarea" disable="true" layoutX="928.0" layoutY="187.0" maxHeight="130.0" maxWidth="300.0" prefHeight="106.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font size="13.0" />
          </font></TextArea>
-      <TextArea fx:id="boatTextarea" layoutX="329.0" layoutY="199.0" maxHeight="125.0" maxWidth="311.0" prefHeight="125.0" prefWidth="311.0" visible="false" wrapText="true">
+      <TextArea fx:id="leakingpipeDescription" disable="true" layoutX="928.0" layoutY="297.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="bridgeDescription" disable="true" layoutX="685.0" layoutY="467.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
    </children>
