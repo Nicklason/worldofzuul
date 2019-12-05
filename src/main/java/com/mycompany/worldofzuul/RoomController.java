@@ -77,6 +77,14 @@ public class RoomController {
     private TextArea leakingpipeTextarea;
     @FXML
     private TextArea boatTextarea;
+    @FXML 
+    private TextArea irrigationTextarea; 
+    @FXML
+    private TextArea pesticidesTextarea;
+    @FXML
+    private TextArea waterpumpTextarea;
+    @FXML
+    private TextArea oldmanTextarea;
 
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
 
@@ -93,7 +101,7 @@ public class RoomController {
         poiItems = FXCollections.observableArrayList();
         poiListView.setCellFactory(Item -> new Cell());
 
-        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea));
+        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea));
 
     }
 

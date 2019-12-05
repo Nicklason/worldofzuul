@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -55,5 +56,6 @@
             </Button>
          </children>
       </HBox>
+      <TextArea fx:id="oldmanTextarea" layoutX="832.0" layoutY="303.0" prefHeight="91.0" prefWidth="269.0" visible="false" wrapText="true" />
    </children>
 </AnchorPane>
