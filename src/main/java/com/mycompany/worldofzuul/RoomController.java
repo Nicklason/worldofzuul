@@ -6,6 +6,8 @@ import com.mycompany.rooms.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,22 +29,19 @@ public class RoomController {
 
     @FXML
     private ListView<Item> playerInventoryListView;
-
     @FXML
     ObservableList<Item> playerItems;
-
     @FXML
     ObservableList<Item> poiItems;
-
     @FXML
     private ListView<Item> poiListView;
-
     @FXML
     private Label currentPointOfInterestLabel;
-    
+
     // Toggle group
     @FXML
     private ToggleGroup poiToggle;
+    
     // Toggle buttons for poi's
     @FXML
     private ToggleButton farmhouseToggleButton;
@@ -74,8 +73,9 @@ public class RoomController {
     private ToggleButton containerToggleButton;
     @FXML
     private ToggleButton lockedDoorToggleButton;
-    @FXML
+    
     // Textareas for funfacts
+    @FXML
     private TextArea leakingpipeTextarea;
     @FXML
     private TextArea boatTextarea;
@@ -89,8 +89,7 @@ public class RoomController {
     private TextArea oldmanTextarea;
     @FXML
     private TextArea containerTextarea;
-    
-    
+
     // Textareas for descriptions
     @FXML
     private TextArea leakingpipeDescription;
@@ -122,12 +121,14 @@ public class RoomController {
     private TextArea vendingmachineDescription;
     @FXML
     private TextArea storeDescription;
-    
+
+    // Textarea for userfeedback
+    @FXML
+    private TextArea feedbackTextarea;
 
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
-    
+
     private ArrayList<TextArea> allDescriptionAreas = new ArrayList<>();
-    
 
     private static Game game = new Game();
 
@@ -142,7 +143,7 @@ public class RoomController {
         poiItems = FXCollections.observableArrayList();
         poiListView.setCellFactory(Item -> new Cell());
 
-        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea,containerTextarea));
+        allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea, containerTextarea));
         allDescriptionAreas.addAll(Arrays.asList(leakingpipeDescription, boatDescription, bridgeDescription, irrigationDescription, pesticidesDescription,
                 farmhouseDescription, waterpumpDescription, streetDescription, boyDescription, billboardDescription, containerDescription, doorDescription,
                 oldmanDescription, vendingmachineDescription, storeDescription));
@@ -188,7 +189,7 @@ public class RoomController {
         Item selecetedItem = (Item)playerInventoryListView.getSelectionModel().getSelectedItem();
     
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("No selected Item");
+            setFeedback("No selected Item");
             return;
         }
         
@@ -196,7 +197,7 @@ public class RoomController {
             // Item was used
             
             PointOfInterest targetedPoi = game.getCurrentPointOfInterest();
-            
+
             String currentPoiDescriptionTextArea = (targetedPoi.getName() + "Description");
             for (TextArea descriptionArea : allDescriptionAreas) {
                 if (descriptionArea != null) {
@@ -205,35 +206,35 @@ public class RoomController {
                     }
                 }
             }
-            
+
             if (targetedPoi.hasFunfact() && targetedPoi.isFixed()) {
-            String currentPoiFunfactTextArea = (targetedPoi.getName() + "Textarea");
-            for (TextArea thisArea : allFunfactAreas) {
-                if (thisArea != null) {
-                    if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
-                        thisArea.setText(targetedPoi.getFunfact());
-                        thisArea.setVisible(true);
+                String currentPoiFunfactTextArea = (targetedPoi.getName() + "Textarea");
+                for (TextArea thisArea : allFunfactAreas) {
+                    if (thisArea != null) {
+                        if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
+                            thisArea.setText(targetedPoi.getFunfact());
+                            thisArea.setVisible(true);
+                        }
                     }
                 }
             }
-        }
-            
+
             playerItems.clear();
             playerInventoryListView.getItems().clear();
-            playerItems.addAll(game.inventory.getAll()); 
+            playerItems.addAll(game.inventory.getAll());
             playerInventoryListView.setItems(playerItems);
         } else {
             // Item was not used
         }
     }
-    
+
     @FXML
-    public void handlePickupPoi(ActionEvent event){
+    public void handlePickupPoi(ActionEvent event) {
         System.out.println("Clicking pickup btn");
         Item selectedItem = (Item) poiListView.getSelectionModel().getSelectedItem();
 
         if (poiListView.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("No selected Item!");
+            setFeedback("No selected Item");
         } else {
             game.getCurrentPointOfInterest().inventory.remove(selectedItem);
             game.getCurrentPointOfInterest().inventory.getAll();
@@ -252,14 +253,14 @@ public class RoomController {
         PointOfInterest poi = game.getCurrentPointOfInterest();
 
         if (poi == null) {
-            System.out.println("No poi selected");
+            setFeedback("No poi selected");
             return;
         }
 
         Item selectedItem = (Item) playerInventoryListView.getSelectionModel().getSelectedItem();
 
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("No selected Item!");
+            setFeedback("No selected Item");
         } else {
             poi.inventory.add(selectedItem);
             poiItems.add(selectedItem);
@@ -277,7 +278,7 @@ public class RoomController {
 
         // Make arraylist of all poi's in the current room
         ArrayList<PointOfInterest> funFactAreasInCurrentRoom = game.getCurrentRoom().getPointsOfInterest();
-        
+
         // Check if any of the poi's from the list above has DescriptionTextArea, if so hide it
         for (PointOfInterest pointofinterest : funFactAreasInCurrentRoom) {
             String textAreaPoiName = pointofinterest.getName() + "Description";
@@ -289,7 +290,7 @@ public class RoomController {
                 }
             }
         }
-        
+
         // Check if any of the poi's from the list above has funfactTextArea, if so hide it
         for (PointOfInterest pointofinterest : funFactAreasInCurrentRoom) {
             String textAreaPoiName = pointofinterest.getName() + "Textarea";
@@ -366,7 +367,7 @@ public class RoomController {
                 }
             }
         }
-            
+
         // If poi has funfact and isfixed set and display
         if (newPoi.hasFunfact() && newPoi.isFixed()) {
             String currentPoiFunfactTextArea = (newPoi.getName() + "Textarea");
@@ -427,5 +428,17 @@ public class RoomController {
         App.setRoot("rooms/lobby");
         game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
+    }
+
+    public void setFeedback(String msg) {
+        
+        feedbackTextarea.setText(msg);
+        feedbackTextarea.setVisible(true);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                feedbackTextarea.setVisible(false);
+            }
+        }, 3000L);
     }
 }

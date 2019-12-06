@@ -54,3 +54,10 @@
 .text-input > .scroll-pane:disabled {
     -fx-opacity: 1;
 }
+#feedbackTextarea{
+    -fx-padding: 5 10 0 10;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 170px;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}

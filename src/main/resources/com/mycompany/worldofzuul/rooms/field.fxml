@@ -80,5 +80,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
+      <TextArea fx:id="feedbackTextarea" disable="true" layoutX="990.0" layoutY="16.0" prefHeight="54.0" prefWidth="234.0" visible="false" />
    </children>
 </AnchorPane>
