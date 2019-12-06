@@ -42,7 +42,7 @@
       <Button layoutX="1265.0" layoutY="656.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
       <HBox layoutX="1239.0" layoutY="297.0" prefHeight="54.0" prefWidth="124.0">
          <children>
-            <Button mnemonicParsing="false" text="Use">
+            <Button mnemonicParsing="false" onAction="#useItem" text="Use">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>

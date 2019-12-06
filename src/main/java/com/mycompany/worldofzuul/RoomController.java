@@ -184,7 +184,25 @@ public class RoomController {
     }
 
     @FXML
-    public void handlePickupPoi(ActionEvent event) {
+    public void useItem(){
+    Item selecetedItem =(Item) playerInventoryListView.getSelectionModel().getSelectedItem();
+    
+        if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
+            System.out.println("No selected Item");
+        }
+        else
+        {
+            selecetedItem.use();
+
+            playerItems.clear();
+            playerInventoryListView.getItems().clear();
+            playerItems.addAll(game.inventory.getAll()); 
+            playerInventoryListView.setItems(playerItems);
+        }
+    }
+    
+    @FXML
+    public void handlePickupPoi(ActionEvent event){
         System.out.println("Clicking pickup btn");
         Item selectedItem = (Item) poiListView.getSelectionModel().getSelectedItem();
 
