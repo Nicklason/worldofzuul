@@ -13,18 +13,21 @@ public class EmptyBottle extends Item {
     }
 
     @Override
-    public void use () {
+    public boolean usable () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.SUBURBS.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.WATERPUMP.getName()) || !pointOfInterest.isFixed()) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
-        }
+        return game.getCurrentRoom().getName().equals(Rooms.SUBURBS.getName()) && pointOfInterest.getName().equals(PointsOfInterest.WATERPUMP.getName()) && pointOfInterest.isFixed();
+    }
 
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
+        }
+        
         this.game.inventory.remove(this);
-        System.out.println("Filled waterbottle added to inventory");
         this.game.inventory.add(new FilledBottle(game));
+
+        return true;
     }
 }

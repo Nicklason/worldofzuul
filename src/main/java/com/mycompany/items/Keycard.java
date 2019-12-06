@@ -5,7 +5,6 @@ import com.mycompany.rooms.Rooms;
 import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
-import com.mycompany.pointsofinterest.PointOfInterest;
 import com.mycompany.rooms.Factory;
 import com.mycompany.rooms.Room;
 
@@ -15,18 +14,18 @@ public class Keycard extends Item {
     }
 
     @Override
-    public void use () {
-        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
+    public boolean usable () {
+        return game.getCurrentRoom().getName().equals(Rooms.STREET.getName()) && game.getCurrentPointOfInterest().getName().equals(PointsOfInterest.LOCKEDDOOR.getName());
+    }
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.STREET.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.LOCKEDDOOR.getName())) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
 
-        pointOfInterest.setFixed();
+        game.getCurrentPointOfInterest().setFixed();
 
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
         this.game.inventory.remove(this);
 
         Factory factory = new Factory(game);
@@ -35,6 +34,6 @@ public class Keycard extends Item {
         street.setExit(factory);
         factory.setExit(street);
 
-        System.out.println("New exit factory added");
+        return true;
     }
 }

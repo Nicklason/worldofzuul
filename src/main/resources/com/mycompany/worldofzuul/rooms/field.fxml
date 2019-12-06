@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -16,10 +17,10 @@
    <children>
       <ImageView fitHeight="709.0" fitWidth="1254.0" layoutX="-19.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../PNG/3%20field.png" />
+            <Image url="@../../../../images/rooms/3%20field.png" />
          </image>
       </ImageView>
-      <Button layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToSuburb" prefHeight="62.0" prefWidth="100.0" text="Suburbs" />
+      <Button layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#switchToSuburb" prefHeight="62.0" prefWidth="100.0" text="Suburbs" />
       <Button layoutX="578.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToLake" prefHeight="62.0" prefWidth="100.0" text="Lake" />
       <ToggleButton fx:id="farmhouseToggleButton" layoutX="514.0" layoutY="309.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent">
          <toggleGroup>
@@ -54,5 +55,30 @@
             </Button>
          </children>
       </HBox>
+      <TextArea fx:id="irrigationTextarea" disable="true" layoutX="709.0" layoutY="281.0" maxHeight="130.0" maxWidth="300.0" prefHeight="89.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="pesticidesTextarea" disable="true" layoutX="42.0" layoutY="253.0" maxHeight="145.0" maxWidth="300.0" prefHeight="113.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="farmhouseDescription" disable="true" layoutX="401.0" layoutY="257.0" maxHeight="130.0" maxWidth="300.0" prefHeight="48.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="pesticidesDescription" disable="true" layoutX="42.0" layoutY="375.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="irrigationDescription" disable="true" layoutX="709.0" layoutY="375.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </TextArea>
    </children>
 </AnchorPane>

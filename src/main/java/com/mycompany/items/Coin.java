@@ -15,28 +15,30 @@ public class Coin extends Item {
     }
 
     @Override
-    public void use () {
+    public boolean usable () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) && (!pointOfInterest.getName().equals(PointsOfInterest.STORE.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.VENDINGMACHINE.getName()))) {
-            System.out.println("Can't use " + this.getName() + " here");
-            System.out.println(pointOfInterest.getName());
-            return;
+        return game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) && (pointOfInterest.getName().equals(PointsOfInterest.STORE.getName()) || pointOfInterest.getName().equals(PointsOfInterest.VENDINGMACHINE.getName()));
+    }
+
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
 
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
+        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
         
         this.game.inventory.remove(this);
 
         if (pointOfInterest.getName().equals(PointsOfInterest.STORE.getName())) {
             // We used the coin to unluck a shopping cart
             this.game.inventory.add(new ShoppingCart(game));
-            System.out.println(pointOfInterest.getLongDescription());
-            System.out.println("A shopping cart has been added to your inventory");
         } else {
             // The coin was used in a vending machine to get a cola, add the cola to the inventory of the vending machine
             pointOfInterest.inventory.add(new Cola(game));
-            System.out.println(pointOfInterest.getLongDescription());
         }
+
+        return true;
     }
 }

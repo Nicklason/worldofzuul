@@ -6,7 +6,6 @@ import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.pointsofinterest.Oldman;
 import com.mycompany.worldofzuul.Game;
-import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class Cola extends Item {
     public Cola (Game game) {
@@ -14,19 +13,21 @@ public class Cola extends Item {
     }
 
     @Override
-    public void use () {
-        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
+    public boolean usable () {
+        return game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) && game.getCurrentPointOfInterest().getName().equals(PointsOfInterest.OLDMAN.getName());
+    }
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.OLDMAN.getName())) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
 
-        Oldman oldman = (Oldman)pointOfInterest;
+        Oldman oldman = (Oldman)game.getCurrentPointOfInterest();
         oldman.setKeycardFalse();
 
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println("Buying cola is exactly what is ruining our water supply!");
         this.game.inventory.remove(this);
+
+        return true;
     }
 }
