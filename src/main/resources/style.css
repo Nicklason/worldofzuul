@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Nov 25, 2019, 7:33:25 PM
     Author     : Nica
 */
-
+/* // denne del virker ikke godt sammen med menu knappene
 .button {
     -fx-background-color: 
         #090a0c,
@@ -28,6 +28,8 @@ and open the template in the editor.
     -fx-pref-width: 75px;
     -fx-padding:5px;
 }
+*/
+
 #Usebtn, #Dropbtn, #Pickup {
     -fx-pref-height: 30px;
     -fx-pref-width: 40px; 
