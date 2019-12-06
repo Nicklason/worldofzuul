@@ -194,6 +194,30 @@ public class RoomController {
         
         if (selecetedItem.use()) {
             // Item was used
+            
+            PointOfInterest targetedPoi = game.getCurrentPointOfInterest();
+            
+            String currentPoiDescriptionTextArea = (targetedPoi.getName() + "Description");
+            for (TextArea descriptionArea : allDescriptionAreas) {
+                if (descriptionArea != null) {
+                    if ((descriptionArea.getId()).equals(currentPoiDescriptionTextArea)) {
+                        descriptionArea.setText(game.getCurrentPointOfInterest().getLongDescription());
+                    }
+                }
+            }
+            
+            if (targetedPoi.hasFunfact() && targetedPoi.isFixed()) {
+            String currentPoiFunfactTextArea = (targetedPoi.getName() + "Textarea");
+            for (TextArea thisArea : allFunfactAreas) {
+                if (thisArea != null) {
+                    if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
+                        thisArea.setText(targetedPoi.getFunfact());
+                        thisArea.setVisible(true);
+                    }
+                }
+            }
+        }
+            
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll()); 
@@ -343,8 +367,8 @@ public class RoomController {
             }
         }
             
-        // If poi has funfact set and display
-        if (newPoi.hasFunfact()) {
+        // If poi has funfact and isfixed set and display
+        if (newPoi.hasFunfact() && newPoi.isFixed()) {
             String currentPoiFunfactTextArea = (newPoi.getName() + "Textarea");
             for (TextArea thisArea : allFunfactAreas) {
                 if (thisArea != null) {
