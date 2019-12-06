@@ -5,7 +5,6 @@ import com.mycompany.rooms.Rooms;
 import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
-import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class Pumphandle extends Item {
 
@@ -14,20 +13,21 @@ public class Pumphandle extends Item {
     }
 
     @Override
-    public void use() {
-        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
-        if (!game.getCurrentRoom().getName().equals(Rooms.SUBURBS.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.WATERPUMP.getName())) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+    public boolean usable () {
+        return game.getCurrentRoom().getName().equals(Rooms.SUBURBS.getName()) && game.getCurrentPointOfInterest().getName().equals(PointsOfInterest.WATERPUMP.getName());
+    }
+
+    @Override
+    public boolean use() {
+        if (!this.usable()) {
+            return false;
         }
 
-        pointOfInterest.setFixed();
-
+        game.getCurrentPointOfInterest().setFixed();
         game.getCurrentRoom().getPointOfInterest(PointsOfInterest.BOY.getName()).setDescription("Thank you for fixing the pump, I will never play with water again!");
-                
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
 
         this.game.inventory.remove(this);
+
+        return true;
     }
 }

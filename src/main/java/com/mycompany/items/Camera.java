@@ -14,22 +14,23 @@ public class Camera extends Item {
     }
 
     @Override
-    public void use () {
+    public boolean usable () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        // If the poi is already fixed, then don't allow the item to be used (it would keep adding " (with photo)" to the name)
-        if (!game.getCurrentRoom().getName().equals(Rooms.FACTORY.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.MAP.getName()) || pointOfInterest.isFixed()) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+        return game.getCurrentRoom().getName().equals(Rooms.FACTORY.getName()) && pointOfInterest.getName().equals(PointsOfInterest.MAP.getName());
+    }
+
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
-        
-        pointOfInterest.setFixed();
-        
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
-        System.out.println("A photo has been added to your inventory");
+
+        game.getCurrentPointOfInterest().setFixed();
 
         this.game.inventory.remove(this);
         this.game.inventory.add(new Photo(game));
+
+        return true;
     }
 }

@@ -42,5 +42,15 @@ public abstract class Item {
         return item.getImagePath();
     }
 
-    public abstract void use();
+    /**
+     * Function for using the item, returns true or false if it was used or not
+     * @return
+     */
+    public abstract boolean use();
+
+    /**
+     * Checks if the item is usable with the current room and poi
+     * @return
+     */
+    public abstract boolean usable();
 }

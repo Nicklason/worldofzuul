@@ -5,7 +5,6 @@ import com.mycompany.rooms.Rooms;
 import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
-import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class Boots extends Item {
     public Boots (Game game) {
@@ -13,18 +12,20 @@ public class Boots extends Item {
     }
 
     @Override
-    public void use () {
-        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
+    public boolean usable () {
+        return game.getCurrentRoom().getName().equals(Rooms.LAKE.getName()) && game.getCurrentPointOfInterest().getName().equals(PointsOfInterest.BOAT.getName());
+    }
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.LAKE.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.BOAT.getName())) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
 
-        pointOfInterest.setFixed();
+        game.getCurrentPointOfInterest().setFixed();
 
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
         this.game.inventory.remove(this);
+
+        return true;
     }
 }

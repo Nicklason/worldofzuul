@@ -185,19 +185,21 @@ public class RoomController {
 
     @FXML
     public void useItem(){
-    Item selecetedItem =(Item) playerInventoryListView.getSelectionModel().getSelectedItem();
+        Item selecetedItem = (Item)playerInventoryListView.getSelectionModel().getSelectedItem();
     
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
             System.out.println("No selected Item");
+            return;
         }
-        else
-        {
-            selecetedItem.use();
-
+        
+        if (selecetedItem.use()) {
+            // Item was used
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll()); 
             playerInventoryListView.setItems(playerItems);
+        } else {
+            // Item was not used
         }
     }
     
@@ -335,7 +337,7 @@ public class RoomController {
         for (TextArea descriptionArea : allDescriptionAreas) {
             if (descriptionArea != null) {
                 if ((descriptionArea.getId()).equals(currentPoiDescriptionTextArea)) {
-                    descriptionArea.setText(newPoi.getDescription());
+                    descriptionArea.setText(newPoi.getLongDescription());
                     descriptionArea.setVisible(true);
                 }
             }

@@ -14,25 +14,29 @@ public class FilledBottle extends Item {
     }
 
     @Override
-    public void use () {
+    public boolean usable () {
         PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.OLDMAN.getName()) && !pointOfInterest.isFixed()) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+        return game.getCurrentRoom().getName().equals(Rooms.BIGCITY.getName()) && pointOfInterest.getName().equals(PointsOfInterest.OLDMAN.getName()) && !pointOfInterest.isFixed();
+    }
+
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
 
-        Oldman oldman = (Oldman)this.game.getCurrentPointOfInterest();
+        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
+
+        Oldman oldman = (Oldman)pointOfInterest;
         if (oldman.getKeycard()) {
             pointOfInterest.inventory.add(new Keycard(game));
         }
 
         pointOfInterest.setFixed();
-        System.out.println("Giving " + this.getName() + " to " + pointOfInterest.getName());
-        
-        
-        System.out.println(pointOfInterest.getLongDescription());
+
         this.game.inventory.remove(this);
         
+        return true;
     }
 }

@@ -5,7 +5,6 @@ import com.mycompany.rooms.Rooms;
 import com.mycompany.pointsofinterest.PointsOfInterest;
 
 import com.mycompany.worldofzuul.Game;
-import com.mycompany.pointsofinterest.PointOfInterest;
 
 public class ShoppingCart extends Item {
     public ShoppingCart (Game game) {
@@ -13,21 +12,20 @@ public class ShoppingCart extends Item {
     }
 
     @Override
-    public void use () {
-        PointOfInterest pointOfInterest = game.getCurrentPointOfInterest();
+    public boolean usable () {
+        return game.getCurrentRoom().getName().equals(Rooms.FIELD.getName()) && game.getCurrentPointOfInterest().getName().equals(PointsOfInterest.PESTICIDES.getName());
+    }
 
-        if (!game.getCurrentRoom().getName().equals(Rooms.FIELD.getName()) || !pointOfInterest.getName().equals(PointsOfInterest.PESTICIDES.getName())) {
-            System.out.println("Can't use " + this.getName() + " here");
-            return;
+    @Override
+    public boolean use () {
+        if (!this.usable()) {
+            return false;
         }
 
-        pointOfInterest.setFixed();
-
-        System.out.println("Using " + this.getName() + " at " + pointOfInterest.getName());
-        System.out.println(pointOfInterest.getLongDescription());
+        game.getCurrentPointOfInterest().setFixed();
 
         this.game.inventory.remove(this);
 
-        // FIXME: Should we pick up the pesticides, or should it just be removed?
+        return true;
     }
 }
