@@ -230,7 +230,6 @@ public class RoomController {
 
     @FXML
     public void handlePickupPoi(ActionEvent event) {
-        System.out.println("Clicking pickup btn");
         Item selectedItem = (Item) poiListView.getSelectionModel().getSelectedItem();
 
         if (poiListView.getSelectionModel().getSelectedItem() == null) {
@@ -248,7 +247,6 @@ public class RoomController {
 
     @FXML
     public void handleDropItem(ActionEvent event) {
-        System.out.println("Clicking drop btn");
 
         PointOfInterest poi = game.getCurrentPointOfInterest();
 
@@ -439,6 +437,6 @@ public class RoomController {
             public void run() {
                 feedbackTextarea.setVisible(false);
             }
-        }, 3000L);
+        }, 2500L);
     }
 }
