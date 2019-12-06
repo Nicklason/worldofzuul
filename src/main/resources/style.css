@@ -64,3 +64,24 @@ and open the template in the editor.
 .toggle-button:selected{
     -fx-graphic: url('images/misc/markerGreenSmall.png');
 }
+
+.text-area {
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;
+}
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+.text-area:disabled {
+    -fx-opacity: 1;
+    
+}
+.text-input > .scroll-pane:disabled {
+    -fx-opacity: 1;
+}
