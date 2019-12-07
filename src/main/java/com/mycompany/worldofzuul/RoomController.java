@@ -135,7 +135,7 @@ public class RoomController {
 
     private ArrayList<TextArea> allDescriptionAreas = new ArrayList<>();
 
-    private static Game game = Singleton.getInstance();
+    private static Game game = Game.getInstance();
 
     @FXML
     public void initialize() {
@@ -430,7 +430,7 @@ public class RoomController {
 
     @FXML
     private void switchToLobby() throws IOException {
-        App.setRoot("rooms/lobby");
+        App.setRoot("menu/lobby");
         game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
     }
