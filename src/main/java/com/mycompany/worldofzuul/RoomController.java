@@ -223,8 +223,9 @@ public class RoomController {
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
             playerInventoryListView.setItems(playerItems);
+            setFeedback(selecetedItem.getName()+ " was used");
         } else {
-            // Item was not used
+            setFeedback("Can't use "+selecetedItem.getName()+ " here");
         }
     }
 
