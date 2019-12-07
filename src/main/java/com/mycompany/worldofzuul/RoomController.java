@@ -135,7 +135,7 @@ public class RoomController {
 
     private ArrayList<TextArea> allDescriptionAreas = new ArrayList<>();
 
-    private static Game game = new Game();
+    private static Game game = Singleton.getInstance();
 
     @FXML
     public void initialize() {

@@ -19,6 +19,7 @@ public class Game {
         System.err.println("New instance of game has been made");
     }
 
+
     private void createRooms() {
         // Rooms
         Lobby lobby = new Lobby();
