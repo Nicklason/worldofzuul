@@ -73,6 +73,9 @@ public class RoomController {
     private ToggleButton containerToggleButton;
     @FXML
     private ToggleButton lockedDoorToggleButton;
+    @FXML
+    private ToggleButton mapToggleButton;
+    
     
     // Textareas for funfacts
     @FXML
@@ -121,6 +124,8 @@ public class RoomController {
     private TextArea vendingmachineDescription;
     @FXML
     private TextArea storeDescription;
+    @FXML
+    private TextArea mapDescription;
 
     // Textarea for userfeedback
     @FXML
@@ -146,7 +151,7 @@ public class RoomController {
         allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea, containerTextarea));
         allDescriptionAreas.addAll(Arrays.asList(leakingpipeDescription, boatDescription, bridgeDescription, irrigationDescription, pesticidesDescription,
                 farmhouseDescription, waterpumpDescription, streetDescription, boyDescription, billboardDescription, containerDescription, doorDescription,
-                oldmanDescription, vendingmachineDescription, storeDescription));
+                oldmanDescription, vendingmachineDescription, storeDescription, mapDescription));
 
     }
 
@@ -274,7 +279,7 @@ public class RoomController {
 
         // Check toggle group for active toggle
         ToggleButton selectedToggleButton = (ToggleButton) poiToggle.getSelectedToggle();
-
+        
         // Make arraylist of all poi's in the current room
         ArrayList<PointOfInterest> funFactAreasInCurrentRoom = game.getCurrentRoom().getPointsOfInterest();
 
@@ -343,6 +348,8 @@ public class RoomController {
             poi = PointsOfInterest.CONTAINER;
         } else if (selectedToggleButton.equals(billboardToggleButton)) {
             poi = PointsOfInterest.BILLBOARD;
+        } else if (selectedToggleButton.equals(mapToggleButton)) {
+            poi = PointsOfInterest.MAP;
         } else {
             throw new Error("Unknown poi button");
         }
@@ -388,7 +395,6 @@ public class RoomController {
 
     @FXML
     private void switchToField() throws IOException {
-        System.out.println(this);
         App.setRoot("rooms/field");
         game.setCurrentRoom(game.getRoom(Rooms.FIELD.getName()));
         game.setCurrentPointOfInterest(null);
@@ -427,6 +433,19 @@ public class RoomController {
         App.setRoot("rooms/lobby");
         game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
+    }
+    
+    @FXML
+    private void switchToFactory() throws IOException {
+        if (game.getRoom(Rooms.STREET.getName()).getPointOfInterest(PointsOfInterest.LOCKEDDOOR.getName()).isFixed()) {
+            App.setRoot("rooms/factory");
+            game.setCurrentRoom(game.getRoom(Rooms.FACTORY.getName()));
+            game.setCurrentPointOfInterest(null);
+            
+        } else {
+            setFeedback("The door is locked");
+        }
+        
     }
 
     public void setFeedback(String msg) {

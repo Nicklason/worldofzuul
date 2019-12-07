@@ -15,14 +15,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.worldofzuul.RoomController">
    <children>
-      <ImageView fitHeight="710.0" fitWidth="1254.0" layoutX="-21.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="710.0" fitWidth="1254.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/rooms/2%20lake.png" />
          </image>
       </ImageView>
-      <Button fx:id="toField" layoutX="1152.0" layoutY="366.0" mnemonicParsing="false" onAction="#switchToLobby" prefHeight="62.0" prefWidth="100.0" text="Lobby" />
-      <Button fx:id="toField1" layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToBigCity" prefHeight="62.0" prefWidth="100.0" text="Big City" />
-      <Button fx:id="toField2" layoutX="581.0" layoutY="651.0" mnemonicParsing="false" onAction="#switchToField" prefHeight="62.0" prefWidth="100.0" text="Field" />
+      <Button fx:id="toField" layoutX="46.0" layoutY="593.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.0" prefHeight="72.0" prefWidth="135.0" text="Lobby" />
+      <Button fx:id="toField1" layoutX="54.0" layoutY="494.0" mnemonicParsing="false" onAction="#switchToBigCity" opacity="0.0" prefHeight="72.0" prefWidth="150.0" text="Big City" />
+      <Button fx:id="toField2" layoutX="46.0" layoutY="434.0" mnemonicParsing="false" onAction="#switchToField" opacity="0.0" prefHeight="54.0" prefWidth="186.0" text="Field" />
       <ToggleButton fx:id="boatToggleButton" layoutX="447.0" layoutY="340.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent">
          <toggleGroup>
             <ToggleGroup fx:id="poiToggle" />
@@ -40,8 +40,8 @@
          </font></Label>
       <ListView fx:id="poiListView" layoutX="1235.0" layoutY="393.0" prefHeight="254.0" prefWidth="135.0" />
       <Label fx:id="currentPointOfInterestLabel" layoutX="1267.0" layoutY="372.0" prefHeight="18.0" prefWidth="74.0" text="None" />
-      <Button fx:id="Pickup" layoutX="1265.0" layoutY="656.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
-      <HBox layoutX="1239.0" layoutY="297.0" prefHeight="54.0" prefWidth="124.0">
+      <Button fx:id="Pickup" alignment="CENTER" layoutX="1274.0" layoutY="660.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
+      <HBox layoutX="1240.0" layoutY="297.0" prefHeight="54.0" prefWidth="124.0">
          <children>
             <Button fx:id="Usebtn" mnemonicParsing="false" onAction="#useItem" text="Use">
                <HBox.margin>
