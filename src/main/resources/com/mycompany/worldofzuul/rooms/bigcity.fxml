@@ -41,15 +41,15 @@
          </font></Label>
       <ListView fx:id="poiListView" layoutX="1235.0" layoutY="393.0" prefHeight="254.0" prefWidth="135.0" />
       <Label fx:id="currentPointOfInterestLabel" layoutX="1267.0" layoutY="372.0" prefHeight="18.0" prefWidth="90.0" text="None" />
-      <Button layoutX="1265.0" layoutY="656.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
+      <Button fx:id="Pickup" layoutX="1265.0" layoutY="656.0" mnemonicParsing="false" onAction="#handlePickupPoi" text="Pickup" />
       <HBox layoutX="1239.0" layoutY="297.0" prefHeight="54.0" prefWidth="124.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#useItem" text="Use">
+            <Button fx:id="Usebtn" mnemonicParsing="false" onAction="#useItem" text="Use">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#handleDropItem" text="Drop">
+            <Button fx:id="Dropbtn" mnemonicParsing="false" onAction="#handleDropItem" text="Drop">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
