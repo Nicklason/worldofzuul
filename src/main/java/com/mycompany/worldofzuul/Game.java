@@ -27,12 +27,14 @@ public class Game {
         BigCity bigcity = new BigCity(this);
         Suburbs suburbs = new Suburbs(this);
         Street street = new Street(this);
+        Factory factory = new Factory(this);
 
         rooms.add(lake);
         rooms.add(field);
         rooms.add(bigcity);
         rooms.add(suburbs);
         rooms.add(street);
+        rooms.add(factory);
 
         // Exits
         lobby.setExit(lake);
