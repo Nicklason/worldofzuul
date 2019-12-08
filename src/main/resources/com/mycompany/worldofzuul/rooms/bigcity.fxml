@@ -30,7 +30,7 @@
             <ToggleGroup fx:id="poiToggle" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="vendingMachineToggleButton" layoutX="460.0" layoutY="375.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
+      <ToggleButton fx:id="vendingmachineToggleButton" layoutX="460.0" layoutY="375.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
       <ToggleButton fx:id="oldmanToggleButton" layoutX="1035.0" layoutY="448.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
       <ListView fx:id="playerInventoryListView" layoutX="1235.0" layoutY="43.0" prefHeight="254.0" prefWidth="135.0" />
       <Label fx:id="playerInvText" layoutX="1243.0" layoutY="14.0" text="Player Inventory">

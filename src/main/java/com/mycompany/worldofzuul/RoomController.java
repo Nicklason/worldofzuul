@@ -70,7 +70,7 @@ public class RoomController {
     @FXML
     private ToggleButton boyToggleButton;
     @FXML
-    private ToggleButton vendingMachineToggleButton;
+    private ToggleButton vendingmachineToggleButton;
     @FXML
     private ToggleButton storeToggleButton;
     @FXML
@@ -169,7 +169,7 @@ public class RoomController {
         progressbarLabel.setText(game.fixedCount + "/9 Completed");
         roomPoiList.addAll(game.getCurrentRoom().getPointsOfInterest());
         allToggleButtons.addAll(Arrays.asList(farmhouseToggleButton, pesticidesToggleButton, irrigationToggleButton, bridgeToggleButton, boatToggleButton, leakingpipeToggleButton, streetToggleButton, waterpumpToggleButton,
-              boyToggleButton, vendingMachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
+              boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
         setCheckmark();
     }
 
@@ -246,6 +246,10 @@ public class RoomController {
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
             playerInventoryListView.setItems(playerItems);
+            
+            poiListView.getItems().clear();
+            poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
+            poiListView.setItems(poiItems);
 
             // setFeedback(selecetedItem.getName() + " was used");
             setProgress();
@@ -361,7 +365,7 @@ public class RoomController {
             poi = PointsOfInterest.OLDMAN;
         } else if (selectedToggleButton.equals(storeToggleButton)) {
             poi = PointsOfInterest.STORE;
-        } else if (selectedToggleButton.equals(vendingMachineToggleButton)) {
+        } else if (selectedToggleButton.equals(vendingmachineToggleButton)) {
             poi = PointsOfInterest.VENDINGMACHINE;
         } else if (selectedToggleButton.equals(doorToggleButton)) {
             poi = PointsOfInterest.LOCKEDDOOR;
