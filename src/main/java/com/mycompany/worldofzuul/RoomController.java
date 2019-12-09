@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -33,6 +34,13 @@ import javafx.stage.Stage;
 
 public class RoomController {
 
+    // Progressbar
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Label progressbarLabel;
+
+    // Listviews and observablelists
     @FXML
     private ListView<Item> playerInventoryListView;
     @FXML
@@ -47,7 +55,7 @@ public class RoomController {
     // Toggle group
     @FXML
     private ToggleGroup poiToggle;
-    
+
     // Toggle buttons for poi's
     @FXML
     private ToggleButton farmhouseToggleButton;
@@ -60,15 +68,15 @@ public class RoomController {
     @FXML
     private ToggleButton boatToggleButton;
     @FXML
-    private ToggleButton leakingPipeToggleButton;
+    private ToggleButton leakingpipeToggleButton;
     @FXML
     private ToggleButton streetToggleButton;
     @FXML
-    private ToggleButton pumpToggleButton;
+    private ToggleButton waterpumpToggleButton;
     @FXML
     private ToggleButton boyToggleButton;
     @FXML
-    private ToggleButton vendingMachineToggleButton;
+    private ToggleButton vendingmachineToggleButton;
     @FXML
     private ToggleButton storeToggleButton;
     @FXML
@@ -78,11 +86,10 @@ public class RoomController {
     @FXML
     private ToggleButton containerToggleButton;
     @FXML
-    private ToggleButton lockedDoorToggleButton;
+    private ToggleButton doorToggleButton;
     @FXML
     private ToggleButton mapToggleButton;
-    
-    
+
     // Textareas for funfacts
     @FXML
     private TextArea leakingpipeTextarea;
@@ -137,15 +144,19 @@ public class RoomController {
     @FXML
     private TextArea feedbackTextarea;
 
+    private ArrayList<ToggleButton> allToggleButtons = new ArrayList<>();
+
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
 
     private ArrayList<TextArea> allDescriptionAreas = new ArrayList<>();
+    
+    private ArrayList<PointOfInterest> roomPoiList = new ArrayList<>();
 
     private static Game game = Game.getInstance();
-
+    
     @FXML
     public void initialize() {
-
+        
         playerItems = FXCollections.observableArrayList();
         playerItems.addAll(game.inventory.getAll());
         playerInventoryListView.setItems(playerItems);
@@ -158,32 +169,14 @@ public class RoomController {
         allDescriptionAreas.addAll(Arrays.asList(leakingpipeDescription, boatDescription, bridgeDescription, irrigationDescription, pesticidesDescription,
                 farmhouseDescription, waterpumpDescription, streetDescription, boyDescription, billboardDescription, containerDescription, doorDescription,
                 oldmanDescription, vendingmachineDescription, storeDescription, mapDescription));
+        
 
         Scene scene = App.getScene();
-        
-        System.out.println(scene);
-        
-        EventHandler keyEventHandler = new EventHandler<KeyEvent> () {
-            @Override
-            public void handle(KeyEvent t) {
-                if(t.getCode() == KeyCode.ESCAPE) {
-                    System.out.println("click on escape");
 
-                    try {
-                        App.setRoot("menu/menu");
-                    } catch (IOException err) {
-                        System.out.println("Oof");
-                    }
-                }
-            }
-        };
-        
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent> () {
             @Override
             public void handle(KeyEvent t) {
                 if(t.getCode() == KeyCode.ESCAPE) {
-                    System.out.println("click on escape");
-
                     try {
                         App.setRoot("menu/menu");
                         scene.removeEventHandler(KeyEvent.KEY_PRESSED, this);
@@ -193,6 +186,13 @@ public class RoomController {
                 }
             }
         });
+
+        progressBar.setProgress(game.progress);
+        progressbarLabel.setText(game.fixedCount + "/9 Completed");
+        roomPoiList.addAll(game.getCurrentRoom().getPointsOfInterest());
+        allToggleButtons.addAll(Arrays.asList(farmhouseToggleButton, pesticidesToggleButton, irrigationToggleButton, bridgeToggleButton, boatToggleButton, leakingpipeToggleButton, streetToggleButton, waterpumpToggleButton,
+              boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton))<;
+        setCheckmark();
     }
 
     static class Cell extends ListCell<Item> {
@@ -230,17 +230,17 @@ public class RoomController {
     }
 
     @FXML
-    public void useItem(){
-        Item selecetedItem = (Item)playerInventoryListView.getSelectionModel().getSelectedItem();
-    
+    public void useItem() {
+        Item selecetedItem = (Item) playerInventoryListView.getSelectionModel().getSelectedItem();
+
         if (playerInventoryListView.getSelectionModel().getSelectedItem() == null) {
             setFeedback("No selected Item");
             return;
         }
-        
+
         if (selecetedItem.use()) {
             // Item was used
-            
+
             PointOfInterest targetedPoi = game.getCurrentPointOfInterest();
 
             String currentPoiDescriptionTextArea = (targetedPoi.getName() + "Description");
@@ -268,9 +268,16 @@ public class RoomController {
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
             playerInventoryListView.setItems(playerItems);
-            setFeedback(selecetedItem.getName()+ " was used");
+            
+            poiListView.getItems().clear();
+            poiItems.addAll(game.getCurrentPointOfInterest().inventory.getAll());
+            poiListView.setItems(poiItems);
+
+            // setFeedback(selecetedItem.getName() + " was used");
+            setProgress();
+            setCheckmark();
         } else {
-            setFeedback("Can't use "+selecetedItem.getName()+ " here");
+            setFeedback("Can't use " + selecetedItem.getName() + " here");
         }
     }
 
@@ -316,10 +323,10 @@ public class RoomController {
 
     @FXML
     public void handlePoiToggleEvent(ActionEvent event) {
-
+        setCheckmark();
         // Check toggle group for active toggle
         ToggleButton selectedToggleButton = (ToggleButton) poiToggle.getSelectedToggle();
-        
+
         // Make arraylist of all poi's in the current room
         ArrayList<PointOfInterest> funFactAreasInCurrentRoom = game.getCurrentRoom().getPointsOfInterest();
 
@@ -368,21 +375,21 @@ public class RoomController {
             poi = PointsOfInterest.BRIDGE;
         } else if (selectedToggleButton.equals(boatToggleButton)) {
             poi = PointsOfInterest.BOAT;
-        } else if (selectedToggleButton.equals(leakingPipeToggleButton)) {
+        } else if (selectedToggleButton.equals(leakingpipeToggleButton)) {
             poi = PointsOfInterest.LEAKINGPIPE;
         } else if (selectedToggleButton.equals(boyToggleButton)) {
             poi = PointsOfInterest.BOY;
         } else if (selectedToggleButton.equals(streetToggleButton)) {
             poi = PointsOfInterest.STREET;
-        } else if (selectedToggleButton.equals(pumpToggleButton)) {
+        } else if (selectedToggleButton.equals(waterpumpToggleButton)) {
             poi = PointsOfInterest.WATERPUMP;
         } else if (selectedToggleButton.equals(oldmanToggleButton)) {
             poi = PointsOfInterest.OLDMAN;
         } else if (selectedToggleButton.equals(storeToggleButton)) {
             poi = PointsOfInterest.STORE;
-        } else if (selectedToggleButton.equals(vendingMachineToggleButton)) {
+        } else if (selectedToggleButton.equals(vendingmachineToggleButton)) {
             poi = PointsOfInterest.VENDINGMACHINE;
-        } else if (selectedToggleButton.equals(lockedDoorToggleButton)) {
+        } else if (selectedToggleButton.equals(doorToggleButton)) {
             poi = PointsOfInterest.LOCKEDDOOR;
         } else if (selectedToggleButton.equals(containerToggleButton)) {
             poi = PointsOfInterest.CONTAINER;
@@ -396,6 +403,10 @@ public class RoomController {
 
         String poiName = poi.getName();
         PointOfInterest newPoi = game.getCurrentRoom().getPointOfInterest(poiName);
+
+        if (!newPoi.isFixed()) {
+            selectedToggleButton.setStyle("-fx-graphic: url('images/misc/markerGreenSmall.png')");
+        }
 
         // Set poi
         game.setCurrentPointOfInterest(newPoi);
@@ -435,60 +446,66 @@ public class RoomController {
 
     @FXML
     private void switchToField() throws IOException {
-        App.setRoot("rooms/field");
+        
         game.setCurrentRoom(game.getRoom(Rooms.FIELD.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("rooms/field");
     }
 
     @FXML
     private void switchToLake() throws IOException {
-        App.setRoot("rooms/lake");
+        
         game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("rooms/lake");
     }
 
     @FXML
     private void switchToSuburb() throws IOException {
-        App.setRoot("rooms/suburbs");
+        
         game.setCurrentRoom(game.getRoom(Rooms.SUBURBS.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("rooms/suburbs");
     }
 
     @FXML
     private void switchToBigCity() throws IOException {
-        App.setRoot("rooms/bigcity");
+        
         game.setCurrentRoom(game.getRoom(Rooms.BIGCITY.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("rooms/bigcity");
     }
 
     @FXML
     private void switchToStreet() throws IOException {
-        App.setRoot("rooms/street");
+        
         game.setCurrentRoom(game.getRoom(Rooms.STREET.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("rooms/street");
     }
 
     @FXML
     private void switchToLobby() throws IOException {
-        App.setRoot("menu/lobby");
+        game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("menu/lobby");
     }
-    
+
     @FXML
     private void switchToFactory() throws IOException {
         if (game.getRoom(Rooms.STREET.getName()).getPointOfInterest(PointsOfInterest.LOCKEDDOOR.getName()).isFixed()) {
-            App.setRoot("rooms/factory");
             game.setCurrentRoom(game.getRoom(Rooms.FACTORY.getName()));
             game.setCurrentPointOfInterest(null);
-            
+            App.setRoot("rooms/factory");
+
         } else {
             setFeedback("The door is locked");
         }
-        
+
     }
 
     public void setFeedback(String msg) {
-        
+
         feedbackTextarea.setText(msg);
         feedbackTextarea.setVisible(true);
         new Timer().schedule(new TimerTask() {
@@ -497,5 +514,47 @@ public class RoomController {
                 feedbackTextarea.setVisible(false);
             }
         }, 2500L);
+    }
+
+    public void setProgress() {
+        ArrayList<PointOfInterest> allFixablePois = new ArrayList<>();
+
+        for (Room room : game.rooms) {
+            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
+                if (pointofinterest.isFixable()) {
+                    allFixablePois.add(pointofinterest);
+                }
+            }
+        }
+
+        int fixedPoiCount = 0;
+
+        for (PointOfInterest poi : allFixablePois) {
+            if (poi.isFixed()) {
+                fixedPoiCount++;
+            }
+        }
+        double newProgress = fixedPoiCount * 0.111;
+        game.fixedCount = fixedPoiCount;
+        game.progress = newProgress;
+        progressBar.setProgress(newProgress);
+        progressbarLabel.setText(fixedPoiCount + "/" + allFixablePois.size() + " Completed");
+    }
+
+    public void setCheckmark() {
+        for (PointOfInterest poi : roomPoiList) {
+            for (ToggleButton togglebutton : allToggleButtons) {
+                if (togglebutton != null) {
+                    if (togglebutton.getId().substring(0, togglebutton.getId().length() - 12).equals(poi.getName())) {
+                        if (poi.isFixed()) {
+                            togglebutton.setStyle("-fx-graphic: url('images/misc/checkmark.png')");
+                        } else {
+                            togglebutton.setStyle("-fx-graphic: url('images/misc/markerRsmall.png')");
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

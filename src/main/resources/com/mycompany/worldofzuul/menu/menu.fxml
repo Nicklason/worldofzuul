@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.worldofzuul.MenuController">
    <children>
@@ -13,9 +14,18 @@
             <Image url="@../../../../images/misc/water.gif" />
          </image>
       </ImageView>
-      <Label layoutX="1008.0" layoutY="261.0" style="-fx-font-size: 28; -fx-font-family: Vivaldi;" text="“When the well is dry," textFill="#e8e0e0" />
-      <Label layoutX="1061.0" layoutY="289.0" style="-fx-font-size: 28; -fx-font-family: Vivaldi;" text=" we know the worth of water.”" textFill="#e8e0e0" />
-      <Label layoutX="1109.0" layoutY="314.0" style="-fx-font-size: 28; -fx-font-family: Vivaldi;" text="― Benjamin Franklin" textFill="#e8e0e0" />
+      <Label layoutX="1002.0" layoutY="261.0" text="“When the well is dry," textFill="#e8e0e0">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
+      <Label layoutX="1002.0" layoutY="289.0" text=" we know the worth of water.”" textFill="#e8e0e0">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
+      <Label layoutX="1056.0" layoutY="314.0" text="― Benjamin Franklin" textFill="#e8e0e0">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
       <AnchorPane layoutY="-5.0" prefHeight="779.0" prefWidth="474.0" style="-fx-background-color: #2d6075;">
          <children>
             <Label layoutX="77.0" layoutY="62.0" style="-fx-font-size: 49; -fx-font-family: broadway;" text="Last" textFill="WHITE" />

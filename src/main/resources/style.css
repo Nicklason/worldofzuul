@@ -48,10 +48,11 @@
     -fx-border-color: transparent;
     -fx-cursor: hand;
 }
-
+/*
 .toggle-button:selected{
     -fx-graphic: url('images/misc/markerGreenSmall.png');
 }
+*/
 
 .text-area {
   -fx-border-radius: 10 10 10 10;
