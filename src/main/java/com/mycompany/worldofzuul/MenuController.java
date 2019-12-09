@@ -103,6 +103,11 @@ public class MenuController implements Initializable {
     private void BackPressed() throws IOException {
         App.setRoot("menu/menu");
     }
+
+    @FXML
+    private void QuitPressed () throws IOException {
+        System.exit(0);
+    }
     
       @FXML
     private void AnswerPressed() throws IOException {
