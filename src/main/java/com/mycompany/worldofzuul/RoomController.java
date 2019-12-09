@@ -140,6 +140,12 @@ public class RoomController {
     private TextArea mapDescription;
     @FXML
     private ImageView imgviewPesticidesFixed;
+    @FXML
+    private ImageView imageviewBoatFixed;
+    @FXML
+    private ImageView imageviewPipelineFixed;
+    @FXML
+    private ImageView imageviewPumpFixed;
     
     private ImageView fixedImage = new ImageView();
     
@@ -382,14 +388,17 @@ public class RoomController {
             poi = PointsOfInterest.BRIDGE;
         } else if (selectedToggleButton.equals(boatToggleButton)) {
             poi = PointsOfInterest.BOAT;
+             fixedImage = imageviewBoatFixed;
         } else if (selectedToggleButton.equals(leakingpipeToggleButton)) {
             poi = PointsOfInterest.LEAKINGPIPE;
+            fixedImage = imageviewPipelineFixed;
         } else if (selectedToggleButton.equals(boyToggleButton)) {
             poi = PointsOfInterest.BOY;
         } else if (selectedToggleButton.equals(streetToggleButton)) {
             poi = PointsOfInterest.STREET;
         } else if (selectedToggleButton.equals(waterpumpToggleButton)) {
             poi = PointsOfInterest.WATERPUMP;
+            fixedImage = imageviewPumpFixed;
         } else if (selectedToggleButton.equals(oldmanToggleButton)) {
             poi = PointsOfInterest.OLDMAN;
         } else if (selectedToggleButton.equals(storeToggleButton)) {
