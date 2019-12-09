@@ -24,7 +24,7 @@ public class Pumphandle extends Item {
         }
 
         game.getCurrentPointOfInterest().setFixed();
-        game.getCurrentRoom().getPointOfInterest(PointsOfInterest.BOY.getName()).setDescription("“Thank you for fixing the pump, I will never play with water again!“");
+        game.getCurrentRoom().getPointOfInterest(PointsOfInterest.BOY.getName()).setDescription("\"Thank you for fixing the pump, I will never play with water again!\"");
 
         this.game.inventory.remove(this);
 
