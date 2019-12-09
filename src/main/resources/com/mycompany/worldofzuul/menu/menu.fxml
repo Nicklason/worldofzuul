@@ -24,7 +24,7 @@
             <Button fx:id="btnHints" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="420.0" mnemonicParsing="false" onAction="#HintsPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Hints" textFill="#d4ebf8" />
             <Button fx:id="btnAbout" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="507.0" mnemonicParsing="false" onAction="#AboutPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="About" textFill="#d4ebf8" />
             <Button fx:id="btnHelp" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="330.0" mnemonicParsing="false" onAction="#HelpPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Help" textFill="#d4ebf8" />
-            <Button fx:id="btnAbout1" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="594.0" mnemonicParsing="false" onAction="#AboutPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Quit" textFill="#d4ebf8" />
+            <Button fx:id="btnQuit" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="594.0" mnemonicParsing="false" onAction="#QuitPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Quit" textFill="#d4ebf8" />
          </children>
       </AnchorPane>
    </children>
