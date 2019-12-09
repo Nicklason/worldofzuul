@@ -26,7 +26,7 @@ public class Game {
             single_instance = new Game(); 
   
         return single_instance; 
-    } 
+    }
 
 
     private void createRooms() {
