@@ -11,7 +11,10 @@ public class Game {
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
     public ArrayList<Room> rooms;
-    private static Game single_instance = null; 
+    public int fixedCount = 0;
+    public double progress = 0;
+    private static Game single_instance = null;
+    
 
     public Game() {
         this.rooms = new ArrayList<Room>();

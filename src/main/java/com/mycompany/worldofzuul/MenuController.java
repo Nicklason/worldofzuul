@@ -1,14 +1,20 @@
 
 package com.mycompany.worldofzuul;
 
+//import com.mycompany.pointsofinterest.PointOfInterest;
+import com.mycompany.pointsofinterest.*;
+import com.mycompany.rooms.Room;
 import com.mycompany.rooms.Rooms;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -18,10 +24,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
 
-public class MenuController implements Initializable {
+public class MenuController {
     
     private static Game game = Game.getInstance();
-    
+    // Progressbar
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Label progressbarLabel;
     @FXML
     private Button btnPlay;
     @FXML
@@ -58,6 +68,11 @@ public class MenuController implements Initializable {
     private Button btnSwitchToLake;
     
     @FXML
+    public void initialize() {
+        
+     
+    }   
+    @FXML
     void handleClairPoi(ActionEvent event) {
     speechBubble1.setVisible(true);
     speechBubble2.setVisible(true);
@@ -74,10 +89,7 @@ public class MenuController implements Initializable {
     imgviewClair.setVisible(false);
     }
            
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
      
-    }    
 
     @FXML
     private void PlayPressed() throws IOException {
@@ -188,8 +200,32 @@ public class MenuController implements Initializable {
     
     @FXML
     private void switchToLake() throws IOException {
-        App.setRoot("rooms/lake");
         game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
         game.setCurrentPointOfInterest(null);
+        App.setRoot("rooms/lake");
+    }
+    public void setProgress() {
+        ArrayList<PointOfInterest> allFixablePois = new ArrayList<>();
+
+        for (Room room : game.rooms) {
+            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
+                if (pointofinterest.isFixable()) {
+                    allFixablePois.add(pointofinterest);
+                }
+            }
+        }
+
+        int fixedPoiCount = 0;
+
+        for (PointOfInterest poi : allFixablePois) {
+            if (poi.isFixed()) {
+                fixedPoiCount++;
+            }
+        }
+        double newProgress = fixedPoiCount * 0.111;
+        game.fixedCount = fixedPoiCount;
+        game.progress = newProgress;
+        progressBar.setProgress(newProgress);
+        progressbarLabel.setText(fixedPoiCount + "/" + allFixablePois.size() + " Completed");
     }
 }

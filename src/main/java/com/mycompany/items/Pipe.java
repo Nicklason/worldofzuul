@@ -24,8 +24,6 @@ public class Pipe extends Item {
 
         game.getCurrentPointOfInterest().setFixed();
 
-        System.out.println("Fixed thing");
-
         this.game.inventory.remove(this);
 
         return true;
