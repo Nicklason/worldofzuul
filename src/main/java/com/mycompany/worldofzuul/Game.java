@@ -11,6 +11,7 @@ public class Game {
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
     public ArrayList<Room> rooms;
+    private static Game single_instance = null; 
 
     public Game() {
         this.rooms = new ArrayList<Room>();
@@ -18,6 +19,15 @@ public class Game {
         createRooms();
         System.err.println("New instance of game has been made");
     }
+    
+    public static Game getInstance() 
+    { 
+        if (single_instance == null) 
+            single_instance = new Game(); 
+  
+        return single_instance; 
+    } 
+
 
     private void createRooms() {
         // Rooms
@@ -27,12 +37,14 @@ public class Game {
         BigCity bigcity = new BigCity(this);
         Suburbs suburbs = new Suburbs(this);
         Street street = new Street(this);
+        Factory factory = new Factory(this);
 
         rooms.add(lake);
         rooms.add(field);
         rooms.add(bigcity);
         rooms.add(suburbs);
         rooms.add(street);
+        rooms.add(factory);
 
         // Exits
         lobby.setExit(lake);

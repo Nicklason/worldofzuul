@@ -19,7 +19,9 @@ import javafx.scene.shape.Rectangle;
 
 
 public class MenuController implements Initializable {
-
+    
+    private static Game game = Game.getInstance();
+    
     @FXML
     private Button btnPlay;
     @FXML
@@ -187,5 +189,7 @@ public class MenuController implements Initializable {
     @FXML
     private void switchToLake() throws IOException {
         App.setRoot("rooms/lake");
+        game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
+        game.setCurrentPointOfInterest(null);
     }
 }

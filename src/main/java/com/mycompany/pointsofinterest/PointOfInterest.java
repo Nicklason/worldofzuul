@@ -68,7 +68,7 @@ public abstract class PointOfInterest {
     }
 
     public String getLongDescription () {
-        return (this.isFixed() ? this.pointOfInterest.getSuccessDescription() : this.getDescription()) + "\n" + getInventoryString();
+        return (this.isFixed() ? this.pointOfInterest.getSuccessDescription() : this.getDescription());
     }
 
     public String getInventoryString () {
