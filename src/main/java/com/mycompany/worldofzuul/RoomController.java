@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -30,7 +29,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class RoomController {
 
@@ -191,7 +189,7 @@ public class RoomController {
         progressbarLabel.setText(game.fixedCount + "/9 Completed");
         roomPoiList.addAll(game.getCurrentRoom().getPointsOfInterest());
         allToggleButtons.addAll(Arrays.asList(farmhouseToggleButton, pesticidesToggleButton, irrigationToggleButton, bridgeToggleButton, boatToggleButton, leakingpipeToggleButton, streetToggleButton, waterpumpToggleButton,
-              boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton))<;
+              boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
         setCheckmark();
     }
 

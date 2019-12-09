@@ -1,20 +1,13 @@
 
 package com.mycompany.worldofzuul;
 
-//import com.mycompany.pointsofinterest.PointOfInterest;
-import com.mycompany.pointsofinterest.*;
-import com.mycompany.rooms.Room;
 import com.mycompany.rooms.Rooms;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -23,26 +16,11 @@ public class MenuController {
     private static Game game = Game.getInstance();
     
     private static boolean doneIntro = false;
-    
-    // Progressbar
-    @FXML
-    private ProgressBar progressBar;
-    @FXML
-    private Label progressbarLabel;
-    @FXML
-    private Button btnPlay;
-    @FXML
-    private Button btnHints;
-    @FXML
-    private Button btnAbout;
-    @FXML
-    private Button btnHelp;
+
     @FXML
     private TextField txtFieldPlayer;
     @FXML
     private Button btnAnswer;
-    @FXML
-    private TextField txtfieldGirl;
     @FXML
     private ImageView imgviewPhoto;
     @FXML
@@ -51,10 +29,6 @@ public class MenuController {
     private TextArea txtAreaGirl;
     @FXML
     private ImageView imgviewClair;
-    @FXML
-    private ToggleButton clairToggleButton;
-    @FXML
-    private ToggleGroup poiToggle;
     @FXML
     private ImageView speechBubble1;
     @FXML
@@ -199,29 +173,5 @@ public class MenuController {
         game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
         game.setCurrentPointOfInterest(null);
         App.setRoot("rooms/lake");
-    }
-    public void setProgress() {
-        ArrayList<PointOfInterest> allFixablePois = new ArrayList<>();
-
-        for (Room room : game.rooms) {
-            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
-                if (pointofinterest.isFixable()) {
-                    allFixablePois.add(pointofinterest);
-                }
-            }
-        }
-
-        int fixedPoiCount = 0;
-
-        for (PointOfInterest poi : allFixablePois) {
-            if (poi.isFixed()) {
-                fixedPoiCount++;
-            }
-        }
-        double newProgress = fixedPoiCount * 0.111;
-        game.fixedCount = fixedPoiCount;
-        game.progress = newProgress;
-        progressBar.setProgress(newProgress);
-        progressbarLabel.setText(fixedPoiCount + "/" + allFixablePois.size() + " Completed");
     }
 }
