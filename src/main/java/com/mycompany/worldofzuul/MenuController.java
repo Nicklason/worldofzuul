@@ -66,6 +66,12 @@ public class MenuController {
     private ImageView imgviewLakeSign;
     @FXML
     private Button btnSwitchToLake;
+    @FXML
+    private Button endGameButton;
+    @FXML
+    private ToggleButton endGameToggle;
+    @FXML
+    private TextArea endGameTextArea;
     
     @FXML
     public void initialize() {
@@ -228,4 +234,24 @@ public class MenuController {
         progressBar.setProgress(newProgress);
         progressbarLabel.setText(fixedPoiCount + "/" + allFixablePois.size() + " Completed");
     }
+    public void endGame(){
+        if (endGameToggle.isSelected()) {
+           endGameButton.setVisible(true);
+        endGameTextArea.setVisible(true);
+        endGameTextArea.setText("are you done with the game?"); 
+        }else{
+           endGameButton.setVisible(false);
+        endGameTextArea.setVisible(false);
+        
+        }
+        
+    }
+    
+    public void switchToEndScreen()throws IOException{
+    App.setRoot("menu/endscreen");
+
+}
+    
+    
+    
 }

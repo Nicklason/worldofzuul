@@ -7,6 +7,7 @@ import com.mycompany.rooms.Street;
 import java.util.ArrayList;
 
 public class Game {
+
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
@@ -14,7 +15,6 @@ public class Game {
     public int fixedCount = 0;
     public double progress = 0;
     private static Game single_instance = null;
-    
 
     public Game() {
         this.rooms = new ArrayList<Room>();
@@ -22,15 +22,14 @@ public class Game {
         createRooms();
         System.err.println("New instance of game has been made");
     }
-    
-    public static Game getInstance() 
-    { 
-        if (single_instance == null) 
-            single_instance = new Game(); 
-  
-        return single_instance; 
-    } 
 
+    public static Game getInstance() {
+        if (single_instance == null) {
+            single_instance = new Game();
+        }
+
+        return single_instance;
+    }
 
     private void createRooms() {
         // Rooms
@@ -75,7 +74,7 @@ public class Game {
     public Room getCurrentRoom() {
         return currentRoom;
     }
-    
+
     /**
      * Get a room by name
      *
@@ -91,15 +90,94 @@ public class Game {
 
         return null;
     }
-    
-    public void setCurrentPointOfInterest(PointOfInterest poi){
+
+    public void setCurrentPointOfInterest(PointOfInterest poi) {
         this.currentPointOfInterest = poi;
     }
-    public void setCurrentRoom(Room room){
+
+    public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
-    
+
     public PointOfInterest getCurrentPointOfInterest() {
         return currentPointOfInterest;
     }
+
+    public ArrayList<String> createEndList() {
+        // arraylist
+        ArrayList<String> picturepaths = new ArrayList<>();
+        for (Room room : rooms) {
+            int count = 0;
+            double maxcount = 0;
+            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
+
+                if (pointofinterest.isFixable()) {
+                    maxcount++;
+
+                    if (pointofinterest.isFixed()) {
+                        count++;
+
+                    }
+                }
+
+            }
+            if (room.getName().equals(Rooms.LAKE.getName())) {
+
+                if (count >= (maxcount / 100) * 66) {
+                    System.out.println(maxcount + "c");
+                    picturepaths.add("images/rooms/2 lakefixed.png");
+
+                } else {
+                    picturepaths.add("images/rooms/2 lakenotfixed.png");
+                }
+            }
+
+            if (room.getName().equals(Rooms.FIELD.getName())) {
+
+                if (count >= (maxcount / 100) * 66) {
+                    picturepaths.add("images/rooms/3 fieldfixed.png");
+
+                } else {
+                    picturepaths.add("images/rooms/3 fieldnotfixed.png");
+                }
+            }
+            if (room.getName().equals(Rooms.SUBURBS.getName())) {
+                if (count >= (maxcount / 100) * 66) {
+                    picturepaths.add("images/rooms/4 suburbsfixed.png");
+
+                } else {
+                    picturepaths.add("images/rooms/4 suburbsnotfixed.png");
+                }
+            }
+            if (room.getName().equals(Rooms.BIGCITY.getName())) {
+                if (count >= (maxcount / 100) * 66) {
+                    picturepaths.add("images/rooms/5 bigcityfixed.png");
+
+                } else {
+                    picturepaths.add("images/rooms/5 bigcitynotfixed.png");
+                }
+            }
+            if (room.getName().equals(Rooms.STREET.getName())) {
+                if (count >= (maxcount / 100) * 66) {
+                    picturepaths.add("images/rooms/6 street.png");
+
+                } else {
+                    picturepaths.add("images/rooms/6 street.png");
+                }
+            }
+            if (room.getName().equals(Rooms.FACTORY.getName())) {
+                if (count >= (maxcount / 100) * 66) {
+                    picturepaths.add("images/rooms/7 factory.png");
+
+                } else {
+                    picturepaths.add("images/rooms/7 factory.png");
+                }
+            }
+
+        }
+
+        return picturepaths;
+
+    }
+
 }
