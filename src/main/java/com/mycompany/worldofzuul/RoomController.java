@@ -31,7 +31,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class RoomController {
-
     // Progressbar
     @FXML
     private ProgressBar progressBar;
@@ -39,6 +38,8 @@ public class RoomController {
     private Label progressbarLabel;
 
     // Listviews and observablelists
+    @FXML
+    private ImageView imgviewPipeFixed;
     @FXML
     private ListView<Item> playerInventoryListView;
     @FXML
@@ -137,7 +138,11 @@ public class RoomController {
     private TextArea storeDescription;
     @FXML
     private TextArea mapDescription;
-
+    @FXML
+    private ImageView imgviewPesticidesFixed;
+    
+    private ImageView fixedImage = new ImageView();
+    
     // Textarea for userfeedback
     @FXML
     private TextArea feedbackTextarea;
@@ -261,7 +266,9 @@ public class RoomController {
                     }
                 }
             }
-
+           if (targetedPoi.isFixed()){
+           fixedImage.setVisible(true);
+           }
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
@@ -362,13 +369,15 @@ public class RoomController {
 
         // Identify the active poi toggle
         PointsOfInterest poi = null;
-
+        
         if (selectedToggleButton.equals(farmhouseToggleButton)) {
             poi = PointsOfInterest.FARMHOUSE;
         } else if (selectedToggleButton.equals(pesticidesToggleButton)) {
             poi = PointsOfInterest.PESTICIDES;
+            fixedImage = imgviewPesticidesFixed;
         } else if (selectedToggleButton.equals(irrigationToggleButton)) {
             poi = PointsOfInterest.IRRIGATION;
+            fixedImage = imgviewPipeFixed;
         } else if (selectedToggleButton.equals(bridgeToggleButton)) {
             poi = PointsOfInterest.BRIDGE;
         } else if (selectedToggleButton.equals(boatToggleButton)) {

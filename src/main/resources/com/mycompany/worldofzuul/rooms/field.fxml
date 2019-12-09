@@ -29,8 +29,8 @@
             <ToggleGroup fx:id="poiToggle" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="irrigationToggleButton" layoutX="822.0" layoutY="431.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
-      <ToggleButton fx:id="pesticidesToggleButton" layoutX="155.0" layoutY="431.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
+      <ToggleButton fx:id="irrigationToggleButton" layoutX="846.0" layoutY="368.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
+      <ToggleButton fx:id="pesticidesToggleButton" layoutX="184.0" layoutY="389.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent" toggleGroup="$poiToggle" />
       <ListView fx:id="playerInventoryListView" layoutX="1235.0" layoutY="43.0" prefHeight="254.0" prefWidth="135.0" />
       <Label fx:id="playerInvText" layoutX="1243.0" layoutY="14.0" text="Player Inventory">
          <font>
@@ -106,5 +106,16 @@
             </HBox>
          </children>
       </Pane>
+      <ImageView fx:id="imgviewPipeFixed" fitHeight="64.0" fitWidth="134.0" layoutX="787.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/fixedPipe.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgviewPesticidesFixed" fitHeight="104.0" fitWidth="246.0" layoutX="44.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/fixedPesticides.png" />
+         </image>
+      </ImageView>
+
    </children>
 </AnchorPane>
