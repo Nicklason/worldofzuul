@@ -22,6 +22,17 @@
             <Image url="@../../../../images/rooms/3%20field.png" />
          </image>
       </ImageView>
+
+      <ImageView fx:id="irrigationFixed" fitHeight="64.0" fitWidth="134.0" layoutX="787.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/fixedPipe.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pesticidesFixed" fitHeight="104.0" fitWidth="246.0" layoutX="44.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/fixedPesticides.png" />
+         </image>
+      </ImageView>
       <Button layoutX="1056.0" layoutY="559.0" mnemonicParsing="false" onAction="#switchToSuburb" opacity="0.0" prefHeight="62.0" prefWidth="152.0" text="Suburbs" />
       <Button layoutX="1026.0" layoutY="637.0" mnemonicParsing="false" onAction="#switchToLake" opacity="0.0" prefHeight="48.0" prefWidth="152.0" text="Lake" />
       <ToggleButton fx:id="farmhouseToggleButton" layoutX="514.0" layoutY="309.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent">
@@ -107,17 +118,6 @@
             </HBox>
          </children>
       </Pane>
-
-      <ImageView fx:id="imgviewPipeFixed" fitHeight="64.0" fitWidth="134.0" layoutX="787.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../images/items/fixed/fixedPipe.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgviewPesticidesFixed" fitHeight="104.0" fitWidth="246.0" layoutX="44.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../images/items/fixed/fixedPesticides.png" />
-         </image>
-      </ImageView>
 
    </children>
 </AnchorPane>

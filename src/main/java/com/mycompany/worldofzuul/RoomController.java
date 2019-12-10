@@ -140,23 +140,25 @@ public class RoomController {
     @FXML
     private TextArea mapDescription;
     @FXML
-    private ImageView imgviewPesticidesFixed;
+    private ImageView boatFixed;
     @FXML
-    private ImageView imageviewBoatFixed;
+    private ImageView leakingpipeFixed;
     @FXML
-    private ImageView imageviewPipelineFixed;
+    private ImageView irrigationFixed;
     @FXML
-    private ImageView imageviewPumpFixed;
+    private ImageView pesticidesFixed;
     @FXML
-    private ImageView imageviewOldManFixed;
-    
-    private ImageView fixedImage = new ImageView();
-    
+    private ImageView oldmanFixed;
+    @FXML
+    private ImageView waterpumpFixed;
+        
     // Textarea for userfeedback
     @FXML
     private TextArea feedbackTextarea;
 
     private ArrayList<ToggleButton> allToggleButtons = new ArrayList<>();
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    private ArrayList<ImageView> allImageViews = new ArrayList<>();
 
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
 
@@ -204,8 +206,12 @@ public class RoomController {
         roomPoiList.addAll(game.getCurrentRoom().getPointsOfInterest());
         allToggleButtons.addAll(Arrays.asList(farmhouseToggleButton, pesticidesToggleButton, irrigationToggleButton, bridgeToggleButton, boatToggleButton, leakingpipeToggleButton, streetToggleButton, waterpumpToggleButton,
               boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
+        
+        
+        allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed));
         setCheckmark();
     }
+    
 
     static class Cell extends ListCell<Item> {
 
@@ -276,11 +282,6 @@ public class RoomController {
                 }
             }
           
-
-           if (targetedPoi.isFixed()){
-           fixedImage.setVisible(true);
-           }
-
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
@@ -386,28 +387,22 @@ public class RoomController {
             poi = PointsOfInterest.FARMHOUSE;
         } else if (selectedToggleButton.equals(pesticidesToggleButton)) {
             poi = PointsOfInterest.PESTICIDES;
-            fixedImage = imgviewPesticidesFixed;
         } else if (selectedToggleButton.equals(irrigationToggleButton)) {
             poi = PointsOfInterest.IRRIGATION;
-            fixedImage = imgviewPipeFixed;
         } else if (selectedToggleButton.equals(bridgeToggleButton)) {
             poi = PointsOfInterest.BRIDGE;
         } else if (selectedToggleButton.equals(boatToggleButton)) {
             poi = PointsOfInterest.BOAT;
-             fixedImage = imageviewBoatFixed;
         } else if (selectedToggleButton.equals(leakingpipeToggleButton)) {
             poi = PointsOfInterest.LEAKINGPIPE;
-            fixedImage = imageviewPipelineFixed;
         } else if (selectedToggleButton.equals(boyToggleButton)) {
             poi = PointsOfInterest.BOY;
         } else if (selectedToggleButton.equals(streetToggleButton)) {
             poi = PointsOfInterest.STREET;
         } else if (selectedToggleButton.equals(waterpumpToggleButton)) {
             poi = PointsOfInterest.WATERPUMP;
-            fixedImage = imageviewPumpFixed;
         } else if (selectedToggleButton.equals(oldmanToggleButton)) {
             poi = PointsOfInterest.OLDMAN;
-            fixedImage =  imageviewOldManFixed;
         } else if (selectedToggleButton.equals(storeToggleButton)) {
             poi = PointsOfInterest.STORE;
         } else if (selectedToggleButton.equals(vendingmachineToggleButton)) {
@@ -571,8 +566,6 @@ public class RoomController {
                     if (togglebutton.getId().substring(0, togglebutton.getId().length() - 12).equals(poi.getName())) {
                         if (poi.isFixed()) {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/checkmark.png')");
-                            // fixedImage.setStyle("-fx-opacity:1.0");
-                            fixedImage.setVisible(true);
                             } 
                        else {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/markerRsmall.png')");
@@ -580,7 +573,22 @@ public class RoomController {
                     }
                 }
             }
+            System.out.println(allImageViews);
+            
+           for (ImageView imageview : allImageViews){
+               if (imageview !=null){
+                   if (imageview.getId().equals(poi.getName()+"Fixed")){
+                       System.out.println(imageview.getId());
+                       System.out.println(poi.getName()+"Fixed");
+                       if (poi.isFixed()){
+                           imageview.setVisible(true);
+                       }
+                   }
+               }
+           }
         }
+        
+        
 
     }
 }

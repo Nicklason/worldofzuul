@@ -22,6 +22,16 @@
             <Image url="@../../../../images/rooms/2%20lake.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="boatFixed" fitHeight="114.0" fitWidth="239.0" layoutX="226.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/boatFixed.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="leakingpipeFixed" fitHeight="137.0" fitWidth="510.0" layoutX="694.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/pipelineFixed.png" />
+         </image>
+      </ImageView>
       <Button fx:id="toField" layoutX="46.0" layoutY="593.0" mnemonicParsing="false" onAction="#switchToLobby" opacity="0.0" prefHeight="72.0" prefWidth="135.0" text="Lobby" />
       <Button fx:id="toField1" layoutX="54.0" layoutY="494.0" mnemonicParsing="false" onAction="#switchToBigCity" opacity="0.0" prefHeight="72.0" prefWidth="150.0" text="Big City" />
       <Button fx:id="toField2" layoutX="46.0" layoutY="434.0" mnemonicParsing="false" onAction="#switchToField" opacity="0.0" prefHeight="54.0" prefWidth="186.0" text="Field" />
@@ -105,15 +115,5 @@
             </HBox>
          </children>
       </Pane>
-      <ImageView fx:id="imageviewBoatFixed" fitHeight="114.0" fitWidth="239.0" layoutX="226.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../images/items/fixed/boatFixed.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imageviewPipelineFixed" fitHeight="137.0" fitWidth="510.0" layoutX="694.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../images/items/fixed/pipelineFixed.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
