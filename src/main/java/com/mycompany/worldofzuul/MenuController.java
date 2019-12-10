@@ -42,6 +42,7 @@ public class MenuController {
     private ToggleButton endGameToggle;
     @FXML
     private TextArea endGameTextArea;
+    private String playerName;
     
     @FXML
     public void initialize() {
@@ -116,7 +117,7 @@ public class MenuController {
     
     @FXML
     private void AnswerPressed() throws IOException {
-        String playerName;
+        
         String girlText = txtAreaGirl.getText();
 
         if (girlText.equals("Hello, you must be new here...")) {
@@ -138,10 +139,13 @@ public class MenuController {
                 txtFieldPlayer.setPromptText("You didn't choose a name");
             } else {  
                 playerName=txtFieldPlayer.getText();
+                System.out.println(playerName);
                 txtAreaGirl.setWrapText(true);
                 txtAreaGirl.setText("I come here since I was a little girl. The water was so blue back then. Here see this picture...");
-                txtFieldPlayer.setPromptText("Take the picture");
                 txtFieldPlayer.clear();
+                txtFieldPlayer.setVisible(false);
+                speechBubble2.setVisible(false);
+                btnAnswer.setVisible(false);
                 btnPhoto.setVisible(true);
                 txtFieldPlayer.setPromptText(" ");  
             }
@@ -150,13 +154,16 @@ public class MenuController {
         if (girlText.equals("I come here since I was a little girl. The water was so blue back then. Here see this picture...")){
             txtAreaGirl.setWrapText(true);
             txtFieldPlayer.clear();
+                
         }
 
         if (girlText.equals("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?")){
+              
             if (txtFieldPlayer.getText().trim().isEmpty()) {
                 txtFieldPlayer.setPromptText("Clair is waiting for your answer...");
             } else if (txtFieldPlayer.getText().equals("Yes") || txtFieldPlayer.getText().equals("yes")) {
-                txtAreaGirl.setText("Thank you");
+                System.out.println(playerName);
+                txtAreaGirl.setText("Thank you"+" "+playerName);
                 txtFieldPlayer.setVisible(false);
                 speechBubble2.setVisible(false);
                 btnAnswer.setVisible(false);
@@ -178,6 +185,9 @@ public class MenuController {
     @FXML
     void PhotoPressed(ActionEvent event) {
         if (imgviewPhoto.visibleProperty().get()==false){
+            txtFieldPlayer.setVisible(true);
+            speechBubble2.setVisible(true);
+            btnAnswer.setVisible(true); 
             imgviewPhoto.setVisible(true);
             txtAreaGirl.setText("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?");
             txtFieldPlayer.clear();
