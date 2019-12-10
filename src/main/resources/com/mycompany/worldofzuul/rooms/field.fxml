@@ -83,6 +83,7 @@
          </font>
       </TextArea>
       <TextArea fx:id="feedbackTextarea" disable="true" layoutX="990.0" layoutY="16.0" prefHeight="54.0" prefWidth="234.0" visible="false" />
+
       <Pane layoutX="14.0" layoutY="11.0" prefHeight="48.0" prefWidth="200.0">
          <children>
             <HBox alignment="CENTER" prefHeight="21.0" prefWidth="200.0">
@@ -106,6 +107,7 @@
             </HBox>
          </children>
       </Pane>
+
       <ImageView fx:id="imgviewPipeFixed" fitHeight="64.0" fitWidth="134.0" layoutX="787.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../../images/items/fixed/fixedPipe.png" />

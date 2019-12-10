@@ -38,6 +38,7 @@ public class RoomController {
     private Label progressbarLabel;
 
     // Listviews and observablelists
+
     @FXML
     private ImageView imgviewPipeFixed;
     @FXML
@@ -275,6 +276,11 @@ public class RoomController {
                 }
             }
           
+
+           if (targetedPoi.isFixed()){
+           fixedImage.setVisible(true);
+           }
+
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
