@@ -14,12 +14,12 @@
    <children>
       <ImageView fitHeight="704.0" fitWidth="1370.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/rooms/1%20lobby.png" />
+            <Image url="@../../../../images/rooms/lobby.png" />
          </image>
       </ImageView>
       <ImageView fx:id="imgviewPhoto" fitHeight="202.0" fitWidth="367.0" layoutX="535.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../../../images/rooms/5%20lobbymemories.png" />
+            <Image url="@../../../../images/rooms/lobbymemories.png" />
          </image>
       </ImageView>
       <Button fx:id="btnPhoto" layoutX="914.0" layoutY="476.0" mnemonicParsing="false" onAction="#PhotoPressed" prefHeight="40.0" prefWidth="50.0" rotate="-60.5" style="-fx-background-image: url('images/misc/miniphoto.png');" textFill="#090000" visible="false" />
