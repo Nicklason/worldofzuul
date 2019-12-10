@@ -146,6 +146,8 @@ public class RoomController {
     private ImageView imageviewPipelineFixed;
     @FXML
     private ImageView imageviewPumpFixed;
+    @FXML
+    private ImageView imageviewOldManFixed;
     
     private ImageView fixedImage = new ImageView();
     
@@ -272,9 +274,7 @@ public class RoomController {
                     }
                 }
             }
-           if (targetedPoi.isFixed()){
-           fixedImage.setVisible(true);
-           }
+          
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
@@ -401,6 +401,7 @@ public class RoomController {
             fixedImage = imageviewPumpFixed;
         } else if (selectedToggleButton.equals(oldmanToggleButton)) {
             poi = PointsOfInterest.OLDMAN;
+            fixedImage =  imageviewOldManFixed;
         } else if (selectedToggleButton.equals(storeToggleButton)) {
             poi = PointsOfInterest.STORE;
         } else if (selectedToggleButton.equals(vendingmachineToggleButton)) {
@@ -564,7 +565,10 @@ public class RoomController {
                     if (togglebutton.getId().substring(0, togglebutton.getId().length() - 12).equals(poi.getName())) {
                         if (poi.isFixed()) {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/checkmark.png')");
-                        } else {
+                            // fixedImage.setStyle("-fx-opacity:1.0");
+                            fixedImage.setVisible(true);
+                            } 
+                       else {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/markerRsmall.png')");
                         }
                     }
