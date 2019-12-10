@@ -25,6 +25,8 @@ public class Cola extends Item {
 
         Oldman oldman = (Oldman)game.getCurrentPointOfInterest();
         oldman.setKeycardFalse();
+        
+        oldman.setDescription("Oldman: I don't want your cola, this is what is ruining our city!");
 
         this.game.inventory.remove(this);
 

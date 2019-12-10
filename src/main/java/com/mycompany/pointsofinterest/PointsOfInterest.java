@@ -12,7 +12,7 @@ public enum PointsOfInterest {
     LEAKINGPIPE("leakingpipe", "The pipeline is broken and is leaking chemicals onto the ground and into the water.", "You have fixed the leaking pipe", "Funfact:\nSewage dumped into nature causes water bloom and bacteria growth. Raw sewage was dumped into popular beaches in Great Britain 1830 times in summer 2019."),
     LOCKEDDOOR("door", "A locked door leading into the cola factory", "The keycard unlocked the door!"),
     MAP("map", "The map is showing enormous water requirements for producing 1 liter of cola","You took a picture and exposed their water spendage"),
-    OLDMAN("oldman", "\"Hey! Can you please get me some water? I'm really thirsty\"", "You helped the old man get water and in return he gave you a keycard", "Funfact:\nFilling up a liter of water into a reused bottle from a local waterpump costs 1 liter of water. Producing a liter Cola in a new plastic bottle requires approx 9 liters of water."),
+    OLDMAN("oldman", "Oldman: Hey can you please get me some water im really thirsty", "you helped the old man get water", "Funfact:\nFilling up a liter of water from a local waterpump into a reused bottle, costs our planet 1 liter water. Producing a liter Cola in a new plastic bottle requires ca. 9 liters of water."),
     PESTICIDES("pesticides", "The open box of pesticides is laying on the ground, maybe you can move it?", "The pesticides have been moved from the ground and they are no longer contaminating the ground", "Funfact:\nDrinking water with agricultural chemical runoff can cause chronic diseases. In 2017 more than 100 kinds of pesticides were detected in different waterways in europe."),
     STORE("store", "A line of shopping carts"),
     STREET("street", "This street leads through the suburbs"),
