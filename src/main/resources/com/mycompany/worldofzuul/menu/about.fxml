@@ -2,21 +2,44 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1370.0" style="-fx-background-color: #dcecf2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.worldofzuul.MenuController">
    <children>
       <AnchorPane layoutY="-5.0" prefHeight="254.0" prefWidth="1370.0" style="-fx-background-color: #2d6075;">
          <children>
-            <Label layoutX="77.0" layoutY="62.0" style="-fx-font-family: broadway; -fx-font-size: 49;" text="Last" textFill="WHITE" />
-            <Label layoutX="208.0" layoutY="62.0" style="-fx-font-family: broadway; -fx-font-size: 49;" text="Drop" textFill="#91c9e8" />
-            <Label layoutX="77.0" layoutY="135.0" style="-fx-font-family: broadway; -fx-font-size: 40;" text="About" textFill="#91c9e8" />
-            <Label layoutX="923.0" layoutY="55.0" style="-fx-font-size: 30; -fx-font-family: Vivaldi;" text="“When the well is dry," textFill="#e8e0e0" />
-            <Label layoutX="971.0" layoutY="82.0" style="-fx-font-size: 30; -fx-font-family: Vivaldi;" text=" we know the worth of water.”" textFill="#e8e0e0" />
-            <Label layoutX="1019.0" layoutY="107.0" style="-fx-font-size: 30; -fx-font-family: Vivaldi;" text="― Benjamin Franklin" textFill="#e8e0e0" />
+            <Label layoutX="77.0" layoutY="62.0" text="Last" textFill="WHITE">
+               <font>
+                  <Font name="Broadway" size="49.0" />
+               </font></Label>
+            <Label layoutX="208.0" layoutY="62.0" text="Drop" textFill="#91c9e8">
+               <font>
+                  <Font name="Broadway" size="49.0" />
+               </font></Label>
+            <Label layoutX="77.0" layoutY="135.0" text="About" textFill="#91c9e8">
+               <font>
+                  <Font name="Broadway" size="40.0" />
+               </font></Label>
+            <Label layoutX="923.0" layoutY="55.0" text="“When the well is dry," textFill="#e8e0e0">
+               <font>
+                  <Font name="Vivaldi Italic" size="30.0" />
+               </font></Label>
+            <Label layoutX="971.0" layoutY="82.0" text=" we know the worth of water.”" textFill="#e8e0e0">
+               <font>
+                  <Font name="Vivaldi Italic" size="30.0" />
+               </font></Label>
+            <Label layoutX="1019.0" layoutY="107.0" text="― Benjamin Franklin" textFill="#e8e0e0">
+               <font>
+                  <Font name="Vivaldi Italic" size="30.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btnBack" alignment="BOTTOM_LEFT" layoutX="1104.0" layoutY="612.0" mnemonicParsing="false" onAction="#BackPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-font-family: broadway; -fx-font-size: 32; -fx-background-color: #2d6075;" text="Back" textFill="#d4ebf8" />
-      <Label layoutX="76.0" layoutY="306.0" text="To play the game do this..." />
+      <Button fx:id="btnBack" alignment="BOTTOM_LEFT" layoutX="1104.0" layoutY="612.0" mnemonicParsing="false" onAction="#BackPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #2d6075;" text="Back" textFill="#d4ebf8">
+         <font>
+            <Font name="Broadway" size="32.0" />
+         </font></Button>
+      <TextArea layoutX="44.0" layoutY="272.0" prefHeight="366.0" prefWidth="614.0" text="&#10;Last Drop is a learning game, that can help you to learn more about water conservation and polution.&#10;It was developed as a semester project by &#10;Software Engineering and Software Technology students at University of Southern Danmark.&#10;&#10;Even though we are used to having easy access to large amounts of water in everyday life, &#10;water shortages can become a real threat in Europe by 2050. &#10;&#10;In order raise awareness among the younger generation about this problem, we have created this game, &#10;that can show you the sources of water pollution in the real world, the ways of removing or reducing them, &#10;and other things you can do to make a real difference for the future of our water resources.&#10;&#10;All the facts used in the game are real, based on reliable internet sources. &#10;The drink referred to as Cola in the game, is an imaginary softdrink, that has a realistic figure of water&#10;used to produce it, 9 liters for a one litter bottle.&#10;&#10;Thank you for playing our game,&#10;Hope you enjoyed it and learned a lot!&#10;Group 17&#10;&#10;" />
    </children>
 </AnchorPane>
