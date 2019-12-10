@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Game {
 
+    private GameState state;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
@@ -16,11 +17,27 @@ public class Game {
     public double progress = 0;
     private static Game single_instance = null;
 
+    public static enum GameState {
+        INTRO,
+        PLAYING,
+        IN_LOBBY,
+        FINISHED
+    };
+
     public Game() {
+        this.state = GameState.INTRO;
         this.rooms = new ArrayList<Room>();
         this.inventory = new Inventory();
         createRooms();
         System.err.println("New instance of game has been made");
+    }
+
+    public void setState (GameState state) {
+        this.state = state;
+    }
+
+    public GameState getState () {
+        return this.state;
     }
 
     public static Game getInstance() {
