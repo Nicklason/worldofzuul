@@ -16,25 +16,46 @@
       </ImageView>
       <Label layoutX="1002.0" layoutY="261.0" text="“When the well is dry," textFill="#e8e0e0">
          <font>
-            <Font size="28.0" />
+            <Font name="Vivaldi Italic" size="30.0" />
          </font></Label>
       <Label layoutX="1002.0" layoutY="289.0" text=" we know the worth of water.”" textFill="#e8e0e0">
          <font>
-            <Font size="28.0" />
+            <Font name="Vivaldi Italic" size="30.0" />
          </font></Label>
       <Label layoutX="1056.0" layoutY="314.0" text="― Benjamin Franklin" textFill="#e8e0e0">
          <font>
-            <Font size="28.0" />
+            <Font name="Vivaldi Italic" size="30.0" />
          </font></Label>
       <AnchorPane layoutY="-5.0" prefHeight="779.0" prefWidth="474.0" style="-fx-background-color: #2d6075;">
          <children>
-            <Label layoutX="77.0" layoutY="62.0" style="-fx-font-size: 49; -fx-font-family: broadway;" text="Last" textFill="WHITE" />
-            <Label layoutX="208.0" layoutY="62.0" style="-fx-font-size: 49; -fx-font-family: broadway;" text="Drop" textFill="#91c9e8" />
-            <Button fx:id="btnPlay" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="242.0" mnemonicParsing="false" onAction="#PlayPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Play" textFill="#d4ebf8" />
-            <Button fx:id="btnHints" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="420.0" mnemonicParsing="false" onAction="#HintsPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Hints" textFill="#d4ebf8" />
-            <Button fx:id="btnAbout" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="507.0" mnemonicParsing="false" onAction="#AboutPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="About" textFill="#d4ebf8" />
-            <Button fx:id="btnHelp" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="330.0" mnemonicParsing="false" onAction="#HelpPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Help" textFill="#d4ebf8" />
-            <Button fx:id="btnQuit" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="594.0" mnemonicParsing="false" onAction="#QuitPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c; -fx-font-size: 32; -fx-font-family: broadway;" text="Quit" textFill="#d4ebf8" />
+            <Label layoutX="77.0" layoutY="62.0" text="Last" textFill="WHITE">
+               <font>
+                  <Font name="Broadway" size="49.0" />
+               </font></Label>
+            <Label layoutX="208.0" layoutY="62.0" text="Drop" textFill="#91c9e8">
+               <font>
+                  <Font name="Broadway" size="49.0" />
+               </font></Label>
+            <Button fx:id="btnPlay" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="242.0" mnemonicParsing="false" onAction="#PlayPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c;" text="Play" textFill="#d4ebf8">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font></Button>
+            <Button fx:id="btnHints" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="420.0" mnemonicParsing="false" onAction="#HintsPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c;" text="Hints" textFill="#d4ebf8">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font></Button>
+            <Button fx:id="btnAbout" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="507.0" mnemonicParsing="false" onAction="#AboutPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c;" text="About" textFill="#d4ebf8">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font></Button>
+            <Button fx:id="btnHelp" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="330.0" mnemonicParsing="false" onAction="#HelpPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c;" text="Help" textFill="#d4ebf8">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font></Button>
+            <Button fx:id="btnQuit" alignment="BOTTOM_LEFT" layoutX="77.0" layoutY="594.0" mnemonicParsing="false" onAction="#QuitPressed" prefHeight="66.0" prefWidth="209.0" style="-fx-background-color: #1f4a5c;" text="Quit" textFill="#d4ebf8">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </children>
