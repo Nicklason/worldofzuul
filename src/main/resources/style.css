@@ -2,7 +2,7 @@
    -fx-cursor: hand; 
 }
 
-#Usebtn, #Dropbtn, #Pickup {
+#endGameButton, #previous, #next, #Usebtn, #Dropbtn, #Pickup {
     -fx-pref-height: 30px;
     -fx-pref-width: 75px;
     -fx-padding-top: 5px;

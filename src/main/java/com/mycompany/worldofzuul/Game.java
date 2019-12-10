@@ -7,6 +7,8 @@ import com.mycompany.rooms.Street;
 import java.util.ArrayList;
 
 public class Game {
+
+    private GameState state;
     private Room currentRoom;
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
@@ -14,23 +16,37 @@ public class Game {
     public int fixedCount = 0;
     public double progress = 0;
     private static Game single_instance = null;
-    
+
+    public static enum GameState {
+        INTRO,
+        PLAYING,
+        IN_LOBBY,
+        FINISHED
+    };
 
     public Game() {
+        this.state = GameState.INTRO;
         this.rooms = new ArrayList<Room>();
         this.inventory = new Inventory();
         createRooms();
         System.err.println("New instance of game has been made");
     }
-    
-    public static Game getInstance() 
-    { 
-        if (single_instance == null) 
-            single_instance = new Game(); 
-  
-        return single_instance; 
+
+    public void setState (GameState state) {
+        this.state = state;
     }
 
+    public GameState getState () {
+        return this.state;
+    }
+
+    public static Game getInstance() {
+        if (single_instance == null) {
+            single_instance = new Game();
+        }
+
+        return single_instance;
+    }
 
     private void createRooms() {
         // Rooms
@@ -75,7 +91,7 @@ public class Game {
     public Room getCurrentRoom() {
         return currentRoom;
     }
-    
+
     /**
      * Get a room by name
      *
@@ -91,15 +107,49 @@ public class Game {
 
         return null;
     }
-    
-    public void setCurrentPointOfInterest(PointOfInterest poi){
+
+    public void setCurrentPointOfInterest(PointOfInterest poi) {
         this.currentPointOfInterest = poi;
     }
-    public void setCurrentRoom(Room room){
+
+    public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
-    
+
     public PointOfInterest getCurrentPointOfInterest() {
         return currentPointOfInterest;
+    }
+
+    public ArrayList<String> getEndPictures() {
+        ArrayList<String> picturePaths = new ArrayList<>();
+
+        for (Room room: rooms) {
+            if (!room.hasEndPicture()) {
+                continue;
+            }
+
+            int count = 0;
+            int maxCount = 0;
+
+            for (PointOfInterest pointofinterest: room.getPointsOfInterest()) {
+                if (pointofinterest.isFixable()) {
+                    maxCount++;
+
+                    if (pointofinterest.isFixed()) {
+                        count++;
+                    }
+                }
+            }
+
+            System.out.println(room.getName() + " " + count / (double)maxCount);
+
+            if (count / (double)maxCount >= 0.66) {
+                picturePaths.add(room.getFixedPicturePath());
+            } else {
+                picturePaths.add(room.getNotFixedPicturePath());
+            }
+        }
+
+        return picturePaths;
     }
 }

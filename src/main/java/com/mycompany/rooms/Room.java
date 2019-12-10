@@ -3,7 +3,6 @@ package com.mycompany.rooms;
 import com.mycompany.pointsofinterest.PointOfInterest;
 import com.mycompany.rooms.Rooms;
 
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -68,34 +67,26 @@ public abstract class Room {
         return this.room.getName();
     }
 
-    public String getShortDescription () {
-        return this.room.getDescription();
+    public boolean hasEndPicture () {
+        return this.room.hasEndPicture();
     }
 
-    public String getLongDescription () {
-        return (pointsOfInterest.size() > 0 ? "You are " + this.getShortDescription() + ".\n" + getExitString() + "\n" + getPointsOfInterestString() : "You are " + this.getShortDescription() + ".\n" + getExitString());
-    }
-
-    private String getExitString () {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
-    }
-
-    private String getPointsOfInterestString () {
-        String returnString = "Interests:";
-
-        Integer pointCount = this.pointsOfInterest.size();
-        for (int i = 0; i < pointCount; i++) {
-            returnString += " " + this.pointsOfInterest.get(i).getName();
+    public String getFixedPicturePath () {
+        if (!hasEndPicture()) {
+            return null;
         }
 
-        return returnString;
+        return "images/rooms/" + this.room.getName() + "-fixed.png";
     }
-    
+
+    public String getNotFixedPicturePath () {
+        if (!hasEndPicture()) {
+            return null;
+        }
+        
+        return "images/rooms/" + this.room.getName() + "-not-fixed.png";
+    }
+
     public ArrayList<PointOfInterest> getPointsOfInterest(){
         return pointsOfInterest;
     }

@@ -8,14 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class MenuController {
     
     private static Game game = Game.getInstance();
-    
-    private static boolean doneIntro = false;
 
     @FXML
     private TextField txtFieldPlayer;
@@ -37,6 +36,12 @@ public class MenuController {
     private ImageView imgviewLakeSign;
     @FXML
     private Button btnSwitchToLake;
+    @FXML
+    private Button endGameButton;
+    @FXML
+    private ToggleButton endGameToggle;
+    @FXML
+    private TextArea endGameTextArea;
     
     @FXML
     public void initialize() {
@@ -62,12 +67,26 @@ public class MenuController {
 
     @FXML
     private void PlayPressed() throws IOException {
-        if (doneIntro) {
-            App.setRoot("rooms/" + game.getCurrentRoom().getName());
-        } else {
-            doneIntro = true;
-            App.setRoot("menu/introscene");
+        String fxmlPath;
+
+        switch (game.getState()) {
+            case FINISHED:
+                fxmlPath = "menu/endscreen";
+                break;
+            case INTRO:
+                fxmlPath = "menu/introscene";
+                break;
+            case IN_LOBBY:
+                fxmlPath = "menu/lobby";
+                break;
+            case PLAYING:
+                fxmlPath = "rooms/" + game.getCurrentRoom().getName();
+                break;
+            default:
+                throw new Error("Unknown game state");
         }
+
+        App.setRoot(fxmlPath);
     }
      
     @FXML
@@ -170,8 +189,25 @@ public class MenuController {
     
     @FXML
     private void switchToLake() throws IOException {
+        game.setState(Game.GameState.PLAYING);
         game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
         game.setCurrentPointOfInterest(null);
         App.setRoot("rooms/lake");
+    }
+
+    public void endGame() {
+        if (endGameToggle.isSelected()) {
+            endGameButton.setVisible(true);
+            endGameTextArea.setVisible(true);
+            endGameTextArea.setText("are you done with the game?"); 
+        } else {
+            endGameButton.setVisible(false);
+            endGameTextArea.setVisible(false);
+        }
+    }
+    
+    public void switchToEndScreen()throws IOException{
+        game.setState(Game.GameState.FINISHED);
+        App.setRoot("menu/endscreen");
     }
 }

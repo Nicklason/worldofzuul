@@ -166,6 +166,8 @@ public class RoomController {
     
     private ArrayList<PointOfInterest> roomPoiList = new ArrayList<>();
 
+    private boolean hasEventAdded = false;
+
     private static Game game = Game.getInstance();
     
     @FXML
@@ -185,21 +187,23 @@ public class RoomController {
                 oldmanDescription, vendingmachineDescription, storeDescription, mapDescription));
         
 
-        Scene scene = App.getScene();
 
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent> () {
-            @Override
-            public void handle(KeyEvent t) {
-                if(t.getCode() == KeyCode.ESCAPE) {
-                    try {
-                        App.setRoot("menu/menu");
-                        scene.removeEventHandler(KeyEvent.KEY_PRESSED, this);
-                    } catch (IOException err) {
-                        System.out.println("Oof");
+        if (!hasEventAdded) {
+            Scene scene = App.getScene();
+
+            scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent> () {
+                @Override
+                public void handle(KeyEvent t) {
+                    if(t.getCode() == KeyCode.ESCAPE) {
+                        try {
+                            App.setRoot("menu/menu");
+                        } catch (IOException err) {
+                            System.out.println("Oof");
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
         progressBar.setProgress(game.progress);
         progressbarLabel.setText(game.fixedCount + "/9 Completed");
@@ -504,6 +508,7 @@ public class RoomController {
 
     @FXML
     private void switchToLobby() throws IOException {
+        game.setState(Game.GameState.IN_LOBBY);
         game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
         App.setRoot("menu/lobby");

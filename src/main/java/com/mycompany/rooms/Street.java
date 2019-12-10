@@ -12,6 +12,6 @@ public class Street extends Room {
 
         this.setPointOfInterest(new Billboard(game));
         this.setPointOfInterest(new Container(game));
-        this.setPointOfInterest(new LockedDoor());
+        this.setPointOfInterest(new LockedDoor(game));
     }
 }

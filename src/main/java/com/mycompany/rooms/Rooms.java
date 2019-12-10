@@ -1,27 +1,27 @@
 package com.mycompany.rooms;
 
 public enum Rooms {
-    BIGCITY("bigcity", "in the bigcity"),
-    FACTORY("factory", "At the factory"),
-    FIELD("field", "At the field"),
-    LAKE("lake", "At the lake"),
-    LOBBY("lobby", "In the Lobby Start/End"),
-    STREET("street", "In the street"),
-    SUBURBS("suburbs", "In the suburban neighbourhood");
+    BIGCITY("bigcity", true),
+    FACTORY("factory", false),
+    FIELD("field", true),
+    LAKE("lake", true),
+    LOBBY("lobby", false),
+    STREET("street", false),
+    SUBURBS("suburbs", true);
 
     private String name;
-    private String description;
+    private boolean hasEndPicture;
 
-    private Rooms (String name, String description) {
+    private Rooms (String name, boolean hasEndPicture) {
         this.name = name;
-        this.description = description;
+        this.hasEndPicture = hasEndPicture;
     }
 
     public String getName () {
         return this.name;
     }
 
-    public String getDescription () {
-        return this.description;
+    public boolean hasEndPicture () {
+        return this.hasEndPicture;
     }
 }
