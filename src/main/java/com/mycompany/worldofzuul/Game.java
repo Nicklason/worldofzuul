@@ -103,81 +103,36 @@ public class Game {
         return currentPointOfInterest;
     }
 
-    public ArrayList<String> createEndList() {
-        // arraylist
-        ArrayList<String> picturepaths = new ArrayList<>();
-        for (Room room : rooms) {
-            int count = 0;
-            double maxcount = 0;
-            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
+    public ArrayList<String> getEndPictures() {
+        ArrayList<String> picturePaths = new ArrayList<>();
 
+        for (Room room: rooms) {
+            if (!room.hasEndPicture()) {
+                continue;
+            }
+
+            int count = 0;
+            int maxCount = 0;
+
+            for (PointOfInterest pointofinterest: room.getPointsOfInterest()) {
                 if (pointofinterest.isFixable()) {
-                    maxcount++;
+                    maxCount++;
 
                     if (pointofinterest.isFixed()) {
                         count++;
-
                     }
                 }
-
-            }
-            if (room.getName().equals(Rooms.LAKE.getName())) {
-
-                if (count >= (maxcount / 100) * 66) {
-                    System.out.println(maxcount + "c");
-                    picturepaths.add("images/rooms/2 lakefixed.png");
-
-                } else {
-                    picturepaths.add("images/rooms/2 lakenotfixed.png");
-                }
             }
 
-            if (room.getName().equals(Rooms.FIELD.getName())) {
+            System.out.println(room.getName() + " " + count / (double)maxCount);
 
-                if (count >= (maxcount / 100) * 66) {
-                    picturepaths.add("images/rooms/3 fieldfixed.png");
-
-                } else {
-                    picturepaths.add("images/rooms/3 fieldnotfixed.png");
-                }
+            if (count / (double)maxCount >= 0.66) {
+                picturePaths.add(room.getFixedPicturePath());
+            } else {
+                picturePaths.add(room.getNotFixedPicturePath());
             }
-            if (room.getName().equals(Rooms.SUBURBS.getName())) {
-                if (count >= (maxcount / 100) * 66) {
-                    picturepaths.add("images/rooms/4 suburbsfixed.png");
-
-                } else {
-                    picturepaths.add("images/rooms/4 suburbsnotfixed.png");
-                }
-            }
-            if (room.getName().equals(Rooms.BIGCITY.getName())) {
-                if (count >= (maxcount / 100) * 66) {
-                    picturepaths.add("images/rooms/5 bigcityfixed.png");
-
-                } else {
-                    picturepaths.add("images/rooms/5 bigcitynotfixed.png");
-                }
-            }
-            if (room.getName().equals(Rooms.STREET.getName())) {
-                if (count >= (maxcount / 100) * 66) {
-                    picturepaths.add("images/rooms/6 street.png");
-
-                } else {
-                    picturepaths.add("images/rooms/6 street.png");
-                }
-            }
-            if (room.getName().equals(Rooms.FACTORY.getName())) {
-                if (count >= (maxcount / 100) * 66) {
-                    picturepaths.add("images/rooms/7 factory.png");
-
-                } else {
-                    picturepaths.add("images/rooms/7 factory.png");
-                }
-            }
-
         }
 
-        return picturepaths;
-
+        return picturePaths;
     }
-
 }

@@ -21,42 +21,42 @@ public class EndScreenController {
     @FXML
     private ImageView imageview;
 
-    private ArrayList<String> endScene = new ArrayList<>();
+    private ArrayList<String> endPictures = new ArrayList<>();
     int i = 0;
 
     @FXML
     public void initialize() {
-        System.out.println(game.createEndList());
-        endScene = game.createEndList();
-        Image img = new Image(endScene.get(i));
-        imageview.setImage(img);
+        endPictures = game.getEndPictures();
+        imageview.setImage(new Image(endPictures.get(i)));
     }
 
     @FXML
     public void next() {
-        i++;
         System.out.println(i);
-        Image img = new Image(endScene.get(i));
-        if (i < endScene.size()-1) {
-            
-            imageview.setImage(img);
+
+        if (i < endPictures.size() - 1) {
+            // There are more pictures in the list
+            i++;
         } else {
-            i=0;
-            imageview.setImage(img);
-
+            // Reached end of the list, go back to the start
+            i = 0;
         }
 
+        imageview.setImage(new Image(endPictures.get(i)));
     }
+
     @FXML
-    public void previous(){
-    Image img = new Image(endScene.get(i));
-        if (i != 0) {
-            i--;
-            imageview.setImage(img);
-        }else{
-        i= endScene.size()-1;
-        imageview.setImage(img);
-        }
-    }
+    public void previous() {
+        System.out.println(i);
 
+        if (i == 0) {
+            // Reached start of the list, go to the end of it
+            i = endPictures.size() - 1;
+        } else {
+            // There are more pictures in the list
+            i--;
+        }
+
+        imageview.setImage(new Image(endPictures.get(i)));
+    }
 }

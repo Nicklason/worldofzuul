@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/rooms/1%20lobby.png" />
+            <Image url="@../../../../images/rooms/lobby.png" />
          </image>
       </ImageView>
       <ImageView fx:id="imgviewLakeSign" fitHeight="140.0" fitWidth="295.0" layoutX="144.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">

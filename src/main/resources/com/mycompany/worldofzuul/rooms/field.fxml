@@ -19,7 +19,7 @@
    <children>
       <ImageView fitHeight="709.0" fitWidth="1254.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/rooms/3%20field.png" />
+            <Image url="@../../../../images/rooms/field.png" />
          </image>
       </ImageView>
       <Button layoutX="1056.0" layoutY="559.0" mnemonicParsing="false" onAction="#switchToSuburb" opacity="0.0" prefHeight="62.0" prefWidth="152.0" text="Suburbs" />
