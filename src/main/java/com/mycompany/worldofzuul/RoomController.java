@@ -31,7 +31,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class RoomController {
-
     // Progressbar
     @FXML
     private ProgressBar progressBar;
@@ -39,6 +38,9 @@ public class RoomController {
     private Label progressbarLabel;
 
     // Listviews and observablelists
+
+    @FXML
+    private ImageView imgviewPipeFixed;
     @FXML
     private ListView<Item> playerInventoryListView;
     @FXML
@@ -137,12 +139,26 @@ public class RoomController {
     private TextArea storeDescription;
     @FXML
     private TextArea mapDescription;
-
+    @FXML
+    private ImageView boatFixed;
+    @FXML
+    private ImageView leakingpipeFixed;
+    @FXML
+    private ImageView irrigationFixed;
+    @FXML
+    private ImageView pesticidesFixed;
+    @FXML
+    private ImageView oldmanFixed;
+    @FXML
+    private ImageView waterpumpFixed;
+        
     // Textarea for userfeedback
     @FXML
     private TextArea feedbackTextarea;
 
     private ArrayList<ToggleButton> allToggleButtons = new ArrayList<>();
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    private ArrayList<ImageView> allImageViews = new ArrayList<>();
 
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
 
@@ -194,8 +210,12 @@ public class RoomController {
         roomPoiList.addAll(game.getCurrentRoom().getPointsOfInterest());
         allToggleButtons.addAll(Arrays.asList(farmhouseToggleButton, pesticidesToggleButton, irrigationToggleButton, bridgeToggleButton, boatToggleButton, leakingpipeToggleButton, streetToggleButton, waterpumpToggleButton,
               boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
+        
+        
+        allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed));
         setCheckmark();
     }
+    
 
     static class Cell extends ListCell<Item> {
 
@@ -265,7 +285,7 @@ public class RoomController {
                     }
                 }
             }
-
+          
             playerItems.clear();
             playerInventoryListView.getItems().clear();
             playerItems.addAll(game.inventory.getAll());
@@ -366,7 +386,7 @@ public class RoomController {
 
         // Identify the active poi toggle
         PointsOfInterest poi = null;
-
+        
         if (selectedToggleButton.equals(farmhouseToggleButton)) {
             poi = PointsOfInterest.FARMHOUSE;
         } else if (selectedToggleButton.equals(pesticidesToggleButton)) {
@@ -551,13 +571,29 @@ public class RoomController {
                     if (togglebutton.getId().substring(0, togglebutton.getId().length() - 12).equals(poi.getName())) {
                         if (poi.isFixed()) {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/checkmark.png')");
-                        } else {
+                            } 
+                       else {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/markerRsmall.png')");
                         }
                     }
                 }
             }
+            System.out.println(allImageViews);
+            
+           for (ImageView imageview : allImageViews){
+               if (imageview !=null){
+                   if (imageview.getId().equals(poi.getName()+"Fixed")){
+                       System.out.println(imageview.getId());
+                       System.out.println(poi.getName()+"Fixed");
+                       if (poi.isFixed()){
+                           imageview.setVisible(true);
+                       }
+                   }
+               }
+           }
         }
+        
+        
 
     }
 }
