@@ -58,21 +58,21 @@
             </Button>
          </children>
       </HBox>
-      <TextArea fx:id="oldmanTextarea" disable="true" layoutX="958.0" layoutY="206.0" prefHeight="132.0" prefWidth="269.0" visible="false" wrapText="true">
+      <TextArea fx:id="oldmanTextarea" disable="true" layoutX="958.0" layoutY="153.0" prefHeight="132.0" prefWidth="269.0" visible="false" wrapText="true">
          <font>
             <Font size="13.0" />
          </font></TextArea>
-      <TextArea fx:id="oldmanDescription" disable="true" layoutX="958.0" layoutY="348.0" prefHeight="54.0" prefWidth="269.0" visible="false" wrapText="true">
+      <TextArea fx:id="oldmanDescription" disable="true" layoutX="968.0" layoutY="293.0" prefHeight="54.0" prefWidth="255.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="vendingmachineDescription" disable="true" layoutX="363.0" layoutY="316.0" prefHeight="54.0" prefWidth="269.0" visible="false" wrapText="true">
+      <TextArea fx:id="vendingmachineDescription" disable="true" layoutX="408.0" layoutY="320.0" prefHeight="30.0" prefWidth="178.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="storeDescription" disable="true" layoutX="14.0" layoutY="442.0" prefHeight="66.0" prefWidth="269.0" visible="false" wrapText="true">
+      <TextArea fx:id="storeDescription" disable="true" layoutX="7.0" layoutY="472.0" prefHeight="46.0" prefWidth="170.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

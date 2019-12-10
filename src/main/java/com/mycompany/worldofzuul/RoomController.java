@@ -579,13 +579,10 @@ public class RoomController {
                     }
                 }
             }
-            System.out.println(allImageViews);
-            
+           
            for (ImageView imageview : allImageViews){
                if (imageview !=null){
                    if (imageview.getId().equals(poi.getName()+"Fixed")){
-                       System.out.println(imageview.getId());
-                       System.out.println(poi.getName()+"Fixed");
                        if (poi.isFixed()){
                            imageview.setVisible(true);
                        }

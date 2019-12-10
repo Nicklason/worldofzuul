@@ -67,21 +67,21 @@
             </Button>
          </children>
       </HBox>
-      <TextArea fx:id="boatTextarea" disable="true" layoutX="334.0" layoutY="187.0" maxHeight="130.0" maxWidth="300.0" prefHeight="72.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="boatTextarea" disable="true" layoutX="334.0" layoutY="190.0" maxHeight="130.0" maxWidth="300.0" prefHeight="95.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="boatDescription" disable="true" layoutX="334.0" layoutY="268.0" maxHeight="130.0" maxWidth="300.0" prefHeight="72.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="boatDescription" disable="true" layoutX="334.0" layoutY="288.0" maxHeight="130.0" maxWidth="300.0" prefHeight="48.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="leakingpipeTextarea" disable="true" layoutX="928.0" layoutY="187.0" maxHeight="130.0" maxWidth="300.0" prefHeight="106.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="leakingpipeTextarea" disable="true" layoutX="918.0" layoutY="167.0" maxHeight="130.0" maxWidth="300.0" prefHeight="106.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font size="13.0" />
          </font></TextArea>
-      <TextArea fx:id="leakingpipeDescription" disable="true" layoutX="928.0" layoutY="297.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="leakingpipeDescription" disable="true" layoutX="906.0" layoutY="275.0" maxHeight="130.0" maxWidth="319.0" prefHeight="54.0" prefWidth="319.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
