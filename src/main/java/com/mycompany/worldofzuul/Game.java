@@ -27,7 +27,7 @@ public class Game {
     public Game() {
         this.state = GameState.INTRO;
         this.rooms = new ArrayList<Room>();
-        this.inventory = new Inventory();
+        this.inventory = new Inventory(2);
         createRooms();
         System.err.println("New instance of game has been made");
     }
