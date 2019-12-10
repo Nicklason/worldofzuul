@@ -68,12 +68,12 @@
             </Button>
          </children>
       </HBox>
-      <TextArea fx:id="irrigationTextarea" disable="true" layoutX="709.0" layoutY="281.0" maxHeight="130.0" maxWidth="300.0" prefHeight="89.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="irrigationTextarea" disable="true" layoutX="734.0" layoutY="223.0" maxHeight="130.0" maxWidth="300.0" prefHeight="89.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="pesticidesTextarea" disable="true" layoutX="42.0" layoutY="253.0" maxHeight="145.0" maxWidth="300.0" prefHeight="113.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="pesticidesTextarea" disable="true" layoutX="72.0" layoutY="209.0" maxHeight="145.0" maxWidth="300.0" prefHeight="113.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font size="13.0" />
          </font>
@@ -83,12 +83,12 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="pesticidesDescription" disable="true" layoutX="42.0" layoutY="375.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="pesticidesDescription" disable="true" layoutX="72.0" layoutY="325.0" maxHeight="130.0" maxWidth="300.0" prefHeight="66.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="irrigationDescription" disable="true" layoutX="709.0" layoutY="375.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
+      <TextArea fx:id="irrigationDescription" disable="true" layoutX="734.0" layoutY="315.0" maxHeight="130.0" maxWidth="300.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

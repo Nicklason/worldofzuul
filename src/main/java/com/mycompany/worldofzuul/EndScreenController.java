@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
  * @author niklas
  */
 public class EndScreenController {
-
+    @FXML
+    private AnchorPane endAnchorpane;
     private static Game game = Game.getInstance();
 
     @FXML
@@ -28,6 +30,7 @@ public class EndScreenController {
     public void initialize() {
         endPictures = game.getEndPictures();
         imageview.setImage(new Image(endPictures.get(i)));
+        endAnchorpane.setStyle("-fx-background-color: #000000;");
     }
 
     @FXML

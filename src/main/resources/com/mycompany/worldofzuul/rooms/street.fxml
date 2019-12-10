@@ -61,7 +61,7 @@
             <Font size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="doorDescription" disable="true" layoutX="852.0" layoutY="280.0" prefHeight="44.0" prefWidth="271.0" visible="false" wrapText="true">
+      <TextArea fx:id="doorDescription" disable="true" layoutX="860.0" layoutY="280.0" prefHeight="44.0" prefWidth="250.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
