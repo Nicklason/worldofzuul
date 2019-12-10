@@ -309,13 +309,13 @@ public class RoomController {
 
         if (poiListView.getSelectionModel().getSelectedItem() == null) {
             setFeedback("No selected Item");
+        } else if (!game.inventory.add(selectedItem)) {
+            setFeedback("You can't carry more items");
         } else {
             game.getCurrentPointOfInterest().inventory.remove(selectedItem);
             game.getCurrentPointOfInterest().inventory.getAll();
             poiItems.remove(selectedItem);
             playerItems.add(selectedItem);
-            game.inventory.add(selectedItem);
-
         }
 
     }
@@ -530,6 +530,7 @@ public class RoomController {
     public void setFeedback(String msg) {
 
         feedbackTextarea.setText(msg);
+        feedbackTextarea.setPrefWidth(msg.length() * 8);
         feedbackTextarea.setVisible(true);
         new Timer().schedule(new TimerTask() {
             @Override
