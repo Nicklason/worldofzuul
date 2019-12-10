@@ -3,18 +3,20 @@ package com.mycompany.worldofzuul;
 import com.mycompany.items.*;
 import com.mycompany.pointsofinterest.*;
 import com.mycompany.rooms.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -24,6 +26,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class RoomController {
@@ -164,6 +168,22 @@ public class RoomController {
                 farmhouseDescription, waterpumpDescription, streetDescription, boyDescription, billboardDescription, containerDescription, doorDescription,
                 oldmanDescription, vendingmachineDescription, storeDescription, mapDescription));
         
+
+        Scene scene = App.getScene();
+
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent> () {
+            @Override
+            public void handle(KeyEvent t) {
+                if(t.getCode() == KeyCode.ESCAPE) {
+                    try {
+                        App.setRoot("menu/menu");
+                        scene.removeEventHandler(KeyEvent.KEY_PRESSED, this);
+                    } catch (IOException err) {
+                        System.out.println("Oof");
+                    }
+                }
+            }
+        });
 
         progressBar.setProgress(game.progress);
         progressbarLabel.setText(game.fixedCount + "/9 Completed");
@@ -464,7 +484,6 @@ public class RoomController {
 
     @FXML
     private void switchToLobby() throws IOException {
-        
         game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
         App.setRoot("menu/lobby");

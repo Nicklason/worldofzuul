@@ -1,51 +1,26 @@
 
 package com.mycompany.worldofzuul;
 
-//import com.mycompany.pointsofinterest.PointOfInterest;
-import com.mycompany.pointsofinterest.*;
-import com.mycompany.rooms.Room;
 import com.mycompany.rooms.Rooms;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
-
 
 public class MenuController {
     
     private static Game game = Game.getInstance();
-    // Progressbar
-    @FXML
-    private ProgressBar progressBar;
-    @FXML
-    private Label progressbarLabel;
-    @FXML
-    private Button btnPlay;
-    @FXML
-    private Button btnHints;
-    @FXML
-    private Button btnAbout;
-    @FXML
-    private Button btnHelp;
+    
+    private static boolean doneIntro = false;
+
     @FXML
     private TextField txtFieldPlayer;
     @FXML
     private Button btnAnswer;
-    @FXML
-    private TextField txtfieldGirl;
     @FXML
     private ImageView imgviewPhoto;
     @FXML
@@ -54,10 +29,6 @@ public class MenuController {
     private TextArea txtAreaGirl;
     @FXML
     private ImageView imgviewClair;
-    @FXML
-    private ToggleButton clairToggleButton;
-    @FXML
-    private ToggleGroup poiToggle;
     @FXML
     private ImageView speechBubble1;
     @FXML
@@ -80,29 +51,30 @@ public class MenuController {
     }   
     @FXML
     void handleClairPoi(ActionEvent event) {
-    speechBubble1.setVisible(true);
-    speechBubble2.setVisible(true);
-    txtAreaGirl.setVisible(true);
-    txtFieldPlayer.setVisible(true);
-    btnAnswer.setVisible(true);
-    if (imgviewClair.visibleProperty().get()==true){
-        imgviewClair.setVisible(false);
-    }
+        speechBubble1.setVisible(true);
+        speechBubble2.setVisible(true);
+        txtAreaGirl.setVisible(true);
+        txtFieldPlayer.setVisible(true);
+        btnAnswer.setVisible(true);
+        if (imgviewClair.visibleProperty().get() == true){
+            imgviewClair.setVisible(false);
+        }
     }
    
     @FXML
     void handleClairImage(MouseEvent event) {
     imgviewClair.setVisible(false);
     }
-           
-     
 
     @FXML
     private void PlayPressed() throws IOException {
-        App.setRoot("menu/introscene");
-       
-    } 
-    
+        if (doneIntro) {
+            App.setRoot("rooms/" + game.getCurrentRoom().getName());
+        } else {
+            doneIntro = true;
+            App.setRoot("menu/introscene");
+        }
+    }
      
     @FXML
     private void HintsPressed() throws IOException {
@@ -129,79 +101,77 @@ public class MenuController {
         System.exit(0);
     }
     
-      @FXML
+    @FXML
     private void AnswerPressed() throws IOException {
-    String playerName;
-    String girlText = txtAreaGirl.getText();
-    
-    
-     if(girlText.equals("Hello, you must be new here...")){
-        if(txtFieldPlayer.getText().trim().isEmpty()){
-          txtFieldPlayer.setPromptText("Say something...");}  
-        else if (txtFieldPlayer.getText().equals("Hello")||txtFieldPlayer.getText().equals("hello")||txtFieldPlayer.getText().equals("Hi")||txtFieldPlayer.getText().equals("hi")){
-        txtAreaGirl.setText("My name is Clair. What's your name?");
-        txtAreaGirl.setWrapText(true);
-        txtFieldPlayer.setPromptText("Choose a name");
-        txtFieldPlayer.clear();
+        String playerName;
+        String girlText = txtAreaGirl.getText();
+
+        if (girlText.equals("Hello, you must be new here...")) {
+            if (txtFieldPlayer.getText().trim().isEmpty()) {
+                txtFieldPlayer.setPromptText("Say something...");
+            } else if (txtFieldPlayer.getText().equals("Hello") || txtFieldPlayer.getText().equals("hello")||txtFieldPlayer.getText().equals("Hi")||txtFieldPlayer.getText().equals("hi")){
+                txtAreaGirl.setText("My name is Clair. What's your name?");
+                txtAreaGirl.setWrapText(true);
+                txtFieldPlayer.setPromptText("Choose a name");
+                txtFieldPlayer.clear();
+            } else {
+                txtFieldPlayer.setPromptText("Try saying hello or hi");
+                txtFieldPlayer.clear();
+            }
         }
-     else { txtFieldPlayer.setPromptText("Try saying hello or hi");
+
+        if (girlText.equals("My name is Clair. What's your name?")) {
+            if (txtFieldPlayer.getText().trim().isEmpty()) {
+                txtFieldPlayer.setPromptText("You didn't choose a name");
+            } else {  
+                playerName=txtFieldPlayer.getText();
+                txtAreaGirl.setWrapText(true);
+                txtAreaGirl.setText("I come here since I was a little girl. The water was so blue back then. Here see this picture...");
+                txtFieldPlayer.setPromptText("Take the picture");
+                txtFieldPlayer.clear();
+                btnPhoto.setVisible(true);
+                txtFieldPlayer.setPromptText(" ");  
+            }
+        }
+
+        if (girlText.equals("I come here since I was a little girl. The water was so blue back then. Here see this picture...")){
+            txtAreaGirl.setWrapText(true);
             txtFieldPlayer.clear();
-           }
-     }
-    
-    if(girlText.equals("My name is Clair. What's your name?")){
-        if(txtFieldPlayer.getText().trim().isEmpty()){
-          txtFieldPlayer.setPromptText("You didn't choose a name");}  
-        else {  
-        playerName=txtFieldPlayer.getText();
-        txtAreaGirl.setWrapText(true);
-        txtAreaGirl.setText("I come here since I was a little girl. The water was so blue back then. Here see this picture...");
-        txtFieldPlayer.setPromptText("Take the picture");
-        txtFieldPlayer.clear();
-        btnPhoto.setVisible(true);
-        txtFieldPlayer.setPromptText(" ");  
-       }
-     }
-     if(girlText.equals("I come here since I was a little girl. The water was so blue back then. Here see this picture...")){
-     txtAreaGirl.setWrapText(true);
-     txtFieldPlayer.clear();
-     }
-     
-     if(girlText.equals("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?")){
-        if(txtFieldPlayer.getText().trim().isEmpty()){
-        txtFieldPlayer.setPromptText("Clair is waiting for your answer...");}  
-        else if (txtFieldPlayer.getText().equals("Yes")||txtFieldPlayer.getText().equals("yes")){
-        txtAreaGirl.setText("Thank you");
-        txtFieldPlayer.setVisible(false);
-        speechBubble2.setVisible(false);
-        btnAnswer.setVisible(false);
-        btnPhoto.setVisible(false);
-        imgviewPhoto.setVisible(false);
-        imgviewLakeSign.setVisible(true);
-        btnSwitchToLake.setVisible(true);
         }
-        else if (txtFieldPlayer.getText().equals("No")||txtFieldPlayer.getText().equals("no")){
-        txtAreaGirl.setText("I guess it's too late to change anything...");
-        txtFieldPlayer.setPromptText(" ");
-        txtFieldPlayer.clear();
+
+        if (girlText.equals("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?")){
+            if (txtFieldPlayer.getText().trim().isEmpty()) {
+                txtFieldPlayer.setPromptText("Clair is waiting for your answer...");
+            } else if (txtFieldPlayer.getText().equals("Yes") || txtFieldPlayer.getText().equals("yes")) {
+                txtAreaGirl.setText("Thank you");
+                txtFieldPlayer.setVisible(false);
+                speechBubble2.setVisible(false);
+                btnAnswer.setVisible(false);
+                btnPhoto.setVisible(false);
+                imgviewPhoto.setVisible(false);
+                imgviewLakeSign.setVisible(true);
+                btnSwitchToLake.setVisible(true);
+            } else if (txtFieldPlayer.getText().equals("No") || txtFieldPlayer.getText().equals("no")) {
+                txtAreaGirl.setText("I guess it's too late to change anything...");
+                txtFieldPlayer.setPromptText(" ");
+                txtFieldPlayer.clear();
+            } else {
+                txtFieldPlayer.setPromptText("Answer yes or no");
+                txtFieldPlayer.clear();
+            }
         }
-     else { txtFieldPlayer.setPromptText("Answer yes or no");
-            txtFieldPlayer.clear();
-           }
-      }
-   }
-    
+    }
+
     @FXML
     void PhotoPressed(ActionEvent event) {
-    if(imgviewPhoto.visibleProperty().get()==false){
-        imgviewPhoto.setVisible(true);
-        txtAreaGirl.setText("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?");
-        txtFieldPlayer.clear();
-        txtFieldPlayer.setPromptText("Answer yes or no");
-    }
-    else {
-        imgviewPhoto.setVisible(false);
-    }
+        if (imgviewPhoto.visibleProperty().get()==false){
+            imgviewPhoto.setVisible(true);
+            txtAreaGirl.setText("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?");
+            txtFieldPlayer.clear();
+            txtFieldPlayer.setPromptText("Answer yes or no");
+        } else {
+            imgviewPhoto.setVisible(false);
+        }
     }
     
     @FXML
@@ -210,48 +180,19 @@ public class MenuController {
         game.setCurrentPointOfInterest(null);
         App.setRoot("rooms/lake");
     }
-    public void setProgress() {
-        ArrayList<PointOfInterest> allFixablePois = new ArrayList<>();
 
-        for (Room room : game.rooms) {
-            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
-                if (pointofinterest.isFixable()) {
-                    allFixablePois.add(pointofinterest);
-                }
-            }
-        }
-
-        int fixedPoiCount = 0;
-
-        for (PointOfInterest poi : allFixablePois) {
-            if (poi.isFixed()) {
-                fixedPoiCount++;
-            }
-        }
-        double newProgress = fixedPoiCount * 0.111;
-        game.fixedCount = fixedPoiCount;
-        game.progress = newProgress;
-        progressBar.setProgress(newProgress);
-        progressbarLabel.setText(fixedPoiCount + "/" + allFixablePois.size() + " Completed");
-    }
-    public void endGame(){
+    public void endGame() {
         if (endGameToggle.isSelected()) {
-           endGameButton.setVisible(true);
-        endGameTextArea.setVisible(true);
-        endGameTextArea.setText("are you done with the game?"); 
-        }else{
-           endGameButton.setVisible(false);
-        endGameTextArea.setVisible(false);
-        
+            endGameButton.setVisible(true);
+            endGameTextArea.setVisible(true);
+            endGameTextArea.setText("are you done with the game?"); 
+        } else {
+            endGameButton.setVisible(false);
+            endGameTextArea.setVisible(false);
         }
-        
     }
     
     public void switchToEndScreen()throws IOException{
-    App.setRoot("menu/endscreen");
-
-}
-    
-    
-    
+        App.setRoot("menu/endscreen");
+    }
 }
