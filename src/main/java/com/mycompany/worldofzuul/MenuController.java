@@ -120,7 +120,7 @@ public class MenuController {
         if (girlText.equals("Hello, you must be new here...")) {
             if (txtFieldPlayer.getText().trim().isEmpty()) {
                 txtFieldPlayer.setPromptText("Say something...");
-            } else if (txtFieldPlayer.getText().equals("Hello") || txtFieldPlayer.getText().equals("hello")||txtFieldPlayer.getText().equals("Hi")||txtFieldPlayer.getText().equals("hi")){
+            } else if (txtFieldPlayer.getText().toLowerCase().equals("hello") || txtFieldPlayer.getText().toLowerCase().equals("hi")){
                 txtAreaGirl.setText("My name is Clair. What's your name?");
                 txtAreaGirl.setWrapText(true);
                 txtFieldPlayer.setPromptText("Choose a name");
@@ -129,9 +129,7 @@ public class MenuController {
                 txtFieldPlayer.setPromptText("Try saying hello or hi");
                 txtFieldPlayer.clear();
             }
-        }
-
-        if (girlText.equals("My name is Clair. What's your name?")) {
+        } else if (girlText.equals("My name is Clair. What's your name?")) {
             if (txtFieldPlayer.getText().trim().isEmpty()) {
                 txtFieldPlayer.setPromptText("You didn't choose a name");
             } else {  
@@ -146,19 +144,13 @@ public class MenuController {
                 btnPhoto.setVisible(true);
                 txtFieldPlayer.setPromptText(" ");  
             }
-        }
-
-        if (girlText.equals("I come here since I was a little girl. The water was so blue back then. Here see this picture...")){
+        } else if (girlText.equals("I come here since I was a little girl. The water was so blue back then. Here see this picture...")){
             txtAreaGirl.setWrapText(true);
             txtFieldPlayer.clear();
-                
-        }
-
-        if (girlText.equals("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?")){
-              
+        } else if (girlText.equals("The level in the dam has fallen so much. And the water is dark and polluted. Do you think we can do something to change this?")){
             if (txtFieldPlayer.getText().trim().isEmpty()) {
                 txtFieldPlayer.setPromptText("Clair is waiting for your answer...");
-            } else if (txtFieldPlayer.getText().equals("Yes") || txtFieldPlayer.getText().equals("yes")) {
+            } else if (txtFieldPlayer.getText().toLowerCase().equals("yes")) {
                 System.out.println(playerName);
                 txtAreaGirl.setText("Thank you"+" "+playerName);
                 txtFieldPlayer.setVisible(false);
