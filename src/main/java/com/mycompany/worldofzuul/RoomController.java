@@ -40,8 +40,6 @@ public class RoomController {
     // Listviews and observablelists
 
     @FXML
-    private ImageView imgviewPipeFixed;
-    @FXML
     private ListView<Item> playerInventoryListView;
     @FXML
     ObservableList<Item> playerItems;
