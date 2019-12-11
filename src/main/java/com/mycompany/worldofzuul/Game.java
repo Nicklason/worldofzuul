@@ -5,6 +5,7 @@ import com.mycompany.rooms.*;
 import com.mycompany.rooms.Street;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
 
@@ -13,14 +14,11 @@ public class Game {
     private PointOfInterest currentPointOfInterest;
     public Inventory inventory;
     public ArrayList<Room> rooms;
-    public int fixedCount = 0;
-    public double progress = 0;
     private static Game single_instance = null;
 
     public static enum GameState {
         INTRO,
         PLAYING,
-        IN_LOBBY,
         FINISHED
     };
 
@@ -58,6 +56,7 @@ public class Game {
         Street street = new Street(this);
         Factory factory = new Factory(this);
 
+        rooms.add(lobby);
         rooms.add(lake);
         rooms.add(field);
         rooms.add(bigcity);
@@ -86,6 +85,31 @@ public class Game {
 
         currentRoom = lobby;
         currentPointOfInterest = null;
+    }
+
+    public HashMap<String, Integer> getProgress () {
+        int fixedPois = 0;
+        int fixablePois = 0;
+
+        for (Room room: this.rooms) {
+            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
+                if (!pointofinterest.isFixable()) {
+                    continue;
+                }
+
+                fixablePois++;
+                if (pointofinterest.isFixed()) {
+                    fixedPois++;
+                }
+            }
+        }
+
+        HashMap<String, Integer> progress = new HashMap<String, Integer>();
+
+        progress.put("fixed", fixedPois);
+        progress.put("fixable", fixablePois);
+
+        return progress;
     }
 
     public Room getCurrentRoom() {

@@ -77,9 +77,6 @@ public class MenuController {
             case INTRO:
                 fxmlPath = "menu/introscene";
                 break;
-            case IN_LOBBY:
-                fxmlPath = "menu/lobby";
-                break;
             case PLAYING:
                 fxmlPath = "rooms/" + game.getCurrentRoom().getName();
                 break;
