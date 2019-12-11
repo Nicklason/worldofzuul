@@ -151,13 +151,15 @@ public class RoomController {
     private ImageView oldmanFixed;
     @FXML
     private ImageView waterpumpFixed;
-        
+    @FXML
+    private ImageView billboardFixed;
+           
     // Textarea for userfeedback
     @FXML
     private TextArea feedbackTextarea;
 
     private ArrayList<ToggleButton> allToggleButtons = new ArrayList<>();
-    ///////////////////////////////////////////////////////////////////////////////////////////
+   
     private ArrayList<ImageView> allImageViews = new ArrayList<>();
 
     private ArrayList<TextArea> allFunfactAreas = new ArrayList<>();
@@ -212,7 +214,7 @@ public class RoomController {
               boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
         
         
-        allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed));
+        allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed, billboardFixed));
         setCheckmark();
     }
     
@@ -582,6 +584,10 @@ public class RoomController {
            
            for (ImageView imageview : allImageViews){
                if (imageview !=null){
+                  if(imageview.getId().equals("billboardFixed")){
+                      if(game.getRoom("street").getPointOfInterest("billboard").isFixed()){
+                      billboardFixed.setVisible(true);}
+                  }
                    if (imageview.getId().equals(poi.getName()+"Fixed")){
                        if (poi.isFixed()){
                            imageview.setVisible(true);
