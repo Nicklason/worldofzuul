@@ -42,7 +42,7 @@ public abstract class PointOfInterest {
             this.fixed = true;
         }
     }
-
+   
     /**
      * Accessor for isFixable
      * @return

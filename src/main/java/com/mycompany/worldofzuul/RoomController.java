@@ -151,6 +151,8 @@ public class RoomController {
     private ImageView waterpumpFixed;
     @FXML
     private ImageView billboardFixed;
+    @FXML
+    private ImageView containerFixed;
            
     // Textarea for userfeedback
     @FXML
@@ -212,7 +214,7 @@ public class RoomController {
               boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
         
         
-        allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed, billboardFixed));
+        allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed, billboardFixed, containerFixed));
         setCheckmark();
     }
     
@@ -306,6 +308,33 @@ public class RoomController {
     @FXML
     public void handlePickupPoi(ActionEvent event) {
         Item selectedItem = (Item) poiListView.getSelectionModel().getSelectedItem();
+        //container gets fixed by picking up camera
+        PointOfInterest targetedPoi = game.getCurrentPointOfInterest();
+        if (targetedPoi.getName().equals(PointsOfInterest.CONTAINER.getName())&& selectedItem.getName().equals(Items.CAMERA.getName())){
+            targetedPoi.setFixed();
+            String currentPoiDescriptionTextArea = (targetedPoi.getName() + "Description");
+            for (TextArea descriptionArea : allDescriptionAreas) {
+                if (descriptionArea != null) {
+                    if ((descriptionArea.getId()).equals(currentPoiDescriptionTextArea)) {
+                        descriptionArea.setText(targetedPoi.getLongDescription());
+                    }
+                }
+            }
+
+            if (targetedPoi.hasFunfact() && targetedPoi.isFixed()) {
+                String currentPoiFunfactTextArea = (targetedPoi.getName() + "Textarea");
+                for (TextArea thisArea : allFunfactAreas) {
+                    if (thisArea != null) {
+                        if ((thisArea.getId()).equals(currentPoiFunfactTextArea)) {
+                            thisArea.setText(targetedPoi.getFunfact());
+                            thisArea.setVisible(true);
+                        }
+                    }
+                }
+            }
+           
+           setCheckmark();
+        }
 
         if (poiListView.getSelectionModel().getSelectedItem() == null) {
             setFeedback("No selected Item");
@@ -317,7 +346,7 @@ public class RoomController {
             poiItems.remove(selectedItem);
             playerItems.add(selectedItem);
         }
-
+                      
     }
 
     @FXML
