@@ -139,7 +139,6 @@ public class MenuController {
                 txtFieldPlayer.setPromptText("You didn't choose a name");
             } else {  
                 playerName=txtFieldPlayer.getText();
-                System.out.println(playerName);
                 txtAreaGirl.setWrapText(true);
                 txtAreaGirl.setText("I come here since I was a little girl. The water was so blue back then. Here see this picture...");
                 txtFieldPlayer.clear();
@@ -162,7 +161,6 @@ public class MenuController {
             if (txtFieldPlayer.getText().trim().isEmpty()) {
                 txtFieldPlayer.setPromptText("Clair is waiting for your answer...");
             } else if (txtFieldPlayer.getText().equals("Yes") || txtFieldPlayer.getText().equals("yes")) {
-                System.out.println(playerName);
                 txtAreaGirl.setText("Thank you"+" "+playerName);
                 txtFieldPlayer.setVisible(false);
                 speechBubble2.setVisible(false);

@@ -22,6 +22,16 @@
             <Image url="@../../../../images/rooms/bigcity.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="oldmanFixed" fitHeight="189.0" fitWidth="182.0" layoutX="1053.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/oldmanFixed.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="billboardFixed" fitHeight="280.0" fitWidth="221.0" layoutX="1011.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/billboardFixed.png" />
+         </image>
+      </ImageView>
       <Button layoutX="413.0" layoutY="642.0" mnemonicParsing="false" onAction="#switchToSuburb" opacity="0.0" prefHeight="42.0" prefWidth="149.0" text="Suburbs" />
       <Button layoutX="591.0" layoutY="562.0" mnemonicParsing="false" onAction="#switchToLake" opacity="0.0" prefHeight="62.0" prefWidth="100.0" text="Lake" />
       <Button layoutX="434.0" layoutY="587.0" mnemonicParsing="false" onAction="#switchToStreet" opacity="0.0" prefHeight="54.0" prefWidth="149.0" text="Street" />
@@ -101,10 +111,5 @@
             </HBox>
          </children>
       </Pane>
-      <ImageView fx:id="oldmanFixed" fitHeight="189.0" fitWidth="182.0" layoutX="1053.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../images/items/fixed/oldmanFixed.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
