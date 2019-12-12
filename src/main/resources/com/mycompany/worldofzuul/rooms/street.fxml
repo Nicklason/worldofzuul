@@ -22,6 +22,11 @@
             <Image url="@../../../../images/rooms/street.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="containerFixed" fitHeight="101.0" fitWidth="143.0" layoutX="561.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../../images/items/fixed/containerFixed.png" />
+         </image>
+      </ImageView>
       <Button layoutX="32.0" layoutY="536.0" mnemonicParsing="false" onAction="#switchToBigCity" opacity="0.0" prefHeight="66.0" prefWidth="124.0" text="Big City" />
       <ToggleButton fx:id="billboardToggleButton" layoutX="261.0" layoutY="364.0" mnemonicParsing="false" onAction="#handlePoiToggleEvent">
          <toggleGroup>
@@ -66,7 +71,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="containerDescription" disable="true" layoutX="551.0" layoutY="270.0" prefHeight="54.0" prefWidth="250.0" visible="false" wrapText="true">
+      <TextArea fx:id="containerDescription" disable="true" layoutX="529.0" layoutY="270.0" prefHeight="54.0" prefWidth="300.0" visible="false" wrapText="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
