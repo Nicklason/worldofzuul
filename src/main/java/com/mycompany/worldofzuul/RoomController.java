@@ -7,6 +7,7 @@ import com.mycompany.rooms.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -49,6 +51,13 @@ public class RoomController {
     private ListView<Item> poiListView;
     @FXML
     private Label currentPointOfInterestLabel;
+
+    @FXML
+    private Button endGameButton;
+    @FXML
+    private ToggleButton endGameToggle;
+    @FXML
+    private TextArea endGameTextArea;
 
     // Toggle group
     @FXML
@@ -174,14 +183,16 @@ public class RoomController {
     
     @FXML
     public void initialize() {
-        
-        playerItems = FXCollections.observableArrayList();
-        playerItems.addAll(game.inventory.getAll());
-        playerInventoryListView.setItems(playerItems);
-        playerInventoryListView.setCellFactory(Item -> new Cell());
 
-        poiItems = FXCollections.observableArrayList();
-        poiListView.setCellFactory(Item -> new Cell());
+        if (!game.getCurrentRoom().getName().equals(Rooms.LOBBY.getName())) {
+            playerItems = FXCollections.observableArrayList();
+            playerItems.addAll(game.inventory.getAll());
+            playerInventoryListView.setItems(playerItems);
+            playerInventoryListView.setCellFactory(Item -> new Cell());
+
+            poiItems = FXCollections.observableArrayList();
+            poiListView.setCellFactory(Item -> new Cell());
+        }
 
         allFunfactAreas.addAll(Arrays.asList(leakingpipeTextarea, boatTextarea, irrigationTextarea, pesticidesTextarea, waterpumpTextarea, oldmanTextarea, containerTextarea));
         allDescriptionAreas.addAll(Arrays.asList(leakingpipeDescription, boatDescription, bridgeDescription, irrigationDescription, pesticidesDescription,
@@ -207,15 +218,13 @@ public class RoomController {
             });
         }
 
-        progressBar.setProgress(game.progress);
-        progressbarLabel.setText(game.fixedCount + "/9 Completed");
         roomPoiList.addAll(game.getCurrentRoom().getPointsOfInterest());
         allToggleButtons.addAll(Arrays.asList(farmhouseToggleButton, pesticidesToggleButton, irrigationToggleButton, bridgeToggleButton, boatToggleButton, leakingpipeToggleButton, streetToggleButton, waterpumpToggleButton,
               boyToggleButton, vendingmachineToggleButton, storeToggleButton, oldmanToggleButton, billboardToggleButton, containerToggleButton, doorToggleButton, mapToggleButton));
         
-        
         allImageViews.addAll(Arrays.asList(boatFixed, leakingpipeFixed,irrigationFixed,pesticidesFixed,oldmanFixed,waterpumpFixed, billboardFixed, containerFixed));
         setCheckmark();
+        setProgress();
     }
     
 
@@ -505,7 +514,6 @@ public class RoomController {
 
     @FXML
     private void switchToLake() throws IOException {
-        
         game.setCurrentRoom(game.getRoom(Rooms.LAKE.getName()));
         game.setCurrentPointOfInterest(null);
         App.setRoot("rooms/lake");
@@ -537,10 +545,10 @@ public class RoomController {
 
     @FXML
     private void switchToLobby() throws IOException {
-        game.setState(Game.GameState.IN_LOBBY);
+        System.out.println(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentRoom(game.getRoom(Rooms.LOBBY.getName()));
         game.setCurrentPointOfInterest(null);
-        App.setRoot("menu/lobby");
+        App.setRoot("rooms/lobby");
     }
 
     @FXML
@@ -569,29 +577,32 @@ public class RoomController {
         }, 2500L);
     }
 
+    public void endGame() {
+        if (endGameToggle.isSelected()) {
+            endGameButton.setVisible(true);
+            endGameTextArea.setVisible(true);
+            endGameTextArea.setText("are you done with the game?"); 
+        } else {
+            endGameButton.setVisible(false);
+            endGameTextArea.setVisible(false);
+        }
+    }
+    
+    public void switchToEndScreen()throws IOException{
+        game.setState(Game.GameState.FINISHED);
+        App.setRoot("menu/endscreen");
+    }
+
     public void setProgress() {
-        ArrayList<PointOfInterest> allFixablePois = new ArrayList<>();
+        HashMap<String, Integer> progress = game.getProgress();
 
-        for (Room room : game.rooms) {
-            for (PointOfInterest pointofinterest : room.getPointsOfInterest()) {
-                if (pointofinterest.isFixable()) {
-                    allFixablePois.add(pointofinterest);
-                }
-            }
-        }
+        Integer fixed = progress.get("fixed");
+        Integer fixable = progress.get("fixable");
 
-        int fixedPoiCount = 0;
+        System.out.println(fixed + " " + fixable);
 
-        for (PointOfInterest poi : allFixablePois) {
-            if (poi.isFixed()) {
-                fixedPoiCount++;
-            }
-        }
-        double newProgress = fixedPoiCount * 0.111;
-        game.fixedCount = fixedPoiCount;
-        game.progress = newProgress;
-        progressBar.setProgress(newProgress);
-        progressbarLabel.setText(fixedPoiCount + "/" + allFixablePois.size() + " Completed");
+        progressBar.setProgress(fixed / (double)fixable);
+        progressbarLabel.setText(fixed + "/" + fixable + " Completed");
     }
 
     public void setCheckmark() {
@@ -601,8 +612,7 @@ public class RoomController {
                     if (togglebutton.getId().substring(0, togglebutton.getId().length() - 12).equals(poi.getName())) {
                         if (poi.isFixed()) {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/checkmark.png')");
-                            } 
-                       else {
+                        } else {
                             togglebutton.setStyle("-fx-graphic: url('images/misc/markerRsmall.png')");
                         }
                     }
@@ -611,11 +621,10 @@ public class RoomController {
            
            for (ImageView imageview : allImageViews){
                if (imageview !=null){
-                  if(imageview.getId().equals("billboardFixed")){
+                  if (imageview.getId().equals("billboardFixed")){
                       if(game.getRoom("street").getPointOfInterest("billboard").isFixed()){
                       billboardFixed.setVisible(true);}
-                  }
-                   if (imageview.getId().equals(poi.getName()+"Fixed")){
+                  } else if (imageview.getId().equals(poi.getName()+"Fixed")){
                        if (poi.isFixed()){
                            imageview.setVisible(true);
                        }
@@ -623,8 +632,5 @@ public class RoomController {
                }
            }
         }
-        
-        
-
     }
 }

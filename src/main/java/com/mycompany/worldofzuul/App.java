@@ -20,6 +20,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("menu/menu"));
         scene.getStylesheets().add("style.css");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
     
